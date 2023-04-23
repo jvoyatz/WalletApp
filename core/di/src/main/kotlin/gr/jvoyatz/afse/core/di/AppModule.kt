@@ -1,10 +1,12 @@
 package gr.jvoyatz.afse.core.di
 
 import android.os.Looper
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import gr.jvoyatz.afse.core.navigation.Navigator
 import javax.inject.Singleton
 
 /**
@@ -26,10 +28,13 @@ object AppModule {
     @Singleton
     @Provides
     fun provideHandler() = android.os.Handler(Looper.getMainLooper())
-
+    @Provides
+    fun provideAppFragmentNavigator():Navigator.FragmentNavigator = AppFragmentNavigator()
     @Module
     @InstallIn(SingletonComponent::class)
-    interface Bindinds{
+    interface Bindings{
 
+//        @Binds
+//        fun bindAppFragmentNavigator(appFragmentNavigator: AppFragmentNavigator) : Navigator.FragmentNavigator
     }
 }

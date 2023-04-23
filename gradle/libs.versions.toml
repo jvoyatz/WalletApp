@@ -18,7 +18,7 @@ kotlin                                          = "1.8.0"
 ksp                                             = "1.8.20-1.0.11"
 
 #android
-core-ktx                                        = "1.9.0"
+core-ktx                                        = "1.10.0"
 appcompat                                       = "1.6.1"
 material                                        = "1.8.0"
 constraintlayout                                = "2.1.4"
@@ -26,6 +26,7 @@ lifecycle                                       = "2.5.1"
 hilt                                            = "2.44"
 room                                            = "2.5.0"
 navigation                                      = "2.5.3"
+fragment                                        = "1.5.7"
 
 #retrofit
 okhttp                                          = "4.10.0"
@@ -73,6 +74,7 @@ viewbinding                                     = { module = "androidx.databindi
 navigation-fragment                             = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation"}
 navigation-ui                                   = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 lifecycle-viewmodel                             = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+fragment                                        = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 
 #di
 dagger-hilt-android                             = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }

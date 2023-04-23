@@ -1,10 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("afse.wallet.android.library.plus")
+    id("afse.wallet.android.library")
 }
 
 android {
-    namespace = "gr.jvoyatz.afse.core.di"
+    namespace = "gr.jvoyatz.afse.core.navigation"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -14,6 +14,6 @@ android {
 dependencies {
     implementation(libs.core.ktx)
     implementation(libs.fragment)
-    implementation(libs.navigation.fragment)
-    implementation(project(":core:navigation"))
+    implementation(libs.javax.inject)
+    testImplementation(libs.junit)
 }
