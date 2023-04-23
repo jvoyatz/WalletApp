@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AFSE Wallet"
 include(":app")
+include(":core:ui")

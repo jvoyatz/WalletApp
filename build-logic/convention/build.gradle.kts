@@ -33,7 +33,7 @@ gradlePlugin {
         }
         register("androidLibrary") {
             id = "afse.wallet.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+            implementationClass = "AndroidLibConventionPlugin"
         }
         register("androidHilt") {
             id = "afse.wallet.android.hilt"

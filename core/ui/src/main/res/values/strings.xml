@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AFSE Wallet</string>
+    <string name="ok">ok</string>
+    <string name="an_error_occurred">An error occurred.</string>
+</resources>

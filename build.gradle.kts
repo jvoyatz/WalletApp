@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.org.jetbrains.kotlin.parcelize) apply false
     alias(libs.plugins.com.google.dagger.hilt.android) apply false
+    alias(libs.plugins.com.android.library) apply false
 }
 
 apply(from = "gradle/projectDependencyGraph.gradle")

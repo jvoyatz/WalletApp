@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">@color/white</color>
+
+
+    <color name="dark_blue_50">#e1eefc</color>
+    <color name="dark_blue_200">#9db7c9</color>
+    <color name="dark_blue_300">#7b99af</color>
+    <color name="dark_blue_800">#1f3b4d</color>
+    <color name="dark_blue_900">#0d2736</color>
+
+    <color name="veraman_100">#b6dfe0</color>
+    <color name="veraman_200">#87cbcb</color>
+    <color name="veraman_500">#2d9693</color>
+    <color name="veraman_600">#2a8985</color>
+
+    <color name="black">#FF000000</color>
+    <color name="black_800">#121212</color>
+    <color name="black_900">#000000</color>
+    <color name="black_900_alpha_020">#33000000</color>
+    <color name="black_900_alpha_087">#de000000</color>
+    <color name="black_900_alpha_060">#99000000</color>
+
+    <color name="dark_blue_50_alpha_060">#99e1eefc</color>
+    <color name="white_50_alpha_060">#99ffffff</color>
+    <color name="yellow_50_alpha_060">#99f8d44f</color>
+
+    <color name="red_200">#cf7779</color>
+    <color name="red_400">#ff4c5d</color>
+</resources>

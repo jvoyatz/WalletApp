@@ -1,0 +1,35 @@
+<resources>
+
+    <style name="Theme.AFSEWallet" parent="Base.Theme.AFSEWallet">
+        <!--Color-->
+        <item name="colorPrimary">@color/dark_blue_200</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_300</item>
+        <item name="colorSecondary">@color/veraman_100</item>
+        <item name="colorSecondaryVariant">@color/veraman_200</item>
+
+        <item name="android:colorBackground">@color/black_900</item>
+        <item name="colorSurface">@color/black_800</item>
+        <item name="colorPrimarySurfaceVariant">?attr/colorSurface</item>
+        <item name="colorError">@color/red_200</item>
+
+        <item name="colorOnPrimary">@color/black_900</item>
+        <item name="colorOnSecondary">@color/black_900</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="scrimBackground">@color/black_900_alpha_087</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:statusBarColor">@color/black_900_alpha_060</item>
+        <!--
+        <item name="elevationOverlayEnabled">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        -->
+    </style>
+
+    <style name="SplashTheme.AFSEWallet" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:logo">@mipmap/ic_launcher</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+</resources>

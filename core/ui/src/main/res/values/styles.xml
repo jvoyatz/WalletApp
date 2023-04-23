@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="CardViewWithStrokeStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeColor">?attr/colorSecondary</item>
+        <item name="strokeWidth">@dimen/size_half_dp</item>
+        <item name="android:strokeWidth">@dimen/size_half_dp</item>
+        <item name="cardElevation">@dimen/elevation_medium</item>
+        <item name="cardMaxElevation">@dimen/elevation_large</item>
+    </style>
+
+    <style name="TextAutofitBody1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/text_size_body_1</item>
+        <item name="android:maxLines">2</item>
+        <item name="maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="android:autoSizeStepGranularity" tools:ignore="NewApi">1sp</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_caption</item>
+        <item name="autoSizeMaxTextSize">@dimen/text_size_body_1</item>
+        <item name="android:autoSizeMinTextSize" tools:ignore="NewApi">@dimen/text_size_caption</item>
+        <item name="android:autoSizeMaxTextSize" tools:ignore="NewApi">@dimen/text_size_body_1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_0_5x</item>
+    </style>
+
+    <style name="TextAutofitBody2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/text_size_body_2</item>
+        <item name="android:maxLines">2</item>
+        <item name="maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="android:autoSizeStepGranularity" tools:ignore="NewApi">1sp</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_caption</item>
+        <item name="autoSizeMaxTextSize">@dimen/text_size_body_2</item>
+        <item name="android:autoSizeMinTextSize" tools:ignore="NewApi">@dimen/text_size_caption</item>
+        <item name="android:autoSizeMaxTextSize" tools:ignore="NewApi">@dimen/text_size_body_2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_0_5x</item>
+    </style>
+
+    <style name="TextAutofitSubtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">@dimen/text_size_sub_1</item>
+        <item name="android:maxLines">2</item>
+        <item name="maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="android:autoSizeStepGranularity" tools:ignore="NewApi">1sp</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_caption</item>
+        <item name="autoSizeMaxTextSize">@dimen/text_size_body_2</item>
+        <item name="android:autoSizeMinTextSize" tools:ignore="NewApi">@dimen/text_size_body_2</item>
+        <item name="android:autoSizeMaxTextSize" tools:ignore="NewApi">@dimen/text_size_sub_1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_0_5x</item>
+    </style>
+
+
+    <style name="TextAutofitSubtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">@dimen/text_size_sub_2</item>
+        <item name="android:maxLines">2</item>
+        <item name="maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="android:autoSizeStepGranularity" tools:ignore="NewApi">1sp</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_body_2</item>
+        <item name="autoSizeMaxTextSize">@dimen/text_size_sub_2</item>
+        <item name="android:autoSizeMinTextSize" tools:ignore="NewApi">@dimen/text_size_body_2</item>
+        <item name="android:autoSizeMaxTextSize" tools:ignore="NewApi">@dimen/text_size_sub_2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_0_5x</item>
+    </style>
+
+    <style name="TextAutofitSubtitle3" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">@dimen/text_size_sub_3</item>
+        <item name="android:maxLines">2</item>
+        <item name="maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeStepGranularity">1sp</item>
+        <item name="android:autoSizeStepGranularity" tools:ignore="NewApi">1sp</item>
+        <item name="autoSizeMinTextSize">@dimen/text_size_body_2</item>
+        <item name="autoSizeMaxTextSize">@dimen/text_size_sub_3</item>
+        <item name="android:autoSizeMinTextSize" tools:ignore="NewApi">@dimen/text_size_body_2</item>
+        <item name="android:autoSizeMaxTextSize" tools:ignore="NewApi">@dimen/text_size_sub_3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_0_5x</item>
+    </style>
+
+    <!-- used when switching from light to dark theme -->
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+</resources>
