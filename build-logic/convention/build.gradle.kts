@@ -43,5 +43,9 @@ gradlePlugin {
             id = "afse.wallet.android.library.plus"
             implementationClass = "AndroidHiltLibConventionPlugin"
         }
+        register("kotlinModule") {
+            id = "afse.wallet.kotlin"
+            implementationClass = "KotlinConventionPlugin"
+        }
     }
 }
