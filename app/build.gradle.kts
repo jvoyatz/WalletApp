@@ -1,21 +1,18 @@
+import gr.jvoyatz.afse.wallet.getVersionCatalogExtension
+import gr.jvoyatz.afse.wallet.getPackageName
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("afse.wallet.android.application")
+    id("afse.wallet.android.hilt")
 }
 
 android {
-    namespace = "gr.jvoyatz.afse.wallet"
-    compileSdk = 33
+    val packageName = extensions.getVersionCatalogExtension().getPackageName()
+    namespace = packageName
 
-    defaultConfig {
-        applicationId = "gr.jvoyatz.afse.wallet"
-        minSdk = 21
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -24,17 +21,9 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
