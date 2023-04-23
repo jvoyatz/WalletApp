@@ -39,5 +39,9 @@ gradlePlugin {
             id = "afse.wallet.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
         }
+        register("androidHiltLib") {
+            id = "afse.wallet.android.library.plus"
+            implementationClass = "AndroidHiltLibConventionPlugin"
+        }
     }
 }

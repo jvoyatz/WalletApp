@@ -1,3 +1,5 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode.FAIL_ON_PROJECT_REPOS
+
 pluginManagement {
     repositories {
         includeBuild("build-logic")
@@ -7,7 +9,7 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -17,3 +19,4 @@ dependencyResolutionManagement {
 rootProject.name = "AFSE Wallet"
 include(":app")
 include(":core:ui")
+include(":core:di")
