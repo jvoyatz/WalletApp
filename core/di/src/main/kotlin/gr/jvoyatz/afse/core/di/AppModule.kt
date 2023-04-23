@@ -28,6 +28,7 @@ object AppModule {
     fun provideHandler() = android.os.Handler(Looper.getMainLooper())
 
     @Module
+    @InstallIn(SingletonComponent::class)
     interface Bindinds{
 
     }
