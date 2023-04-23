@@ -25,7 +25,7 @@ internal fun Project.configureAndroidCommon(
 
         defaultConfig {
             minSdk = extensions.getVersionCatalogExtension().getMinSdk()
-            testInstrumentationRunner = "MY RUNNER HERE"
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
         buildFeatures {

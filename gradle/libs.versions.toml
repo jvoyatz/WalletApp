@@ -22,7 +22,7 @@ core-ktx                                        = "1.10.0"
 appcompat                                       = "1.6.1"
 material                                        = "1.8.0"
 constraintlayout                                = "2.1.4"
-lifecycle                                       = "2.5.1"
+lifecycle                                       = "2.6.1"
 hilt                                            = "2.44"
 room                                            = "2.5.0"
 navigation                                      = "2.5.3"
@@ -54,7 +54,7 @@ org-jetbrains-kotlin-parcelize                  = { id = "org.jetbrains.kotlin.p
 org-jetbrains-kotlin-kapt                       = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 com-google-dagger-hilt-android                  = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 java-library                                    = { id = "java-library"}
-ksp =                                           { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ksp                                             = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries] # libraries--dependencies with versions
 
@@ -74,6 +74,7 @@ viewbinding                                     = { module = "androidx.databindi
 navigation-fragment                             = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation"}
 navigation-ui                                   = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 lifecycle-viewmodel                             = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-savedState                  = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 fragment                                        = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 
 #di
