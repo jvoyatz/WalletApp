@@ -35,5 +35,6 @@
   - https://proandroiddev.com/using-version-catalog-on-android-projects-82d88d2f79e5
   - https://proandroiddev.com/single-source-of-truth-for-your-build-scripts-72d584534949
   - https://stackoverflow.com/questions/70550883/warning-the-following-options-were-not-recognized-by-any-processor-dagger-f
+  - https://github.com/JakeWharton/SdkSearch/blob/master/gradle/projectDependencyGraph.gradle (needs GraphViz program to be installed in order to run successfully)
 
 more TBA

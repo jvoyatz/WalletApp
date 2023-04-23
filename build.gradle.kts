@@ -7,4 +7,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.parcelize) apply false
     alias(libs.plugins.com.google.dagger.hilt.android) apply false
 }
+
+apply(from = "gradle/projectDependencyGraph.gradle")
+
 true // Needed to make the Suppress annotation work for the plugins block
