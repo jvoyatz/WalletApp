@@ -3,6 +3,7 @@ package gr.jvoyatz.afse.wallet.core.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import gr.jvoyatz.afse.wallet.core.api.config.interceptors.BasicAuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,9 +21,12 @@ object ApiProvider {
 
     internal val okHttpClient by lazy {
         OkHttpClient.Builder().apply {
+
             connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             readTimeout(TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+
+            addInterceptor(BasicAuthInterceptor(api_R.USERNAME, api_R.PASSWORD))
             addInterceptor(loggingInterceptor)
         }.run {
             build()
