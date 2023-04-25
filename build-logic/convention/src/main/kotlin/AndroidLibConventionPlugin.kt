@@ -17,6 +17,7 @@ class AndroidLibConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.android")
+                apply("org.jetbrains.kotlin.kapt")
             }
 
 
@@ -28,6 +29,7 @@ class AndroidLibConventionPlugin : Plugin<Project> {
             val libs = extensions.getVersionCatalogExtension().getLibs()
             target.dependencies {
                 "implementation"(libs.findLibrary("logging.timber").get())
+                "testImplementation"(libs.findBundle("test").get())
             }
         }
     }
