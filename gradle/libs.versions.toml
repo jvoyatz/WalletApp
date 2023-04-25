@@ -152,3 +152,7 @@ androidx-navigation = [
     "navigation-fragment",
     "navigation-ui"
 ]
+room = [
+    "room",
+    "room-ktx"
+]

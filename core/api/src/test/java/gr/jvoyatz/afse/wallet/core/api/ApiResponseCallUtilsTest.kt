@@ -2,7 +2,7 @@ package gr.jvoyatz.afse.wallet.core.api
 
 
 import com.google.common.truth.Truth
-import gr.jvoyatz.afse.core.testing.RetrofitMockData
+import gr.jvoyatz.afse.core.testing.MockData
 import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.HttpError
 import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.NetworkError
 import gr.jvoyatz.afse.wallet.core.api.config.asError
@@ -84,11 +84,11 @@ class ApiResponseCallUtilsTest {
     @Test
     fun `safe api call http error bad request, returns http error `() = runTest {
         //given
-        val body = RetrofitMockData.ERROR_RESPONSE_BODY
+        val body = MockData.MOCK_RESPONSE_BODY
 
         //when
         val errorResponse = safeApiCall<Boolean, String>({
-            RetrofitMockData.ERROR_RESPONSE
+            MockData.MOCK_NET_ERROR_RESPONSE
         }) {
             Response.error(400, body)
         }
@@ -97,7 +97,7 @@ class ApiResponseCallUtilsTest {
         Truth.assertThat(errorResponse).isInstanceOf(HttpError::class.java)
         Truth.assertThat(errorResponse.asHttpError()!!.code).isEqualTo(400)
         Truth.assertThat(errorResponse.asHttpError()!!.errorBody)
-            .isEqualTo(RetrofitMockData.ERROR_RESPONSE)
+            .isEqualTo(MockData.MOCK_NET_ERROR_RESPONSE)
     }
 
     @Test
@@ -202,11 +202,11 @@ class ApiResponseCallUtilsTest {
     @Test
     fun `safe raw api call http error bad request, returns http error `() = runTest {
         //given
-        val body = RetrofitMockData.ERROR_RESPONSE_BODY
+        val body = MockData.MOCK_RESPONSE_BODY
 
         //when
         val errorResponse = safeRawApiCall<Boolean, String>({
-            RetrofitMockData.ERROR_RESPONSE
+            MockData.MOCK_NET_ERROR_RESPONSE
         }) {
             throw HttpException(Response.error<String>(400, body))
         }
@@ -215,7 +215,7 @@ class ApiResponseCallUtilsTest {
         Truth.assertThat(errorResponse).isInstanceOf(HttpError::class.java)
         Truth.assertThat(errorResponse.asHttpError()!!.code).isEqualTo(400)
         Truth.assertThat(errorResponse.asHttpError()!!.errorBody)
-            .isEqualTo(RetrofitMockData.ERROR_RESPONSE)
+            .isEqualTo(MockData.MOCK_NET_ERROR_RESPONSE)
     }
 
     @Test

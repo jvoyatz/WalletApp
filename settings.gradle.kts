@@ -1,6 +1,5 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
-
 pluginManagement {
     repositories {
         includeBuild("build-logic")
@@ -26,4 +25,4 @@ include(":core:common")
 include(":core:MVVMi")
 include(":core:testing")
 include(":core:navigation")
-
+include(":core:database")

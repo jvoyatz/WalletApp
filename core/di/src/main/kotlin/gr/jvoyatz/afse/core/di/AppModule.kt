@@ -1,13 +1,17 @@
 package gr.jvoyatz.afse.core.di
 
+import android.content.Context
 import android.os.Looper
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import gr.jvoyatz.afse.core.database.DatabaseProvider
 import gr.jvoyatz.afse.core.navigation.Navigator
 import gr.jvoyatz.afse.wallet.core.api.WalletApi
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 /**
@@ -29,12 +33,21 @@ object AppModule {
     @Singleton
     @Provides
     fun provideHandler() = android.os.Handler(Looper.getMainLooper())
+
+    @Singleton
     @Provides
-    fun provideAppFragmentNavigator():Navigator.FragmentNavigator = AppFragmentNavigator()
+    fun provideExecutor(): Executor = Executors.newSingleThreadExecutor()
+
+    @Provides
+    fun provideAppFragmentNavigator(): Navigator.FragmentNavigator = AppFragmentNavigator()
 
     @Provides
     fun provideWalletApi() = WalletApi.create()
 
+    @Provides
+    @Singleton
+    fun provideWalletDao(@ApplicationContext context: Context, executor: Executor) =
+        DatabaseProvider.getWalletDao(context, executor)
 
     @Module
     @InstallIn(SingletonComponent::class)

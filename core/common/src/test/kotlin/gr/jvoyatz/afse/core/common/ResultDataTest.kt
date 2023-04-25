@@ -214,7 +214,7 @@ class ResultDataTest {
         //given
         val flow = flow<Int> {
             throw IllegalStateException("test exception")
-         //   emit(1)
+           emit(1)
         }.asResult()
 
 

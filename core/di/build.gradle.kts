@@ -17,4 +17,5 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(project(":core:navigation"))
     implementation(project(":core:api"))
+    implementation(project(":core:database"))
 }
