@@ -29,6 +29,7 @@ class AndroidLibConventionPlugin : Plugin<Project> {
             val libs = extensions.getVersionCatalogExtension().getLibs()
             target.dependencies {
                 "implementation"(libs.findLibrary("logging.timber").get())
+                "implementation"(libs.findLibrary("coroutines").get())
                 "testImplementation"(libs.findBundle("test").get())
             }
         }

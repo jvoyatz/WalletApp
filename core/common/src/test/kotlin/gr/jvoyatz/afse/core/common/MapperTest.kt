@@ -1,9 +1,8 @@
-package gr.jvoyatz.sportspot.core.common
+package gr.jvoyatz.afse.core.common
 
 import com.google.common.truth.Truth
 import gr.jvoyatz.afse.core.common.StringToIntDtoMapper.from
 import gr.jvoyatz.afse.core.common.StringToIntDtoMapper.to
-import gr.jvoyatz.afse.core.common.mapList
 import org.junit.Test
 
 class MapperTest {

@@ -140,7 +140,8 @@ test = [
     "truth",
     "coroutines-test",
     "turbine",
-    "mockk"
+    "mockk",
+    "okhttp-mockwebserver"
 ]
 test-android = [
     "androidx-test-ext-junit",

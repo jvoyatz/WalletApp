@@ -5,9 +5,19 @@ plugins {
 
 android {
     namespace = "gr.jvoyatz.afse.wallet.core.api"
+
+    defaultConfig {
+        buildConfigField("String", "HOST", "\"http://ktor-env.eba-asssfhm8.eu-west-1.elasticbeanstalk.com/\"")
+        buildConfigField("String", "USERNAME", "\"Advantage\"")
+        buildConfigField("String", "PASSWORD", "\"mobileAssignment\"")
+    }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
+    implementation(project(":core:testing"))
     implementation(libs.bundles.networking)
     kapt(libs.moshi.codegen)
 }

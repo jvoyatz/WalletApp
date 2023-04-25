@@ -1,4 +1,4 @@
-package gr.jvoyatz.sportspot
+package gr.jvoyatz.afse.wallet
 
 import timber.log.Timber
 

@@ -2,7 +2,6 @@ package gr.jvoyatz.afse.wallet
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
-import gr.jvoyatz.sportspot.TimberDebugTree
 import timber.log.Timber
 
 @HiltAndroidApp

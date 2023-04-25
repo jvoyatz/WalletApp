@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import gr.jvoyatz.afse.core.navigation.Navigator
+import gr.jvoyatz.afse.wallet.core.api.WalletApi
 import javax.inject.Singleton
 
 /**
@@ -30,6 +31,11 @@ object AppModule {
     fun provideHandler() = android.os.Handler(Looper.getMainLooper())
     @Provides
     fun provideAppFragmentNavigator():Navigator.FragmentNavigator = AppFragmentNavigator()
+
+    @Provides
+    fun provideWalletApi() = WalletApi.create()
+
+
     @Module
     @InstallIn(SingletonComponent::class)
     interface Bindings{
