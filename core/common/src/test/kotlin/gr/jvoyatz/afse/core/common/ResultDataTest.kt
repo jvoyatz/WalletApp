@@ -1,6 +1,15 @@
 package gr.jvoyatz.afse.core.common
 
 import com.google.common.truth.Truth
+import gr.jvoyatz.afse.core.common.resultdata.ResultData
+import gr.jvoyatz.afse.core.common.resultdata.asError
+import gr.jvoyatz.afse.core.common.resultdata.asResult
+import gr.jvoyatz.afse.core.common.resultdata.asSuccess
+import gr.jvoyatz.afse.core.common.resultdata.isError
+import gr.jvoyatz.afse.core.common.resultdata.isSuccess
+import gr.jvoyatz.afse.core.common.resultdata.onError
+import gr.jvoyatz.afse.core.common.resultdata.onSuccess
+import gr.jvoyatz.afse.core.common.resultdata.resultOf
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
