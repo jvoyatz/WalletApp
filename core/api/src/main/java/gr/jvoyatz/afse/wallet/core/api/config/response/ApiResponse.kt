@@ -1,4 +1,4 @@
-package gr.jvoyatz.afse.wallet.core.api.config
+package gr.jvoyatz.afse.wallet.core.api.config.response
 
 
 /**

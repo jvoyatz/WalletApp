@@ -1,10 +1,10 @@
-package gr.jvoyatz.afse.wallet.core.api.config
+package gr.jvoyatz.afse.wallet.core.api.config.response
 
-import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.ApiError
-import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.ApiSuccess
-import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.HttpError
-import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.NetworkError
-import gr.jvoyatz.afse.wallet.core.api.config.ApiResponse.UnexpectedError
+import gr.jvoyatz.afse.wallet.core.api.config.response.ApiResponse.ApiError
+import gr.jvoyatz.afse.wallet.core.api.config.response.ApiResponse.ApiSuccess
+import gr.jvoyatz.afse.wallet.core.api.config.response.ApiResponse.HttpError
+import gr.jvoyatz.afse.wallet.core.api.config.response.ApiResponse.NetworkError
+import gr.jvoyatz.afse.wallet.core.api.config.response.ApiResponse.UnexpectedError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
