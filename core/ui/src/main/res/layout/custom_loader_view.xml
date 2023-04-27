@@ -18,6 +18,7 @@
         android:layout_marginEnd="@dimen/margin_5x"
         android:layout_marginBottom="@dimen/margin_1x"/>
 
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/loading"
         android:layout_width="0dp"
@@ -25,14 +26,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         android:gravity="center"
         android:textColor="?attr/colorPrimaryVariant"
         android:text="@string/loading"
         android:textSize="@dimen/text_size_h5"
         android:layout_marginStart="@dimen/margin_5x"
         android:layout_marginEnd="@dimen/margin_5x"
-        android:layout_marginBottom="@dimen/margin_1x"/>
+        android:layout_marginBottom="@dimen/margin_0_25x"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/error"

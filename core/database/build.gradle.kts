@@ -1,15 +1,26 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("afse.wallet.android.library")
+    id("assignment.wallet.android.library")
 }
 
 android {
-    namespace = "gr.jvoyatz.afse.core.database"
+    namespace = "gr.jvoyatz.assignment.core.database"
 
     packagingOptions {
         resources.merges.add("META-INF/gradle/incremental.annotation.processors")
         resources.merges.add("META-INF/LICENSE.md")
         resources.merges.add("META-INF/LICENSE-notice.md")
+    }
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
     }
 }
 

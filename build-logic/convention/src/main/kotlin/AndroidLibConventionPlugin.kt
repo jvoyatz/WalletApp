@@ -1,13 +1,12 @@
 import com.android.build.gradle.LibraryExtension
-import gr.jvoyatz.afse.wallet.configureAndroidCommon
-import gr.jvoyatz.afse.wallet.configureAndroidLib
-import gr.jvoyatz.afse.wallet.getLibs
-import gr.jvoyatz.afse.wallet.getVersionCatalogExtension
+import gr.jvoyatz.assignment.wallet.configureAndroidCommon
+import gr.jvoyatz.assignment.wallet.configureAndroidLib
+import gr.jvoyatz.assignment.wallet.getLibs
+import gr.jvoyatz.assignment.wallet.getVersionCatalogExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.project
 
 /**
  * Replaces the plugin `com.android.library' in Android library modules
@@ -35,6 +34,8 @@ class AndroidLibConventionPlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("javax.inject").get())
                 "testImplementation"(libs.findBundle("test").get())
             }
+
+
         }
     }
 }

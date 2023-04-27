@@ -1,10 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("afse.wallet.android.library.plus")
+    id("assignment.wallet.android.library.plus")
 }
 
 android {
-    namespace = "gr.jvoyatz.afse.core.di"
+    namespace = "gr.jvoyatz.assignment.core.di"
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -19,4 +19,8 @@ dependencies {
     implementation(project(":core:common-android"))
     implementation(project(":core:api"))
     implementation(project(":core:database"))
+}
+
+kapt {
+    correctErrorTypes = true
 }

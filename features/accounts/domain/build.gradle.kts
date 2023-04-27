@@ -1,5 +1,5 @@
 plugins {
-    id("afse.wallet.kotlin")
+    id("assignment.wallet.kotlin")
 }
 
 dependencies {

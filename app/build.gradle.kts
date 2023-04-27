@@ -1,10 +1,10 @@
-import gr.jvoyatz.afse.wallet.getVersionCatalogExtension
-import gr.jvoyatz.afse.wallet.getPackageName
+import gr.jvoyatz.assignment.wallet.getPackageName
+import gr.jvoyatz.assignment.wallet.getVersionCatalogExtension
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("afse.wallet.android.application")
-    id("afse.wallet.android.hilt")
+    id("assignment.wallet.android.application")
+    id("assignment.wallet.android.hilt")
 }
 
 android {
@@ -27,6 +27,10 @@ android {
         resources.merges.add("META-INF/LICENSE.md")
         resources.merges.add("META-INF/LICENSE-notice.md")
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {

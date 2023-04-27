@@ -7,7 +7,7 @@
     tools:context=".WalletActivity">
 
 
-    <gr.jvoyatz.afse.core.ui.LoaderView
+    <gr.jvoyatz.assignment.core.ui.custom.views.LoaderView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

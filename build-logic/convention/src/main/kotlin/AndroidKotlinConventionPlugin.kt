@@ -1,6 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
-import gr.jvoyatz.afse.wallet.configureKotlin
+import gr.jvoyatz.assignment.wallet.configureKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -1,10 +1,11 @@
+@file:Suppress("UnstableApiUsage")
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("afse.wallet.android.library")
+    id("assignment.wallet.android.library")
 }
 
 android {
-    namespace = "gr.jvoyatz.afse.wallet.core.api"
+    namespace = "gr.jvoyatz.assignment.wallet.core.api"
 
     defaultConfig {
         buildConfigField("String", "HOST", "\"http://ktor-env.eba-asssfhm8.eu-west-1.elasticbeanstalk.com/\"")

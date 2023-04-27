@@ -8,7 +8,7 @@ versionCode                                     = "1234"
 versionName                                     = "134.0"
 buildToolsVersion                               = "29.0.3"
 androidTestInstrumentation                      = "androidx.test.runner.AndroidJUnitRunner"
-packageName                                     = "gr.jvoyatz.afse.wallet"
+packageName                                     = "gr.jvoyatz.assignment.wallet"
 
 #plugins
 agp                                             = "7.4.1"

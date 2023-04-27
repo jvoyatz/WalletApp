@@ -1,4 +1,4 @@
-# AFSE Wallet
+# assignment Wallet
 
 | Accounts | Details     |
 | --- |-------------|

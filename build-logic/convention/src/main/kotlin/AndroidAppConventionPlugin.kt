@@ -1,8 +1,8 @@
 import com.android.build.api.dsl.ApplicationExtension
-import gr.jvoyatz.afse.wallet.configureAndroidApp
-import gr.jvoyatz.afse.wallet.configureAndroidCommon
-import gr.jvoyatz.afse.wallet.getLibs
-import gr.jvoyatz.afse.wallet.getVersionCatalogExtension
+import gr.jvoyatz.assignment.wallet.configureAndroidApp
+import gr.jvoyatz.assignment.wallet.configureAndroidCommon
+import gr.jvoyatz.assignment.wallet.getLibs
+import gr.jvoyatz.assignment.wallet.getVersionCatalogExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

@@ -1,5 +1,5 @@
-import gr.jvoyatz.afse.wallet.getLibs
-import gr.jvoyatz.afse.wallet.getVersionCatalogExtension
+import gr.jvoyatz.assignment.wallet.getLibs
+import gr.jvoyatz.assignment.wallet.getVersionCatalogExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

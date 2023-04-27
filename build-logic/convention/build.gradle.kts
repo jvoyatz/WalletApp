@@ -24,27 +24,27 @@ gradlePlugin {
     plugins {
 
         register("androidApplication") {
-            id = "afse.wallet.android.application"
+            id = "assignment.wallet.android.application"
             implementationClass = "AndroidAppConventionPlugin"
         }
         register("androidKotlin") {
-            id = "afse.wallet.jetbrains.kotlin.android"
+            id = "assignment.wallet.jetbrains.kotlin.android"
             implementationClass = "AndroidKotlinConventionPlugin"
         }
         register("androidLibrary") {
-            id = "afse.wallet.android.library"
+            id = "assignment.wallet.android.library"
             implementationClass = "AndroidLibConventionPlugin"
         }
         register("androidHilt") {
-            id = "afse.wallet.android.hilt"
+            id = "assignment.wallet.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
         }
         register("androidHiltLib") {
-            id = "afse.wallet.android.library.plus"
+            id = "assignment.wallet.android.library.plus"
             implementationClass = "AndroidHiltLibConventionPlugin"
         }
         register("kotlinModule") {
-            id = "afse.wallet.kotlin"
+            id = "assignment.wallet.kotlin"
             implementationClass = "KotlinConventionPlugin"
         }
     }
