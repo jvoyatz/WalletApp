@@ -12,4 +12,5 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.viewmodel.savedState)
+    androidTestImplementation(libs.bundles.test.android)
 }

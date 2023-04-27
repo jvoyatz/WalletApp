@@ -34,8 +34,6 @@ class AndroidLibConventionPlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("javax.inject").get())
                 "testImplementation"(libs.findBundle("test").get())
             }
-
-
         }
     }
 }

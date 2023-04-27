@@ -11,4 +11,5 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.bundles.androidx.ui.common)
     implementation(project(":core:ui"))
+    androidTestImplementation(libs.bundles.test.android)
 }

@@ -1,16 +1,24 @@
-@file:Suppress("UnstableApiUsage")
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("assignment.wallet.android.library")
 }
+
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
+}
+println("Property:" + prop.getProperty("propertyName"))
 
 android {
     namespace = "gr.jvoyatz.assignment.wallet.core.api"
 
     defaultConfig {
-        buildConfigField("String", "HOST", "\"http://ktor-env.eba-asssfhm8.eu-west-1.elasticbeanstalk.com/\"")
-        buildConfigField("String", "USERNAME", "\"Advantage\"")
-        buildConfigField("String", "PASSWORD", "\"mobileAssignment\"")
+        buildConfigField("String", "HOST", prop.getProperty("HOST"))
+        buildConfigField("String", "USERNAME", prop.getProperty("USERNAME"))
+        buildConfigField("String", "PASSWORD", prop.getProperty("PASSWORD"))
     }
     buildFeatures {
         buildConfig = true

@@ -30,6 +30,6 @@ dependencies {
     kapt(libs.room.compiler)
 
     androidTestImplementation(libs.room.testing)
-    androidTestImplementation(libs.bundles.test.android)
-    androidTestImplementation(libs.bundles.test)
+//    androidTestImplementation(libs.bundles.test.android)
+//    androidTestImplementation(libs.bundles.test)
 }

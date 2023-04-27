@@ -6,6 +6,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 import gr.jvoyatz.assignment.core.navigation.NavigatorProvider
 import gr.jvoyatz.assignment.wallet.databinding.ActivityWalletBinding
+import timber.log.Timber
 
 import javax.inject.Inject
 import gr.jvoyatz.assignment.core.ui.R as ui_R
@@ -21,6 +22,7 @@ class WalletActivity : AppCompatActivity() {
         with(ActivityWalletBinding.inflate(layoutInflater)){
             setContentView(this.root)
         }
+
 
         println("navigator provider ${navigatorProvider.fragmentNavigator}")
     }

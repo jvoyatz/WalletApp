@@ -13,5 +13,5 @@ dependencies {
     implementation(project(":core:api"))
     implementation(project(":features:accounts:domain"))
 
-    implementation(libs.bundles.test.android)
+    //implementation(libs.bundles.test.android)
 }
