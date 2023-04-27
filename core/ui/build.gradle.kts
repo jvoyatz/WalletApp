@@ -5,13 +5,9 @@ plugins {
 
 android {
     namespace = "gr.jvoyatz.afse.core.ui"
-
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 }
 
 dependencies {
-    implementation(libs.core.ktx)
-    implementation(libs.material)
+   implementation(libs.core.ktx)
+    implementation(libs.bundles.androidx.ui.common)
 }
