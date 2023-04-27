@@ -1,4 +1,4 @@
-package gr.jvoyatz.afse.core.common
+package gr.jvoyatz.afse.core.common.utils
 
 object StringConstants {
     const val EMPTY = ""

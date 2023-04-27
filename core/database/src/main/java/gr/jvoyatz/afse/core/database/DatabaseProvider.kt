@@ -11,10 +11,10 @@ object DatabaseProvider {
     private const val MSG = "query: %s | args: %s"
     private const val DATABASE = "WALLET_DATABASE"
 
-    private fun getDatabase(context: Context, executor: Executor): WalletDatabase {
+    private fun getDatabase(context: Context, executor: Executor): AccountsDatabase {
         return Room.databaseBuilder(
             context,
-            WalletDatabase::class.java,
+            AccountsDatabase::class.java,
             DATABASE
         ).apply {
             setQueryCallback(object : RoomDatabase.QueryCallback {

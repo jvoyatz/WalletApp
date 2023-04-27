@@ -42,7 +42,8 @@ object AppModule {
     fun provideAppFragmentNavigator(): Navigator.FragmentNavigator = AppFragmentNavigator()
 
     @Provides
-    fun provideWalletApi() = WalletApi.create()
+    @Singleton
+    fun provideWalletApi(@ApplicationContext context: Context) = WalletApi.create(context)
 
     @Provides
     @Singleton

@@ -3,6 +3,10 @@ package gr.jvoyatz.afse.core.database.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * An entity of an account which represents a
+ * user's favorite account
+ */
 @Entity
 data class AccountEntity(
     @PrimaryKey(autoGenerate = false)

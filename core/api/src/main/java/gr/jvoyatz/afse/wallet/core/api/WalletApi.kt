@@ -1,5 +1,6 @@
 package gr.jvoyatz.afse.wallet.core.api
 
+import android.content.Context
 import gr.jvoyatz.afse.wallet.core.api.models.AccountsDto
 import retrofit2.Response
 import retrofit2.http.GET
@@ -23,6 +24,6 @@ interface WalletApi {
     suspend fun getAccountTransactions(@Path("account_id") accountId: String = "1f34c76a-b3d1-43bc-af91-a82716f1bc2e")
 
     companion object{
-        fun create() = ApiProvider.getApi<WalletApi>()
+        fun create(context: Context) = ApiProvider.getApi<WalletApi>(context)
     }
 }

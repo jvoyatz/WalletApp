@@ -1,13 +1,8 @@
 package gr.jvoyatz.afse.core.common
 
-import io.mockk.InternalPlatformDsl.toStr
+import gr.jvoyatz.afse.core.common.utils.DateTimeConstants
 import org.junit.Test
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 
 class DateTimeConstantsTest {

@@ -23,8 +23,8 @@ import java.util.concurrent.CountDownLatch
 @RunWith(AndroidJUnit4::class)
 class WalletDatabaseTest {
 
-    private lateinit var walletDao: WalletDao
-    private lateinit var walletDatabase: WalletDatabase
+    private lateinit var walletDao: AccountsDao
+    private lateinit var walletDatabase: AccountsDatabase
 
     private val accountEntity = AccountEntity(
         "1f34c76a-b3d1-43bc-af91-a82716f1bc2e",
@@ -38,7 +38,7 @@ class WalletDatabaseTest {
     @Before
     fun setup(){
         val context = ApplicationProvider.getApplicationContext<Context>()
-        walletDatabase = Room.inMemoryDatabaseBuilder(context, WalletDatabase::class.java).build()
+        walletDatabase = Room.inMemoryDatabaseBuilder(context, AccountsDatabase::class.java).build()
         walletDao = walletDatabase.dao
     }
 

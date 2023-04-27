@@ -30,11 +30,18 @@
             <option value="$PROJECT_DIR$/core/MVVMi" />
             <option value="$PROJECT_DIR$/core/api" />
             <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/common-android" />
             <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/di" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/testing" />
             <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/accounts" />
+            <option value="$PROJECT_DIR$/features/accounts/data" />
+            <option value="$PROJECT_DIR$/features/accounts/domain" />
+            <option value="$PROJECT_DIR$/features/accounts/ui" />
           </set>
         </option>
       </GradleProjectSettings>

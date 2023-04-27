@@ -18,6 +18,7 @@ android {
 
 dependencies {
     implementation(project(":core:testing"))
+    implementation(project(":core:common-android"))
     implementation(libs.bundles.networking)
     kapt(libs.moshi.codegen)
 }

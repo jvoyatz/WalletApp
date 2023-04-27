@@ -9,7 +9,7 @@ import gr.jvoyatz.afse.core.database.entities.AccountEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface WalletDao {
+interface AccountsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAccount(accountEntity: AccountEntity)
 

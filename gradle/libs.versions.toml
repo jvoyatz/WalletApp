@@ -27,6 +27,7 @@ hilt                                            = "2.44"
 room                                            = "2.5.0"
 navigation                                      = "2.5.3"
 fragment                                        = "1.5.7"
+swipeRefresh                                    = "1.1.0"
 
 #retrofit
 okhttp                                          = "4.10.0"
@@ -76,6 +77,7 @@ navigation-ui                                   = { module = "androidx.navigatio
 lifecycle-viewmodel                             = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-savedState                  = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 fragment                                        = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+swipeRefreshLayout                              = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swipeRefresh"}
 
 #di
 dagger-hilt-android                             = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -125,7 +127,9 @@ androidx-ui-common = [
     "constraintlayout",
     "lifecycle-viewmodel",
     "cardview",
-    "viewbinding"
+    "viewbinding",
+    "recyclerview",
+    "swipeRefreshLayout",
 ]
 
 networking = [

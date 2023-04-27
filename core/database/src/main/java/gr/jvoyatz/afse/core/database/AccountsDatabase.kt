@@ -8,6 +8,6 @@ import gr.jvoyatz.afse.core.database.entities.AccountEntity
     entities = [AccountEntity::class],
     version = 1
 )
-abstract class WalletDatabase : RoomDatabase() {
-    abstract val dao: WalletDao
+abstract class AccountsDatabase : RoomDatabase() {
+    abstract val dao: AccountsDao
 }

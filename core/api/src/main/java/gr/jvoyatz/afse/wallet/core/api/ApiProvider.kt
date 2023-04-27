@@ -1,9 +1,11 @@
 package gr.jvoyatz.afse.wallet.core.api
 
 
+import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import gr.jvoyatz.afse.wallet.core.api.config.interceptors.BasicAuthInterceptor
+import gr.jvoyatz.afse.wallet.core.api.config.interceptors.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,19 +22,8 @@ object ApiProvider {
     private const val TAG = "WalletApi"
 
     internal val okHttpClient by lazy {
-        OkHttpClient.Builder().apply {
 
-            connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-            readTimeout(TIMEOUT, TimeUnit.SECONDS)
-            writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-
-            addInterceptor(BasicAuthInterceptor(api_R.USERNAME, api_R.PASSWORD))
-            addInterceptor(loggingInterceptor)
-        }.run {
-            build()
-        }
     }
-
     private val loggingInterceptor by lazy {
         HttpLoggingInterceptor {
             Timber.tag(TAG).d(it)
@@ -50,10 +41,24 @@ object ApiProvider {
         }
     }
 
-    internal inline fun <reified T> getApi(): T = Retrofit.Builder().apply {
+    private fun getOkHttpClient(context: Context): OkHttpClient{
+        return OkHttpClient.Builder().apply {
+
+            connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+            readTimeout(TIMEOUT, TimeUnit.SECONDS)
+            writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+
+            addInterceptor(ConnectivityInterceptor(context))
+            addInterceptor(BasicAuthInterceptor(api_R.USERNAME, api_R.PASSWORD))
+            addInterceptor(loggingInterceptor)
+        }.run {
+            build()
+        }
+    }
+    internal inline fun <reified T> getApi(context: Context): T = Retrofit.Builder().apply {
         baseUrl(api_R.HOST)
         addConverterFactory(MoshiConverterFactory.create(moshi))
-        client(okHttpClient)
+        client(getOkHttpClient(context))
     }.let {
         it.build()
     }.run {

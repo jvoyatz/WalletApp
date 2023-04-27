@@ -16,6 +16,7 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.navigation.fragment)
     implementation(project(":core:navigation"))
+    implementation(project(":core:common-android"))
     implementation(project(":core:api"))
     implementation(project(":core:database"))
 }

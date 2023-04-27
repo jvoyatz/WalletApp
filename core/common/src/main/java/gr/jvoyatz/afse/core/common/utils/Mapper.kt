@@ -1,4 +1,4 @@
-package gr.jvoyatz.afse.core.common
+package gr.jvoyatz.afse.core.common.utils
 
 
 interface Mapper<From, To> {
