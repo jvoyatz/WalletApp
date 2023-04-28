@@ -7,6 +7,6 @@
 
     <declare-styleable name="AccountView">
 
-        <attr name="hideFavorite" format="boolean"/>
+        <attr name="showFavorite" format="boolean"/>
     </declare-styleable>
 </resources>

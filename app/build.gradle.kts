@@ -6,7 +6,7 @@ import gr.jvoyatz.assignment.wallet.getVersionCatalogExtension
 plugins {
     id("assignment.wallet.android.application")
     id("assignment.wallet.android.hilt")
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -36,18 +36,22 @@ kapt {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
-    implementation(project(":core:di"))
-    implementation(project(":core:navigation"))
 
-    implementation(project(":features:accounts:ui"))
-
+    //android dependencies
     implementation(libs.bundles.androidx.navigation)
     implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
+    //core modules
+    implementation(project(":core:ui"))
+    implementation(project(":core:common-android"))
+    implementation(project(":core:navigation"))
+
+    //features
+    implementation(project(":features:accounts:ui"))
+    implementation(project(":features:account-details"))
+
+//
+//    implementation(libs.appcompat)
+//    implementation(libs.material)
+//    implementation(libs.constraintlayout)
 }

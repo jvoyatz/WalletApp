@@ -11,4 +11,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.bundles.test.android)
     implementation(libs.bundles.test)
+
+    implementation(libs.bundles.androidx.navigation)
 }

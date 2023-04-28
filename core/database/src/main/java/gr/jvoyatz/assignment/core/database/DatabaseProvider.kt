@@ -25,5 +25,5 @@ object DatabaseProvider {
         }.build()
     }
 
-    fun getWalletDao(context: Context, executor: Executor) = getDatabase(context, executor).dao
+    internal fun getWalletDao(context: Context, executor: Executor) = getDatabase(context, executor).dao
 }

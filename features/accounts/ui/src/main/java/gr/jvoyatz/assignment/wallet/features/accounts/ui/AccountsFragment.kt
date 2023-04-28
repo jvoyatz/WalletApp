@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import gr.jvoyatz.assignment.core.navigation.Navigator
+import gr.jvoyatz.assignment.wallet.common.android.navigation.Destination
+import gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 import gr.jvoyatz.assignment.core.ui.utils.hide
+import gr.jvoyatz.assignment.wallet.common.android.domain.models.AccountType
 import gr.jvoyatz.assignment.wallet.features.accounts.domain.models.Account
 import gr.jvoyatz.assignment.wallet.features.accounts.ui.adapter.AccountListAdapter
 import gr.jvoyatz.assignment.wallet.features.accounts.ui.databinding.FragmentAccountsListBinding
@@ -21,7 +23,7 @@ import javax.inject.Inject
 class AccountsFragment : Fragment() {
 
     @Inject
-    lateinit var navigator: Navigator;
+    lateinit var navigator: gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator;
     private lateinit var binding: FragmentAccountsListBinding
     private val viewModel: AccountsViewModel by viewModels()
 
@@ -42,6 +44,7 @@ class AccountsFragment : Fragment() {
         setupLoaderView()
         setupRecyclerViews()
         setupObservers()
+        showDataState(listOf())
     }
 
     private fun setupSwipeLayout(){
@@ -63,7 +66,7 @@ class AccountsFragment : Fragment() {
 
     private fun setupRecyclerViews(){
         val adapter = AccountListAdapter {
-            Timber.d("navigate to ${it.id} with navigator $navigator")
+            navigator.navigate(gr.jvoyatz.assignment.wallet.common.android.navigation.Destination.AccountDetails(1))
         }
 
         binding.dataList.apply {
@@ -87,7 +90,7 @@ class AccountsFragment : Fragment() {
     private fun showDataState(accounts: List<Account>){
         val adapter = binding.dataList.adapter as AccountListAdapter
         binding.loaderView.hide()
-        adapter.submitList(accounts)
+        adapter.submitList(listOf(Account("1324", "asdf", 1234, AccountType.CREDIT_CARD, "sdf", "sf")))
         binding.dataList.fromBottomAnimation()
     }
 

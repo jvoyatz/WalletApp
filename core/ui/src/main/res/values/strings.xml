@@ -7,4 +7,6 @@
     <string name="no_results">No data found, try again later.</string>
     <string name="retry">Retry</string>
     <string name="not_provided">Not provided</string>
+    <string name="account">Account</string>
+    <string name="account_details">Account Details</string>
 </resources>

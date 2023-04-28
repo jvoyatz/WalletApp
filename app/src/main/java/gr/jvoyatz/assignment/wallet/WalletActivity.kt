@@ -1,14 +1,14 @@
 package gr.jvoyatz.assignment.wallet
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import dagger.hilt.android.AndroidEntryPoint
-import gr.jvoyatz.assignment.core.navigation.Destination
-import gr.jvoyatz.assignment.core.navigation.Navigator
+import gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator
+
 import gr.jvoyatz.assignment.wallet.databinding.ActivityWalletBinding
 import javax.inject.Inject
 import gr.jvoyatz.assignment.core.ui.R as ui_R
@@ -17,7 +17,7 @@ import gr.jvoyatz.assignment.core.ui.R as ui_R
 class WalletActivity : AppCompatActivity() {
 
     @Inject
-    internal lateinit var navigator: Navigator
+    lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,6 @@ class WalletActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        println("navigator provider ${navigator}")
     }
 
     override fun onResume() {
@@ -46,7 +45,4 @@ class WalletActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp() || super.onSupportNavigateUp()
     }
-}
-fun WalletActivity.navigate(destination: Destination){
-    navigator.navigate(destination)
 }

@@ -22,7 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "Wallet"
 include(":app")
 include(":core:ui")
-include(":core:di")
 include(":core:api")
 include(":core:common")
 include(":core:MVVMi")

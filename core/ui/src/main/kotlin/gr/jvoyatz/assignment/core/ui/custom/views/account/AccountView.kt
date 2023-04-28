@@ -16,7 +16,7 @@ class AccountView(
     attrs: AttributeSet?
 ) : ConstraintLayout(context, attrs), AccountViewInterface {
 
-    private var isShowFavorite: Boolean = true
+    private var isShowFavorite: Boolean = false
 
     private var binding: LayoutAccountsItemBinding
     init {
@@ -42,7 +42,7 @@ class AccountView(
     private fun obtainAttributes(attrs: AttributeSet?){
         with(context.theme.obtainStyledAttributes(attrs, R.styleable.AccountView, 0, 0)){
             try{
-                isShowFavorite = getBoolean(R.styleable.AccountView_hideFavorite, false)
+                isShowFavorite = getBoolean(R.styleable.AccountView_showFavorite, false)
             } finally {
                 recycle()
             }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/account_details_nav_graph"
+    app:startDestination="@id/account_details">
+
+    <fragment
+        android:name="gr.jvoyatz.assignment.wallet.features.account.details.AccountDetailsFragment"
+        tools:layout="@layout/fragment_account_details"
+        android:id="@+id/account_details"
+        android:label="@string/account_details"/>
+</navigation>

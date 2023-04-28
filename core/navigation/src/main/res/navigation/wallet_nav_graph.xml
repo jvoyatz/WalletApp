@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wallet_nav_graph"
+    app:startDestination="@+id/accountsFragment">
+
+    <fragment
+        android:id="@+id/accountsFragment"
+        android:name="gr.jvoyatz.assignment.wallet.features.accounts.ui.AccountsFragment"
+        android:label="Accounts"
+        tools:layout="@layout/fragment_accounts_list">
+
+        <action
+                android:id="@+id/action_account_to_details"
+                app:destination="@id/account_details_nav_graph">
+            <argument
+                android:name="accountId"
+                app:argType="integer"
+                app:nullable="false"
+                />
+        </action>
+    </fragment>
+
+
+    <include app:graph="@navigation/account_details_nav_graph"/>
+</navigation>

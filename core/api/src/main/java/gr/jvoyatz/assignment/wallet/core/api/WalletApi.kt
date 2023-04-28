@@ -24,6 +24,6 @@ interface WalletApi {
     suspend fun getAccountTransactions(@Path("account_id") accountId: String = "1f34c76a-b3d1-43bc-af91-a82716f1bc2e")
 
     companion object{
-        fun create(context: Context) = ApiProvider.getApi<WalletApi>(context)
+        internal fun create(context: Context) = ApiProvider.getApi<WalletApi>(context)
     }
 }

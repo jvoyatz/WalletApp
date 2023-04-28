@@ -4,8 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import gr.jvoyatz.assignment.core.navigation.Navigator
-import gr.jvoyatz.assignment.core.navigation.NavigatorImpl
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -13,7 +11,7 @@ import javax.inject.Singleton
 object NavigationModule {
     @Singleton
     @Provides
-    fun provideNavigator():Navigator{
+    fun provideNavigator(): gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator {
         return NavigatorImpl()
     }
 }
