@@ -1,6 +1,6 @@
 package gr.jvoyatz.assignment.core.common.utils
 
-object DateTimeConstants {
+object ConstantsDateTime {
     const val ISO_DATE_TIME_ZONE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssX"
     const val DATE_FORMAT = "dd-MM-yyyy"
     const val TIME_FORMAT = "HH:mm:ss"

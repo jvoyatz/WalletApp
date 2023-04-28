@@ -1,6 +1,6 @@
 package gr.jvoyatz.assignment.core.common
 
-import gr.jvoyatz.assignment.core.common.utils.DateTimeConstants
+import gr.jvoyatz.assignment.core.common.utils.ConstantsDateTime
 import org.junit.Test
 import java.text.SimpleDateFormat
 
@@ -13,7 +13,7 @@ class DateTimeConstantsTest {
         val dateTime = "2015-12-03T10:15:30Z"
 
         //when
-        val date = SimpleDateFormat(DateTimeConstants.ISO_DATE_TIME_ZONE_FORMAT).parse(dateTime)
+        val date = SimpleDateFormat(ConstantsDateTime.ISO_DATE_TIME_ZONE_FORMAT).parse(dateTime)
         println(date)
 //        val date = ZonedDateTime.parse(dateTime)
 //        println("date ${date.toStr()}")

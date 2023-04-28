@@ -3,4 +3,10 @@
 
     <!-- same as colorPrimaryVariant in light theme and as colorSuface in dark theme -->
     <attr name="colorPrimarySurfaceVariant" format="color" />
+    <attr name="colorFavorite" format="color" />
+
+    <declare-styleable name="AccountView">
+
+        <attr name="hideFavorite" format="boolean"/>
+    </declare-styleable>
 </resources>

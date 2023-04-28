@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import gr.jvoyatz.assignment.core.database.DatabaseProvider
-import gr.jvoyatz.assignment.core.navigation.Navigator
 import gr.jvoyatz.assignment.wallet.core.api.WalletApi
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -39,9 +38,6 @@ object AppModule {
     fun provideExecutor(): Executor = Executors.newSingleThreadExecutor()
 
     @Provides
-    fun provideAppFragmentNavigator(): Navigator.FragmentNavigator = AppFragmentNavigator()
-
-    @Provides
     @Singleton
     fun provideWalletApi(@ApplicationContext context: Context) = WalletApi.create(context)
 
@@ -49,12 +45,4 @@ object AppModule {
     @Singleton
     fun provideWalletDao(@ApplicationContext context: Context, executor: Executor) =
         DatabaseProvider.getWalletDao(context, executor)
-
-    @Module
-    @InstallIn(SingletonComponent::class)
-    interface Bindings{
-
-//        @Binds
-//        fun bindAppFragmentNavigator(appFragmentNavigator: AppFragmentNavigator) : Navigator.FragmentNavigator
-    }
 }

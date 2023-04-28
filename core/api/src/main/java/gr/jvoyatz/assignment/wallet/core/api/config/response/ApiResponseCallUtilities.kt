@@ -54,7 +54,7 @@ suspend inline fun <reified S, reified E> safeApiCall(
     return try {
         val response = execute()
 
-        if(response != null && response.isSuccessful) {
+        if(response.isSuccessful) {
             val body = response.body()
             if(body != null) {
                 ApiResponse.success(body)

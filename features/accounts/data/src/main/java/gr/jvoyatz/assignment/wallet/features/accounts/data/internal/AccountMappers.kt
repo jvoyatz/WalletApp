@@ -1,6 +1,6 @@
 package gr.jvoyatz.assignment.wallet.features.accounts.data.internal
 
-import gr.jvoyatz.assignment.core.common.utils.StringConstants
+import gr.jvoyatz.assignment.core.common.utils.ConstantsString
 import gr.jvoyatz.assignment.core.common.utils.mapList
 import gr.jvoyatz.assignment.core.database.entities.AccountEntity
 import gr.jvoyatz.assignment.wallet.common.android.domain.models.AccountType
@@ -12,7 +12,7 @@ import gr.jvoyatz.assignment.wallet.features.accounts.domain.models.Account
  */
 internal object AccountMappers {
     fun Account.toAccountEntity() = AccountEntity(
-        id = id ?: StringConstants.EMPTY,
+        id = id,
         accountNumber = accountNumber,
         accountNickname = accountNickname,
         accountType = accountType.type,

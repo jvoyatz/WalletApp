@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.core.ui.custom.views
+package gr.jvoyatz.assignment.core.ui.custom.views.common
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import gr.jvoyatz.assignment.core.ui.databinding.CustomLoaderViewBinding
-import gr.jvoyatz.assignment.core.ui.utils.loadingAnimation
-import gr.jvoyatz.assignment.core.ui.utils.showWithAnimation
-import timber.log.Timber
+import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
+import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 
 class LoaderView(
     context: Context,
     attrs: AttributeSet? = null
-): ConstraintLayout(context, attrs), ILoaderView {
+): ConstraintLayout(context, attrs), LoaderViewInterview {
 
     private val binding: CustomLoaderViewBinding
 
@@ -28,11 +27,11 @@ class LoaderView(
         )
         layoutParams = lp
 
-        loadingAnimation()
+        //fromTopAnimation()
     }
     override fun showLoading() {
         binding.apply {
-            loading.showWithAnimation()
+            loading.fromBottomAnimation()
             noResults.isVisible = false
             error.isVisible = false
             retry.isVisible = false
@@ -41,8 +40,8 @@ class LoaderView(
 
     override fun showError() {
         binding.apply {
-            retry.showWithAnimation()
-            error.showWithAnimation()
+            retry.fromBottomAnimation()
+            error.fromBottomAnimation()
             loading.isVisible = false
             noResults.isVisible = false
         }
@@ -50,10 +49,16 @@ class LoaderView(
 
     override fun showNoData() {
         binding.apply {
-            retry.showWithAnimation()
-            noResults.showWithAnimation()
+            retry.fromBottomAnimation()
+            noResults.fromBottomAnimation()
             loading.isVisible = false
             error.isVisible = false
+        }
+    }
+
+    override fun setRetryListener(clickHandler: () -> Unit) {
+        binding.retry.setOnClickListener {
+            clickHandler
         }
     }
 }

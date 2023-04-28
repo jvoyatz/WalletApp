@@ -26,7 +26,11 @@
     <color name="dark_blue_50_alpha_060">#99e1eefc</color>
     <color name="white_50_alpha_060">#99ffffff</color>
     <color name="yellow_50_alpha_060">#99f8d44f</color>
-
+    <color name="orange_500">#f6bf07</color>
+    <color name="orange_200">#fadf82</color>
     <color name="red_200">#cf7779</color>
     <color name="red_400">#ff4c5d</color>
+
+    <color name="complementary">#F5F7F8</color>
+    <color name="complementary2">#e1fcfc</color>
 </resources>

@@ -10,6 +10,7 @@
         <item name="android:colorBackground">@color/black_900</item>
         <item name="colorSurface">@color/black_800</item>
         <item name="colorPrimarySurfaceVariant">?attr/colorSurface</item>
+        <item name="colorFavorite">@color/orange_200</item>
         <item name="colorError">@color/red_200</item>
 
         <item name="colorOnPrimary">@color/black_900</item>

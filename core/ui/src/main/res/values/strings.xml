@@ -6,4 +6,5 @@
     <string name="error">An error occured while fetching data, please check your internet connection and retry.</string>
     <string name="no_results">No data found, try again later.</string>
     <string name="retry">Retry</string>
+    <string name="not_provided">Not provided</string>
 </resources>

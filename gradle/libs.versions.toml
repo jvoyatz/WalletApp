@@ -130,6 +130,7 @@ androidx-ui-common = [
     "viewbinding",
     "recyclerview",
     "swipeRefreshLayout",
+    "fragment"
 ]
 
 networking = [

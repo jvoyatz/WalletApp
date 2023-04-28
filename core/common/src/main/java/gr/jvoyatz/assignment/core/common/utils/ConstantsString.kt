@@ -1,7 +1,7 @@
 package gr.jvoyatz.assignment.core.common.utils
 
-object StringConstants {
+object ConstantsString {
     const val EMPTY = ""
-    const val SPACED_DASH = " - "
+    const val DASH_WITH_SPACE = " - "
     const val DOTS = "..."
 }

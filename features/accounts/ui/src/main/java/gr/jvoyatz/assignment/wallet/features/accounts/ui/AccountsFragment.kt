@@ -1,64 +1,105 @@
 package gr.jvoyatz.assignment.wallet.features.accounts.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import gr.jvoyatz.assignment.wallet.features.accounts.ui.R
-import gr.jvoyatz.assignment.wallet.features.accounts.ui.placeholder.PlaceholderContent
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
+import gr.jvoyatz.assignment.core.navigation.Navigator
+import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
+import gr.jvoyatz.assignment.core.ui.utils.hide
+import gr.jvoyatz.assignment.wallet.features.accounts.domain.models.Account
+import gr.jvoyatz.assignment.wallet.features.accounts.ui.adapter.AccountListAdapter
+import gr.jvoyatz.assignment.wallet.features.accounts.ui.databinding.FragmentAccountsListBinding
+import timber.log.Timber
+import javax.inject.Inject
 
 
-/**
- * A fragment representing a list of Items.
- */
+@AndroidEntryPoint
 class AccountsFragment : Fragment() {
 
-    private var columnCount = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    @Inject
+    lateinit var navigator: Navigator;
+    private lateinit var binding: FragmentAccountsListBinding
+    private val viewModel: AccountsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_accounts_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = AccountsAdapter(PlaceholderContent.ITEMS)
-            }
+        return with(FragmentAccountsListBinding.inflate(inflater, container, false)){
+            binding = this
+            root
         }
-
-        return view
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+        setupSwipeLayout()
+        setupLoaderView()
+        setupRecyclerViews()
+        setupObservers()
+    }
 
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            AccountsFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
+    private fun setupSwipeLayout(){
+        with(binding.swipeLayout){
+            this.setOnRefreshListener {
+                Timber.d("get data")
             }
+        }
+    }
+
+    private fun setupLoaderView() {
+        with(binding.loaderView){
+            this.showLoading()
+            this.setRetryListener {
+                Timber.d("get data")
+            }
+        }
+    }
+
+    private fun setupRecyclerViews(){
+        val adapter = AccountListAdapter {
+            Timber.d("navigate to ${it.id} with navigator $navigator")
+        }
+
+        binding.dataList.apply {
+            setHasFixedSize(true)
+            this.adapter = adapter
+        }
+    }
+
+    private fun setupObservers(){
+
+    }
+
+    //ui state methods
+
+    private fun showLoadingState(){
+        with(binding.loaderView){
+            showLoading()
+        }
+    }
+
+    private fun showDataState(accounts: List<Account>){
+        val adapter = binding.dataList.adapter as AccountListAdapter
+        binding.loaderView.hide()
+        adapter.submitList(accounts)
+        binding.dataList.fromBottomAnimation()
+    }
+
+    private fun showNoDataState(){
+        with(binding.loaderView){
+            showNoData()
+        }
+    }
+
+    private fun showErrorState(){
+        with(binding.loaderView){
+            showError()
+        }
     }
 }

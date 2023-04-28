@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constrainedHeight="true"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_margin="@dimen/margin_1_5x"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    style="@style/CardViewWithStroke">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/account_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintEnd_toStartOf="@id/account_favorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_1x"
+            android:layout_marginStart="@dimen/margin_2x"
+            android:layout_marginEnd="@dimen/margin_2x"
+            style="@style/TextAutofit.Headline6"
+            android:gravity="start"
+            tools:text="My Salary" />
+
+        <ImageView
+            android:id="@+id/account_favorite"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:src="@drawable/ic_favorite_border"
+            app:layout_constraintStart_toEndOf="@id/account_name"
+            app:layout_constraintTop_toTopOf="@id/account_name"
+            app:layout_constraintBottom_toBottomOf="@id/account_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/margin_2x"
+            android:layout_marginEnd="@dimen/margin_2x"
+            app:tint="?attr/colorFavorite"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/account_balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginTop="@dimen/margin_1x"
+            android:layout_marginStart="@dimen/margin_2x"
+            android:layout_marginEnd="@dimen/margin_2x"
+            android:layout_marginBottom="@dimen/margin_1x"
+            style="@style/TextAutofit.Headline4"
+            android:textStyle="bold"
+            tools:text = "99.00 eur" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ private const val ALPHA_START = 0f
 private const val ALPHA_END = 1f
 
 private const val TRANSLATION_Y_100 = 100f
+private const val TRANSLATION_Y_150 = 150f
+private const val TRANSLATION_Y_200 = 200f
 private const val TRANSLATION_Y_500 = 500f
 private const val TRANSLATION_Y_100_MINUS = -100f
 private const val TRANSLATION_Y_0 = 0f
@@ -54,5 +56,17 @@ private fun View.animate(
         .start()
 }
 
-fun View.loadingAnimation() = animate(translationYStart = TRANSLATION_Y_100_MINUS)
-fun View.showWithAnimation() = animate( translationYStart = TRANSLATION_Y_100_MINUS)
+fun View.fromTopAnimation() = animate(translationYStart = TRANSLATION_Y_100_MINUS)
+fun View.fromBottomAnimation() = animate( translationYStart = TRANSLATION_Y_150)
+
+fun View.hide() = with(this) {
+    if(this.isVisible){
+        isVisible = false
+    }
+}
+
+fun View.show() = with(this) {
+    if(!this.isVisible){
+        isVisible = true
+    }
+}
