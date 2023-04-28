@@ -16,5 +16,10 @@ dependencies {
     //core modules
     implementation(project(":core:ui"))
     implementation(project(":core:common-android"))
-    implementation(project(":core:MVVMi"))
+    implementation(project(":core:mvvm_plus"))
+
+    //unit testing
+    implementation(libs.bundles.test)
+    //android testing
+    implementation(libs.bundles.test.android)
 }

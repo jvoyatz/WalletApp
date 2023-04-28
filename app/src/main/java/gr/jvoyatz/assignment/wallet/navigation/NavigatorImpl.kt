@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.core.navigation.di
+package gr.jvoyatz.assignment.wallet.navigation
 
 import androidx.navigation.NavController
 import gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator
@@ -7,9 +7,13 @@ import gr.jvoyatz.assignment.wallet.features.accounts.ui.AccountsFragmentDirecti
 import timber.log.Timber
 import javax.inject.Inject
 
-internal class NavigatorImpl @Inject constructor(
-
-):  Navigator {
+/**
+ * Navigator's interface implementation
+ * Used to support implementation through diferrent feature modules.
+ *
+ * We can do the binding of app's NavController when activity (our single activity) starts.
+ */
+internal class NavigatorImpl @Inject constructor() : Navigator {
 
     private var navController: NavController? = null
 

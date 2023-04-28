@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import gr.jvoyatz.assignment.wallet.navigation.NavigatorImpl
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Singleton
@@ -23,7 +24,7 @@ import javax.inject.Singleton
  */
 @InstallIn(SingletonComponent::class)
 @Module
-class WalletModule {
+object WalletModule {
     @Singleton
     @Provides
     fun provideHandler() = android.os.Handler(Looper.getMainLooper())
@@ -31,4 +32,10 @@ class WalletModule {
     @Singleton
     @Provides
     fun provideExecutor(): Executor = Executors.newSingleThreadExecutor()
+
+    @Singleton
+    @Provides
+    fun provideNavigator(): gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator {
+        return NavigatorImpl()
+    }
 }

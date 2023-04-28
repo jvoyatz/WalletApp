@@ -44,7 +44,6 @@ dependencies {
     //core modules
     implementation(project(":core:ui"))
     implementation(project(":core:common-android"))
-    implementation(project(":core:navigation"))
 
     //features
     implementation(project(":features:accounts:ui"))

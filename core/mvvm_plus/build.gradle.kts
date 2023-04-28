@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "gr.jvoyatz.assignment.core.mvvmi"
+    namespace = "gr.jvoyatz.assignment.core.mvvm.plus"
 }
 
 dependencies {
