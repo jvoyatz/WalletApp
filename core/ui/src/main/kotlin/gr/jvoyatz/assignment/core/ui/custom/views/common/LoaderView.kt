@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import gr.jvoyatz.assignment.core.ui.databinding.CustomLoaderViewBinding
-import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
+import gr.jvoyatz.assignment.core.ui.databinding.LoaderViewBinding
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 
 class LoaderView(
@@ -15,11 +14,11 @@ class LoaderView(
     attrs: AttributeSet? = null
 ): ConstraintLayout(context, attrs), LoaderViewInterview {
 
-    private val binding: CustomLoaderViewBinding
+    private val binding: LoaderViewBinding
 
     init {
         val inflater = LayoutInflater.from(context)
-        binding = CustomLoaderViewBinding.inflate(inflater, this, true)
+        binding = LoaderViewBinding.inflate(inflater, this, true)
 
         val lp = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,

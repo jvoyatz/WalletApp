@@ -8,8 +8,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import gr.jvoyatz.assignment.core.common.utils.Utils
 import gr.jvoyatz.assignment.core.ui.R
-import gr.jvoyatz.assignment.core.ui.databinding.LayoutAccountsItemBinding
+import gr.jvoyatz.assignment.core.ui.databinding.AccountViewBinding
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
+import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
 
 class AccountView(
     context: Context,
@@ -17,29 +18,21 @@ class AccountView(
 ) : ConstraintLayout(context, attrs), AccountViewInterface {
 
     private var isShowFavorite: Boolean = false
+    private var animationType: AccountViewAnimationType = AccountViewAnimationType.NONE
 
-    private var binding: LayoutAccountsItemBinding
+    private var binding: AccountViewBinding
     init {
-        obtainAttributes(attrs)
+        init(attrs)
 
         binding = LayoutInflater.from(context).let {
-            LayoutAccountsItemBinding.inflate(it, this, true)
+            AccountViewBinding.inflate(it, this, true)
         }
-        setMatchParentWidth()
+
         binding.accountFavorite.isVisible = isShowFavorite
-
-        fromBottomAnimation()
+        setAnimationType()
     }
 
-    private fun setMatchParentWidth(){
-        val lp = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        layoutParams = lp
-    }
-
-    private fun obtainAttributes(attrs: AttributeSet?){
+    private fun init(attrs: AttributeSet?){
         with(context.theme.obtainStyledAttributes(attrs, R.styleable.AccountView, 0, 0)){
             try{
                 isShowFavorite = getBoolean(R.styleable.AccountView_showFavorite, false)
@@ -70,5 +63,20 @@ class AccountView(
         binding.accountFavorite.setOnClickListener {
             clickHandler()
         }
+    }
+
+    private fun setAnimationType(){
+        when(animationType){
+            AccountViewAnimationType.TOP -> fromTopAnimation()
+            AccountViewAnimationType.BOTTOM -> fromBottomAnimation()
+            else -> {}
+        }
+    }
+    private fun setMatchParentWidth(){
+        val lp = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        layoutParams = lp
     }
 }

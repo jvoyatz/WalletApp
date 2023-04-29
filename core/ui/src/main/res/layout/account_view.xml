@@ -4,15 +4,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/red_200">
+    android:layout_height="wrap_content">
 
 <com.google.android.material.card.MaterialCardView
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     app:layout_constrainedHeight="true"
     app:layout_constraintStart_toStartOf="parent"
-    android:layout_margin="@dimen/margin_1_5x"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     style="@style/CardViewWithStroke">
@@ -47,7 +45,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/margin_2x"
             android:layout_marginEnd="@dimen/margin_2x"
-            app:tint="?attr/colorFavorite"/>
+            app:tint="?attr/colorFavorite"
+            android:contentDescription="@string/contentDescription"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/account_balance"

@@ -30,6 +30,8 @@ class AccountDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = extractAccountId()
         Timber.d("account id is $id")
+
+        binding.account.setAccountName("asdfasdfsad")
     }
 
 

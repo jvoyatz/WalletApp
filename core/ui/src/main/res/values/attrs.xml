@@ -6,7 +6,12 @@
     <attr name="colorFavorite" format="color" />
 
     <declare-styleable name="AccountView">
-
         <attr name="showFavorite" format="boolean"/>
+
+        <attr name="animationType" format="enum">
+            <enum name="NONE" value="0"/>
+            <enum name="TOP" value="1"/>
+            <enum name="BOTTOM" value="2"/>
+        </attr>
     </declare-styleable>
 </resources>

@@ -1,39 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.core.widget.NestedScrollView
-
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".AccountDetailsFragment">-->
+    tools:context=".AccountDetailsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <gr.jvoyatz.assignment.core.ui.custom.views.account.AccountView
-        android:id="@+id/account"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constrainedHeight="true"
-        android:background="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <com.google.android.material.card.MaterialCardView
+            <gr.jvoyatz.assignment.core.ui.custom.views.account.AccountView
+                android:id="@+id/accountContainer"
                 android:layout_width="0dp"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
+                app:layout_constrainedHeight="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/account"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/margin_2x" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/accountExtraContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountContainer"
+                android:layout_margin="@dimen/margin_2x"
+                style="@style/CardViewWithStroke">
 
-        </com.google.android.material.card.MaterialCardView>-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_1x">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/label_account_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/account_type"
+                        android:padding="@dimen/padding_1x"
+                        style="@style/TextAutofitSubtitle2"
+                        android:layout_marginTop="@dimen/margin_0_25x"
+                        />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Current Current Current"
+                        app:layout_constraintTop_toTopOf="@id/label_account_type"
+                        app:layout_constraintBottom_toBottomOf="@id/label_account_type"
+                        app:layout_constraintStart_toEndOf="@id/label_account_type"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/TextAutofitBody1"
+                        android:gravity="start" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/label_account_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintTop_toBottomOf="@id/label_account_type"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/account_name"
+                        android:padding="@dimen/padding_1x"
+                        android:layout_marginTop="@dimen/margin_0_25x"
+                        style="@style/TextAutofitSubtitle2" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_product"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="current account eur"
+                        app:layout_constraintTop_toTopOf="@id/label_account_product"
+                        app:layout_constraintBottom_toBottomOf="@id/label_account_product"
+                        app:layout_constraintStart_toEndOf="@id/label_account_product"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/TextAutofitBody1"
+                        android:gravity="start" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/label_account_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintTop_toBottomOf="@id/label_account_product"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/account_opened_date"
+                        android:padding="@dimen/padding_1x"
+                        android:layout_marginTop="@dimen/margin_0_25x"
+                        style="@style/TextAutofitSubtitle2" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="3 dec 2015"
+                        app:layout_constraintTop_toTopOf="@id/label_account_date"
+                        app:layout_constraintBottom_toBottomOf="@id/label_account_date"
+                        app:layout_constraintStart_toEndOf="@id/label_account_date"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/TextAutofitBody1"
+                        android:gravity="start" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/label_account_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintTop_toBottomOf="@id/label_account_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/account_branch"
+                        android:padding="@dimen/padding_1x"
+                        android:layout_marginTop="@dimen/margin_0_25x"
+                        style="@style/TextAutofitSubtitle2" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_branch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="main branch"
+                        app:layout_constraintTop_toTopOf="@id/label_account_branch"
+                        app:layout_constraintBottom_toBottomOf="@id/label_account_branch"
+                        app:layout_constraintStart_toEndOf="@id/label_account_branch"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/TextAutofitBody1"
+                        android:gravity="start" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/label_account_beneficiaries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintTop_toBottomOf="@id/label_account_branch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/account_beneficiaries"
+                        android:padding="@dimen/padding_1x"
+                        android:layout_marginTop="@dimen/margin_0_25x"
+                        style="@style/TextAutofitSubtitle2" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/account_beneficiaries"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="John Doe"
+                        app:layout_constraintTop_toTopOf="@id/label_account_beneficiaries"
+                        app:layout_constraintBottom_toBottomOf="@id/label_account_beneficiaries"
+                        app:layout_constraintStart_toEndOf="@id/label_account_beneficiaries"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/TextAutofitBody1"
+                        android:gravity="start" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountExtraContainer"
+                app:layout_constrainedHeight="true"
+                android:layout_margin="@dimen/margin_2x" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 
-<!--
-</androidx.core.widget.NestedScrollView>-->
