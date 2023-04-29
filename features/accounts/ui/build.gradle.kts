@@ -2,6 +2,7 @@
 plugins {
     id("assignment.wallet.android.library.plus")
     id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.org.jetbrains.kotlin.parcelize)
 }
 
 android {
@@ -19,6 +20,7 @@ dependencies {
     implementation(project(":features:accounts:data"))
     implementation(project(":features:accounts:domain"))
     implementation(project(":core:common-android"))
+    implementation(project(":core:mvvm_plus"))
 
     //test
     androidTestImplementation(libs.bundles.test.android)

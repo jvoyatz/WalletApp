@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import gr.jvoyatz.assignment.core.ui.databinding.LoaderViewBinding
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
+import gr.jvoyatz.assignment.core.ui.utils.show
 
 class LoaderView(
     context: Context,
@@ -30,6 +31,7 @@ class LoaderView(
     }
     override fun showLoading() {
         binding.apply {
+            show()
             loading.fromBottomAnimation()
             noResults.isVisible = false
             error.isVisible = false
@@ -39,6 +41,7 @@ class LoaderView(
 
     override fun showError() {
         binding.apply {
+            show()
             retry.fromBottomAnimation()
             error.fromBottomAnimation()
             loading.isVisible = false
@@ -48,6 +51,7 @@ class LoaderView(
 
     override fun showNoData() {
         binding.apply {
+            show()
             retry.fromBottomAnimation()
             noResults.fromBottomAnimation()
             loading.isVisible = false
@@ -57,7 +61,7 @@ class LoaderView(
 
     override fun setRetryListener(clickHandler: () -> Unit) {
         binding.retry.setOnClickListener {
-            clickHandler
+            clickHandler()
         }
     }
 }

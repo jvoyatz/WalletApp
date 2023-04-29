@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.features.account.details
+package gr.jvoyatz.assignment.wallet.features.account.details.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -31,7 +31,7 @@ class AccountDetailsFragment : Fragment() {
         val id = extractAccountId()
         Timber.d("account id is $id")
 
-        binding.account.setAccountName("asdfasdfsad")
+        //binding.account.setAccountName("asdfasdfsad")
     }
 
 

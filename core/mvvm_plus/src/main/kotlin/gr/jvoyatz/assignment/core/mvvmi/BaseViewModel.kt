@@ -1,5 +1,6 @@
 package gr.jvoyatz.assignment.core.mvvmi
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,9 +37,9 @@ import timber.log.Timber
  */
 
 private const val SAVED_UI_STATE_KEY = "SAVED_UI_STATE_KEY"
-abstract class BaseViewModel<State: UiState, PartialState: PartialUiState, Intent: UiIntent, Event: UiEvent>(
+abstract class BaseViewModel<State: UiState, InternalState: InternalPartialState, Intent: UiIntent, Event: UiEvent>(
     private val savedStateHandle: SavedStateHandle,
-    initialState: State
+    initialState: State //initial value to be rendered
 ) : ViewModel() {
 
     private val intentFlow : MutableSharedFlow<Intent> = MutableSharedFlow()
@@ -56,7 +57,7 @@ abstract class BaseViewModel<State: UiState, PartialState: PartialUiState, Inten
      * When a new emissions takes place in the intentFlow,
      * the `flatMapMerge` function is called and transforms the emitted Intent into
      * another flow.
-     * This flow contains a PartialUiState value.
+     * This flow contains a InternalPartialState value.
      * After the scan method is called, we pass this flow's value (aka PartialUiState) and the current value of the uiState's flow
      * to a function that returns (or reduces) the PartialUiState into UiState.
      *
@@ -82,6 +83,7 @@ abstract class BaseViewModel<State: UiState, PartialState: PartialUiState, Inten
      * This will trigger a new emission in the [intentFlow].
      */
     fun onNewIntent(intent: Intent){
+        Timber.d("onNewIntent() called with: intent = $intent")
         viewModelScope.launch {
             intentFlow.emit(intent)
         }
@@ -103,13 +105,13 @@ abstract class BaseViewModel<State: UiState, PartialState: PartialUiState, Inten
      * Handles user's intent's and after processing them, creates a new Partial Ui State, that will
      * be processed in order to update the UiState that View listens to
      */
-    protected abstract fun mapIntents(intent: Intent): Flow<PartialState>
+    protected abstract fun mapIntents(intent: Intent): Flow<InternalState>
 
     /**
      * It updates the uiState in order to contain the new data included in the (new) Partial Ui State
      */
     protected abstract fun reduceUiState(
         currentUiState: State,
-        partialUiState: PartialState
+        partialUiState: InternalState
     ): State
 }

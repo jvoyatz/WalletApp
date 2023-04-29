@@ -1,6 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("assignment.wallet.android.library")
+    id("assignment.wallet.android.library.plus")
 }
 
 android {
@@ -10,6 +10,7 @@ android {
 dependencies {
 
     implementation(project(":core:database"))
+    implementation(project(":core:common-android"))
     implementation(project(":core:api"))
     implementation(project(":features:accounts:domain"))
 

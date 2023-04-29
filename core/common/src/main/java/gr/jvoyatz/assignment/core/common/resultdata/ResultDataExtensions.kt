@@ -44,10 +44,21 @@ inline fun <T> ResultData<T>.onSuccess(crossinline action: (value: T) -> Unit): 
     return this
 }
 
+suspend inline fun <T> ResultData<T>.onSuspendedSuccess(crossinline action: suspend (value: T) -> Unit): ResultData<T> {
+    if(isSuccess()) action(asSuccess()!!.data)
+    return this
+}
 /**
  * Executes the given block in case of a [ResultData.Error] instance, otherwise it does nothing
  */
 inline fun <T> ResultData<T>.onError(crossinline action: (value: Throwable) -> Unit): ResultData<T> {
+    if(isError()) asError()!!.exception?.let{
+        action(it)
+    }
+    return this
+}
+
+suspend inline fun <T> ResultData<T>.onSuspendedError(crossinline action: suspend (value: Throwable) -> Unit): ResultData<T> {
     if(isError()) asError()!!.exception?.let{
         action(it)
     }
@@ -60,4 +71,11 @@ inline fun <T> ResultData<T>.onError(crossinline action: (value: Throwable) -> U
 inline fun <T> ResultData<T>.onAny(crossinline action: () -> Unit): ResultData<T> {
     action()
     return this
+}
+
+inline fun <T, R> ResultData<T>.mapSuccess(mapper: T.() -> R): ResultData<R> {
+    return when (this) {
+        is ResultData.Success -> data.mapper().toResultDataSuccess()
+        is ResultData.Error -> this
+    }
 }

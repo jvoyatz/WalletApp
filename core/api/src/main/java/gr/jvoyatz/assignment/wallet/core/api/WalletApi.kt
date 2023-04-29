@@ -1,6 +1,7 @@
 package gr.jvoyatz.assignment.wallet.core.api
 
 import android.content.Context
+import gr.jvoyatz.assignment.wallet.core.api.models.AccountRaw
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountsDto
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,7 +14,7 @@ import retrofit2.http.Path
 interface WalletApi {
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("accounts")
-    suspend fun getAccounts(): Response<AccountsDto>
+    suspend fun getAccounts(): List<AccountRaw>
 
     @Headers("Content-Type: application/json;charset=UTF-8")
     @GET("accounts/details/{account_id}")

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="CardViewWithStroke" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeColor">?attr/colorSecondary</item>
+        <item name="strokeWidth">@dimen/size_1dp</item>
+        <item name="android:strokeWidth">@dimen/size_1dp</item>
+        <item name="cardElevation">@dimen/elevation_large</item>
+        <item name="cardMaxElevation">@dimen/elevation_xlarge</item>
+    </style>
+
+</resources>

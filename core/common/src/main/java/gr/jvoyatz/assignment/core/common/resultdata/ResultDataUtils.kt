@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 /**
  * Wrap any non nullable type to a [ResultData.Success] instance
  */
-fun <T> T?.toResultDataSuccess() = ResultData.success(this)
+fun <T> T.toResultDataSuccess():ResultData<T> = ResultData.success(this)
 
 /**
  * Better management of exceptions when using coroutines.
@@ -39,6 +39,17 @@ inline fun <R> resultOf(crossinline block: () -> R): ResultData<R> {
     }
 }
 
+suspend inline fun <R> suspendedResultOf(crossinline block: suspend () -> R): ResultData<R> {
+    return try {
+        ResultData.success(block())
+    } catch (t: TimeoutCancellationException) {
+        ResultData.error(t)
+    } catch (c: CancellationException) {
+        throw c
+    } catch (e: Exception) {
+        ResultData.error(e)
+    }
+}
 /**
  * Converts the values emitted in this flow
  * to be wrapped inside [ResultData]

@@ -220,3 +220,10 @@ suspend inline fun <S, E, R> ApiResponse<S, E>.toSuspendFlow(
 operator fun <S, E> ApiResponse<S, E>.invoke(): S? =
     if (this is ApiSuccess) body else null
 
+
+fun <S, E> ApiResponse<S, E>.extractError(): String? {
+    return if (this is ApiSuccess) return null
+    else asError().toString()
+}
+
+

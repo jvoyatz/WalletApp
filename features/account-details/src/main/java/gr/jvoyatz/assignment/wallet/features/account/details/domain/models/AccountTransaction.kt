@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.domain.models
+package gr.jvoyatz.assignment.wallet.features.account.details.domain.models
 
 
 data class AccountTransactions(
