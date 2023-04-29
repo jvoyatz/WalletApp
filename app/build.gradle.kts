@@ -46,11 +46,7 @@ dependencies {
     implementation(project(":core:common-android"))
 
     //features
-    implementation(project(":features:accounts:ui"))
+    implementation(project(":features:accounts-list"))
     implementation(project(":features:account-details"))
 
-//
-//    implementation(libs.appcompat)
-//    implementation(libs.material)
-//    implementation(libs.constraintlayout)
 }

@@ -34,12 +34,13 @@
             <option value="$PROJECT_DIR$/core/mvvm_plus" />
             <option value="$PROJECT_DIR$/core/testing" />
             <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/accounts" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/accounts" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/account-details" />
-            <option value="$PROJECT_DIR$/features/accounts" />
-            <option value="$PROJECT_DIR$/features/accounts/data" />
-            <option value="$PROJECT_DIR$/features/accounts/domain" />
-            <option value="$PROJECT_DIR$/features/accounts/ui" />
+            <option value="$PROJECT_DIR$/features/accounts-list" />
           </set>
         </option>
       </GradleProjectSettings>

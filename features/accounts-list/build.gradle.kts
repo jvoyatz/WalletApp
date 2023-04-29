@@ -1,27 +1,27 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("assignment.wallet.android.library.plus")
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.org.jetbrains.kotlin.parcelize)
 }
 
 android {
-    namespace = "gr.jvoyatz.assignment.wallet.features.account.details"
+    namespace = "gr.jvoyatz.assignment.wallet.accounts"
 }
 
 dependencies {
-    //dependencies
+
+    //deps
     implementation(libs.core.ktx)
     implementation(libs.bundles.androidx.ui.common)
 
-    //core modules
+    //modules
     implementation(project(":core:ui"))
+    implementation(project(":data:accounts"))
     implementation(project(":core:common-android"))
     implementation(project(":core:mvvm_plus"))
+    implementation(project(mapOf("path" to ":domain:accounts")))
 
-    //unit testing
-    implementation(libs.bundles.test)
-    //android testing
-    implementation(libs.bundles.test.android)
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
+    //test
+    androidTestImplementation(libs.bundles.test.android)
 }

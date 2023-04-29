@@ -1,8 +1,5 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
-
-
-
 pluginManagement {
     repositories {
         includeBuild("build-logic")
@@ -28,7 +25,7 @@ include(":core:mvvm_plus")
 include(":core:testing")
 include(":core:database")
 include(":core:common-android")
-include(":features:accounts:data")
-include(":features:accounts:ui")
-include(":features:accounts:domain")
+include(":domain:accounts")
+include(":data:accounts")
+include(":features:accounts-list")
 include(":features:account-details")

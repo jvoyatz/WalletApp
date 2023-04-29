@@ -1,10 +1,9 @@
 package gr.jvoyatz.assignment.wallet.navigation
 
 import androidx.navigation.NavController
+import gr.jvoyatz.assignment.wallet.accounts.AccountsFragmentDirections
+import gr.jvoyatz.assignment.wallet.common.android.navigation.Destination
 import gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator
-import gr.jvoyatz.assignment.wallet.features.accounts.ui.AccountsFragmentDirections
-//import gr.jvoyatz.assignment.wallet.features.accounts.ui.AccountsFragmentDirections
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -17,12 +16,15 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
 
     private var navController: NavController? = null
 
-    override fun navigate(destination: gr.jvoyatz.assignment.wallet.common.android.navigation.Destination) {
+    override fun navigate(destination: Destination) {
         navController?.let {
             when(destination){
-                gr.jvoyatz.assignment.wallet.common.android.navigation.Destination.AccountsPortfolio -> Timber.d("navigating to portfolio screen")
-                is gr.jvoyatz.assignment.wallet.common.android.navigation.Destination.AccountDetails -> navController?.navigate(
-                    AccountsFragmentDirections.actionAccountToDetails(1))
+                is Destination.AccountDetailsScreen -> {
+                    navController?.let {
+                        if(it.currentDestination?.id == gr.jvoyatz.assignment.wallet.features.account.details.R.id.account_details) return
+                        it.navigate(AccountsFragmentDirections.actionAccountToDetails(destination.accountId))
+                    }
+                }
             }
         }
     }

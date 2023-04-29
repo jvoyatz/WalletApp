@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/accountsFragment"
-        android:name="gr.jvoyatz.assignment.wallet.features.accounts.ui.AccountsFragment"
+        android:name="gr.jvoyatz.assignment.wallet.accounts.AccountsFragment"
         android:label="Accounts"
         tools:layout="@layout/fragment_accounts_list">
 
@@ -16,7 +16,7 @@
                 app:destination="@id/account_details_nav_graph">
             <argument
                 android:name="accountId"
-                app:argType="integer"
+                app:argType="string"
                 app:nullable="false"
                 />
         </action>
