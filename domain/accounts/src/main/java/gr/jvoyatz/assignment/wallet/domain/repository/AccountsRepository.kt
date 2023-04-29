@@ -19,4 +19,6 @@ interface AccountsRepository {
      * Returns the accounts saved in the database
      */
     suspend fun getAccounts(): ResultData<List<Account>>
+
+    suspend fun setSelectedAccount()
 }

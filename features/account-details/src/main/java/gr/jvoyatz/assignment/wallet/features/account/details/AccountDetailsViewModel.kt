@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.features.account.details.ui
+package gr.jvoyatz.assignment.wallet.features.account.details
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

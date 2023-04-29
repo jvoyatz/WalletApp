@@ -15,4 +15,5 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.bundles.androidx.navigation)
     implementation(project(":core:common"))
+    implementation(libs.javax.inject)
 }

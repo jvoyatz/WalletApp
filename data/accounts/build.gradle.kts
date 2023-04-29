@@ -13,4 +13,6 @@ dependencies {
     implementation(project(":core:common-android"))
     implementation(project(":core:api"))
     implementation(project(":domain:accounts"))
+
+    implementation(libs.bundles.test.android)
 }

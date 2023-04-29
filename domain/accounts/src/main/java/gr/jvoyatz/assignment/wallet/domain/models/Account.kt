@@ -13,4 +13,4 @@ data class Account(
     val balance: String,
     val currencyCode: String,
     val isFavorite: Boolean = false
-)
+){}

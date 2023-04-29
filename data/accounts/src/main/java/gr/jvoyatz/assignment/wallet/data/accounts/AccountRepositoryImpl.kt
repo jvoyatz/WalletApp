@@ -31,6 +31,10 @@ internal class AccountRepositoryImpl(
             }
     }
 
+    override suspend fun setSelectedAccount() {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         fun create(api: WalletApi, dao: AccountsDao): AccountsRepository{
             return AccountRepositoryImpl(

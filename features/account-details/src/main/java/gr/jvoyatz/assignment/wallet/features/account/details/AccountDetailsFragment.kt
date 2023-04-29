@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.features.account.details.ui
+package gr.jvoyatz.assignment.wallet.features.account.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

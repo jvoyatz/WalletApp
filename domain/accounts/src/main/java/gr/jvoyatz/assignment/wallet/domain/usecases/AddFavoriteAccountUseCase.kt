@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.features.account.details.domain.usecases
+package gr.jvoyatz.assignment.wallet.domain.usecases
 
 /**
  * Marks an account as favorite in the database

@@ -1,10 +1,13 @@
 package gr.jvoyatz.assignment.wallet.di
 
 import android.os.Looper
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import gr.jvoyatz.assignment.wallet.common.android.AppDispatchers
+import gr.jvoyatz.assignment.wallet.common.android.AppDispatchersImpl
 import gr.jvoyatz.assignment.wallet.navigation.NavigatorImpl
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -37,5 +40,12 @@ object WalletModule {
     @Provides
     fun provideNavigator(): gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator {
         return NavigatorImpl()
+    }
+
+    @InstallIn(SingletonComponent::class)
+    @Module
+    interface Bindings {
+        @Binds
+        fun bindAppDispatchers(impl: AppDispatchersImpl):AppDispatchers
     }
 }

@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.features.account.details.domain.models
+package gr.jvoyatz.assignment.wallet.domain.models
 
 /**
  * Contains further details for an account,

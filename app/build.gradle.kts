@@ -49,4 +49,5 @@ dependencies {
     implementation(project(":features:accounts-list"))
     implementation(project(":features:account-details"))
 
+    implementation(libs.bundles.test.android)
 }
