@@ -2,6 +2,7 @@ package gr.jvoyatz.assignment.core.ui.custom.views.account
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +12,10 @@ import gr.jvoyatz.assignment.core.ui.R
 import gr.jvoyatz.assignment.core.ui.databinding.AccountViewBinding
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
+import gr.jvoyatz.assignment.core.ui.utils.onLargerScaleAnimation
 import gr.jvoyatz.assignment.core.ui.utils.show
+import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
+import timber.log.Timber
 
 class AccountView(
     context: Context,
@@ -56,9 +60,14 @@ class AccountView(
     override fun setAccountFavorite(favorite: Boolean) = with(binding.accountFavorite) {
         show()
         when (favorite) {
-            true -> setImageResource(R.drawable.ic_favorite)
-            else -> setImageResource(R.drawable.ic_favorite_border)
+            true -> R.drawable.ic_favorite.let {
+                this.onLargerScaleAnimation(it, it)
+            }
+            else -> {
+                setImageResource(R.drawable.ic_favorite_border)
+            }
         }
+
     }
 
     override fun setAccountFavoriteClickListener(clickHandler: () -> Unit) {

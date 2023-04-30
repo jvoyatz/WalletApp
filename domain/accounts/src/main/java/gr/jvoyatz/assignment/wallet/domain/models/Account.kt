@@ -10,7 +10,7 @@ data class Account(
     val accountType: AccountType,
     val balance: String,
     val currencyCode: String,
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 ){
     var details: AccountDetails? = null
     var pagedTransactions: PagedTransactions? = null

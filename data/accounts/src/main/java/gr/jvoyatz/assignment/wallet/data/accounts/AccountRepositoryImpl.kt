@@ -3,18 +3,22 @@ package gr.jvoyatz.assignment.wallet.data.accounts
 import gr.jvoyatz.assignment.core.common.resultdata.ResultData
 import gr.jvoyatz.assignment.core.common.resultdata.mapSuccess
 import gr.jvoyatz.assignment.core.common.resultdata.resultOf
+import gr.jvoyatz.assignment.core.common.resultdata.suspendedResultOf
 import gr.jvoyatz.assignment.core.common.utils.Utils
 import gr.jvoyatz.assignment.core.database.AccountsDao
 import gr.jvoyatz.assignment.wallet.core.api.WalletApi
 import gr.jvoyatz.assignment.wallet.core.api.config.response.ApiResponseExt.asResult
 import gr.jvoyatz.assignment.wallet.core.api.models.TransactionsPagedRequest
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.dtoToAccounts
+import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toAccountEntity
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toDomain
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toPagedAccountTransactions
 
 import gr.jvoyatz.assignment.wallet.domain.models.Account
 import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
 import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
+import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 
 
 /**
@@ -34,6 +38,14 @@ internal class AccountRepositoryImpl(
             .mapSuccess {
                 dtoToAccounts()
             }
+    }
+
+    override suspend fun addFavoriteAccount(account: Account): ResultData<Unit> = suspendedResultOf {
+        dbSource.addFavoriteAccount(account.toAccountEntity())
+    }
+
+    override suspend fun removeFavoriteAccount(account: Account): ResultData<Unit> = suspendedResultOf {
+        dbSource.removeFavoriteAccount(account.toAccountEntity())
     }
 
     override suspend fun setSelectedAccount(account: Account): ResultData<Unit> {
@@ -64,8 +76,13 @@ internal class AccountRepositoryImpl(
             }
     }
 
+
     companion object {
-        fun create(api: WalletApi, dao: AccountsDao): AccountsRepository{
+
+        /**
+         * Creates a new Wallet Repository using the needed data sources
+         */
+        internal fun create(api: WalletApi, dao: AccountsDao): AccountsRepository{
             return AccountRepositoryImpl(
                 AccountsApiDataSource(api),
                 AccountsLocalDataSource(dao)

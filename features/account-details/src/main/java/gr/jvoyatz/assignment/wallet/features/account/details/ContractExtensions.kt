@@ -1,10 +1,14 @@
 package gr.jvoyatz.assignment.wallet.features.account.details
 
+import gr.jvoyatz.assignment.wallet.common.android.ui.mappers.toDomain
 import gr.jvoyatz.assignment.wallet.common.android.ui.models.PagingUiModel
+import gr.jvoyatz.assignment.wallet.domain.models.Account
 import gr.jvoyatz.assignment.wallet.domain.models.Paging
 
 object ContractExtensions {
 
+    internal val Contract.ViewState.account: Account?
+        get() = if (this is Contract.ViewState.Data) this.account.toDomain() else null
     internal val Contract.ViewState.accountId: String?
         get() = if (this is Contract.ViewState.Data) this.account.id else null
 

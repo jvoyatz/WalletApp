@@ -1,10 +1,16 @@
 package gr.jvoyatz.assignment.core.ui.utils
 
 import android.animation.Animator
+import android.animation.Animator.AnimatorListener
+import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
 import androidx.core.view.isVisible
 import com.google.android.material.color.MaterialColors
 
@@ -63,6 +69,34 @@ private fun View.animate(
 fun View.fromTopAnimation() = animate(translationYStart = TRANSLATION_Y_100_MINUS)
 fun View.fromBottomAnimation() = animate( translationYStart = TRANSLATION_Y_150)
 
+fun ImageView.onLargerScaleAnimation(@DrawableRes startDrawable: Int, @DrawableRes endDrawableRes: Int) {
+    setImageResource(startDrawable)
+    scaleX = SCALE_1_75
+    scaleY = SCALE_1_75
+    animate()
+        .scaleX(SCALE_1)
+        .scaleY(SCALE_1)
+        .setDuration(500)
+        .setListener(object : AnimatorListener{
+            override fun onAnimationStart(animation: Animator) {}
+
+            override fun onAnimationEnd(animation: Animator) {
+                setImageResource(endDrawableRes)
+                scaleY = SCALE_1
+                scaleX = SCALE_1
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                TODO("Not yet implemented")
+            }
+
+        })
+}
+
 fun View.hide() = with(this) {
     if(this.isVisible){
         isVisible = false
@@ -85,3 +119,7 @@ fun TextView.bottomDrawable(@DrawableRes id: Int = 0) {
 fun View.getAttrColor(id: Int) = MaterialColors.getColor(context, id, Color.BLACK)
 
 fun View.getAttrColor(block: () -> Int) = getAttrColor(block())
+
+
+fun Context?.showToastLong(message: String) = this?.let { Toast.makeText(this, message, Toast.LENGTH_LONG).show() }
+fun Context?.showToastShort(message: String) = this?.let { Toast.makeText(this, message, Toast.LENGTH_SHORT).show() }

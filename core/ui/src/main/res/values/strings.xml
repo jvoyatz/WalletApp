@@ -17,4 +17,7 @@
     <string name="contentDescription">contentDescription</string>
     <string name="not_provided_description">Not provided description</string>
     <string name="transactions_next_page_error">An error occurred while fetching more transactions</string>
+    <string name="favorite_error_add">An error occurred while saving account as favorite</string>
+    <string name="favorite_error_remove">An error occurred while removing account as favorite</string>
+    <string name="unexpected_error">An unexpected error occurred</string>
 </resources>

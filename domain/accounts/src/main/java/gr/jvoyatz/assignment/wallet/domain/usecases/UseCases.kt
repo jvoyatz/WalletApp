@@ -7,6 +7,10 @@ import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
 object UseCases {
     fun interface SetSelectedAccountUseCase: suspend (Account) -> ResultData<Unit>
 
+    fun interface AddFavoriteAccountUseCase: suspend (Account) -> ResultData<Unit>
+
+    fun interface RemoveFavoriteAccountUseCase: suspend (Account) -> ResultData<Unit>
+
     fun interface GetAccountDetailsUseCase: suspend (String) -> ResultData<Account>
 
     fun interface GetAccountTransactionsUserCase: suspend (String, Int, String?, String?) -> ResultData<PagedTransactions>

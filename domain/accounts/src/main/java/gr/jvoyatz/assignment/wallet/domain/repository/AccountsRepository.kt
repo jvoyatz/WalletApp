@@ -9,19 +9,36 @@ import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
  */
 interface AccountsRepository {
 
-//    /**
-//     * Save an account as favorite in the database
-//     */
-//    suspend fun addFavoriteAccount(account: Account): ResultData<Unit>
+
 
     /**
      * Returns the accounts saved in the database
      */
     suspend fun getAccounts(): ResultData<List<Account>>
 
-    suspend fun setSelectedAccount(account: Account): ResultData<Unit>
-
+    /**
+     * Makes the request to fetch details for a selected account
+     */
     suspend fun getAccountDetails(id: String): ResultData<Account>
 
+    /**
+     * Executes a call to fetch transactions data for the selected account
+     */
     suspend fun getAccountTransactions(id: String, page: Int, dateFrom: String? = null, dateTo: String? = null): ResultData<PagedTransactions>
+
+    /**
+     * sets an account as selected when user clicks on in portfolio screen,
+     * keep it in this place in order not to need to make a new request
+     */
+    suspend fun setSelectedAccount(account: Account): ResultData<Unit>
+
+    /**
+     * Save an account as favorite in the database
+     */
+    suspend fun addFavoriteAccount(account: Account): ResultData<Unit>
+
+    /**
+     * Save an account as favorite in the database
+     */
+    suspend fun removeFavoriteAccount(account: Account): ResultData<Unit>
 }

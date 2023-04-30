@@ -21,12 +21,12 @@ object Contract {
             val dateFrom: String ?= null,
             val dateTo: String ?= null
         ): Intent
-        data class FavoriteAdded(val account: Account)
-        data class FavoriteRemoved(val account: Account)
+        object FavoriteAdded: Intent
     }
 
     sealed interface Event: UiEvent{
         data class ShowToast(@StringRes val resId: Int): Event
+      //  data class AddedAsFavorite(val isFavorite: Boolean): Event
     }
 
     @Parcelize
@@ -37,6 +37,7 @@ object Contract {
     sealed interface Reduced: ReducedState {
         data class Data(val account: Account): Reduced
         data class TransactionsNextPage(val pagedTransactions: PagedTransactions): Reduced
+        data class OnFavoriteAccount(val isFavorite: Boolean): Reduced
         object Error: Reduced
     }
 
@@ -46,9 +47,5 @@ object Contract {
         object Loading: ViewState()
         object Error: ViewState()
         data class Data(val account: AccountUiModel): ViewState()
-        @Deprecated("sdfsad")
-        data class DetailsDeprecated(val account: AccountUiModel): ViewState()
-        @Deprecated("sdfsad")
-        data class TransactionsDeprecated(val accountTransactions: List<TransactionUI>): ViewState()
     }
 }

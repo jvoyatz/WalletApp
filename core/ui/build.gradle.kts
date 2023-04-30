@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
-   implementation(libs.core.ktx)
+    implementation(libs.core.ktx)
     implementation(libs.bundles.androidx.ui.common)
+    implementation(project(":core:common-android"))
 }
