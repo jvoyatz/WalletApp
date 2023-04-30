@@ -30,12 +30,12 @@ object Contract {
         val viewState: ViewState
     ):UiState
 
-    sealed interface Reduced: ReducedState {
-        data class Data(val account: Account): Reduced
-        data class TransactionsNextPage(val pagedTransactions: PagedTransactions): Reduced
-        data class OnFavoriteAccount(val isFavorite: Boolean): Reduced
-        object Error: Reduced
-        object Loading: Reduced
+    sealed interface Reduce: ReducedState {
+        data class Data(val account: Account): Reduce
+        data class TransactionsNextPage(val pagedTransactions: PagedTransactions): Reduce
+        data class OnFavoriteAccount(val isFavorite: Boolean): Reduce
+        object Error: Reduce
+        object Loading: Reduce
     }
 
     @Parcelize

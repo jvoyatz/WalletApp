@@ -16,6 +16,7 @@ import gr.jvoyatz.assignment.core.ui.utils.hide
 import gr.jvoyatz.assignment.wallet.accounts.adapter.AccountListAdapter
 import gr.jvoyatz.assignment.wallet.accounts.databinding.FragmentAccountsListBinding
 import gr.jvoyatz.assignment.wallet.common.android.navigation.Destination
+import gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator
 import gr.jvoyatz.assignment.wallet.common.android.ui.mappers.toDomain
 import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 import kotlinx.coroutines.flow.launchIn
@@ -30,14 +31,14 @@ import javax.inject.Inject
 class AccountsFragment : Fragment() {
 
     @Inject
-    lateinit var navigator: gr.jvoyatz.assignment.wallet.common.android.navigation.Navigator;
+    lateinit var navigator: Navigator
     private lateinit var binding: FragmentAccountsListBinding
     private val viewModel: AccountsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return with(FragmentAccountsListBinding.inflate(inflater, container, false)){
             binding = this
             root
@@ -56,7 +57,7 @@ class AccountsFragment : Fragment() {
     private fun setupSwipeLayout(){
         with(binding.swipeLayout){
             this.setOnRefreshListener {
-                viewModel.onNewIntent(AccountsContract.Intent.GetData)
+                viewModel.onNewIntent(Contract.Intent.GetData)
             }
         }
     }
@@ -64,7 +65,7 @@ class AccountsFragment : Fragment() {
     private fun setupLoaderView() {
         with(binding.loaderView){
             this.setRetryListener {
-                viewModel.onNewIntent(AccountsContract.Intent.GetData)
+                viewModel.onNewIntent(Contract.Intent.GetData)
             }
         }
     }
@@ -72,7 +73,7 @@ class AccountsFragment : Fragment() {
     private fun setupRecyclerViews(){
         val adapter = AccountListAdapter {
             //navigator.navigate(Destination.AccountDetailsScreen(it.id))
-            viewModel.onNewIntent(AccountsContract.Intent.OnAccountSelected(it.toDomain()))
+            viewModel.onNewIntent(Contract.Intent.OnAccountSelected(it.toDomain()))
         }
 
         binding.dataList.apply {
@@ -95,11 +96,11 @@ class AccountsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiEvent.collect {
                     when(it){
-                        is AccountsContract.Event.ShowToast -> {
+                        is Contract.Event.ShowToast -> {
                             val safeContext = context ?: return@collect
                             Toast.makeText(safeContext, it.resourceId, Toast.LENGTH_SHORT).show()
                         }
-                        is AccountsContract.Event.AccountDetailsNavigation -> {
+                        is Contract.Event.AccountDetailsNavigation -> {
                             navigator.navigate(Destination.AccountDetailsScreen(it.id))
                         }
                     }
@@ -108,21 +109,21 @@ class AccountsFragment : Fragment() {
         }
     }
 
-    private fun handleScreenState(state: AccountsContract.ScreenState){
+    private fun handleScreenState(state: Contract.ViewState){
         when(state){
-            AccountsContract.ScreenState.Initialize -> {
-                viewModel.onNewIntent(AccountsContract.Intent.GetData)
+            Contract.ViewState.Initialize -> {
+                viewModel.onNewIntent(Contract.Intent.GetData)
             }
-            AccountsContract.ScreenState.Loading -> {
+            Contract.ViewState.Loading -> {
                 showLoadingState()
             }
-            AccountsContract.ScreenState.NoData -> {
+            Contract.ViewState.NoData -> {
                 showNoDataState()
             }
-            is AccountsContract.ScreenState.Data -> {
+            is Contract.ViewState.Data -> {
                 showDataState(state.accounts)
             }
-            AccountsContract.ScreenState.Error -> {
+            Contract.ViewState.Error -> {
                 showErrorState()
             }
         }
