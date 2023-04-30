@@ -119,7 +119,7 @@ class AccountDetailsViewModel
         with(details.await()) {
             if (isSuccess()) { // if result isSuccess
                 this.asSuccess()!!.data.apply {
-                    
+
                     val trResult = transactions.await() //get transactions
                     if (trResult.isSuccess()) {
                         this.pagedTransactions = trResult.asSuccess()!!.data

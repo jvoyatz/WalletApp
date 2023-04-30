@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AccountDetailsUiModel(
-    val beneficiaries: List<String>,
+    val beneficiaries: String,
     val branch: String,
     val openedDate: String,
     val productName: String

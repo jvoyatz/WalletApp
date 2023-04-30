@@ -136,7 +136,7 @@ class AccountDetailsFragment : Fragment() {
             this.accountType.text = account.accountType.type
             this.accountProduct.text = accountDetails.productName
             this.accountBranch.text = accountDetails.branch
-            this.accountBeneficiaries.text = accountDetails.beneficiaries.joinToString()
+            this.accountBeneficiaries.text = accountDetails.beneficiaries
 
             account.transactions!!
             with(binding.transactionsList) {

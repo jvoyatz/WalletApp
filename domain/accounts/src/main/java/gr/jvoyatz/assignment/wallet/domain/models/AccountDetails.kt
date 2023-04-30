@@ -5,7 +5,7 @@ package gr.jvoyatz.assignment.wallet.domain.models
  * included in [Account]
  */
 data class AccountDetails(
-    val beneficiaries: List<String>,
+    val beneficiaries: String,
     val branch: String,
     val openedDate: String,
     val productName: String

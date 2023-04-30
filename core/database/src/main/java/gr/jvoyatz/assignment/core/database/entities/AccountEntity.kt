@@ -15,5 +15,9 @@ data class AccountEntity(
     val accountType: String,
     val balance: String,
     val currencyCode: String,
-    val accountNickname: String?=null
+    val accountNickname: String?=null,
+    val beneficiaries: String,
+    val branch: String,
+    val openedDate: String,
+    val productName: String
 )

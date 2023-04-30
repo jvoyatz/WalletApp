@@ -1,5 +1,6 @@
 package gr.jvoyatz.assignment.wallet.data.accounts
 
+import gr.jvoyatz.assignment.core.common.utils.Constants
 import gr.jvoyatz.assignment.core.common.utils.mapList
 import gr.jvoyatz.assignment.core.database.entities.AccountEntity
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountDetailsDto
@@ -26,7 +27,11 @@ internal object AccountMappers {
         accountNickname = accountNickname,
         accountType = accountType.type,
         balance = balance,
-        currencyCode = currencyCode
+        currencyCode = currencyCode,
+        beneficiaries = this.details?.beneficiaries ?: Constants.EMPTY,
+        branch = this.details?.branch ?: Constants.EMPTY,
+        openedDate = this.details?.openedDate ?: Constants.EMPTY,
+        productName = this.details?.productName ?: Constants.EMPTY
     )
 
     private fun AccountEntity.toAccount() = Account(
@@ -36,7 +41,11 @@ internal object AccountMappers {
         accountType = AccountType[accountType],
         balance = balance,
         currencyCode = currencyCode
-    )
+    ).apply {
+        this.details = AccountDetails(
+            beneficiaries, branch, openedDate, productName
+        )
+    }
 
     fun List<AccountEntity>.entitiesToAccounts() = this.mapList { it.toAccount() }
 
@@ -52,7 +61,7 @@ internal object AccountMappers {
     fun List<AccountRaw>.dtoToAccounts() = this.mapList { it.toAccount() }
 
     fun AccountDetailsDto.toDomain() = AccountDetails(
-        beneficiaries = this.beneficiaries,
+        beneficiaries = this.beneficiaries.joinToString(),
         branch = this.branch,
         openedDate = this.openedDate,
         productName = this.productName
