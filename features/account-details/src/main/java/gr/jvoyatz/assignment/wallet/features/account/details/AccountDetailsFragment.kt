@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import gr.jvoyatz.assignment.core.common.utils.Constants
 import gr.jvoyatz.assignment.core.common.utils.DateUtils
 import gr.jvoyatz.assignment.core.ui.utils.hide
 import gr.jvoyatz.assignment.core.ui.utils.show
@@ -73,9 +74,11 @@ class AccountDetailsFragment : Fragment() {
                 safeNestedScrollView.getChildAt(safeNestedScrollView.childCount - 1).let { last ->
                     val safeView = last ?: return@setOnScrollChangeListener
 
+                    val adapter = binding.transactionsList.adapter as AccountTransactionsPagingAdapter
                     if (((scrollY >= (safeView.measuredHeight - safeNestedScrollView.measuredHeight)) && scrollY > oldScrollY) &&
-                        (!viewModel.isLoadingTransactions() && viewModel.canLoadMoreTransactions(/*itemCount*/))
+                        (!adapter.isLoading() && viewModel.canLoadMoreTransactions(/*itemCount*/))
                     ) {
+                        adapter.showLoading()
                         viewModel.onNewIntent(Contract.Intent.GetMoreTransactions())
                     }
                 }
@@ -140,12 +143,15 @@ class AccountDetailsFragment : Fragment() {
             accountContainer.setAccountBalance(account.balance, account.currencyCode)
             accountContainer.setAccountFavorite(account.isFavorite)
 
-            val accountDetails = account.details!!
-            this.accountDate.text = DateUtils.formatToDateStr(accountDetails.openedDate)
-            this.accountType.text = account.accountType.type
-            this.accountProduct.text = accountDetails.productName
-            this.accountBranch.text = accountDetails.branch
-            this.accountBeneficiaries.text = accountDetails.beneficiaries
+            account.details?.let {
+                this.accountDate.text = if(it.openedDate.isBlank()) Constants.DOTS else DateUtils.formatToDateStr(it.openedDate)
+                this.accountType.text = account.accountType.type
+                this.accountProduct.text = it.productName
+                this.accountBranch.text = it.branch
+                this.accountBeneficiaries.text = it.beneficiaries
+            } ?: kotlin.run {
+                binding.accountExtraContainer.visibility = View.INVISIBLE
+            }
 
             if(account.transactions == null){
                 binding.transactionsLoader.showError()

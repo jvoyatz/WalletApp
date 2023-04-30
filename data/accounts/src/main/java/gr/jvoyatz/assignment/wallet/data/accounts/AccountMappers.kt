@@ -14,6 +14,7 @@ import gr.jvoyatz.assignment.wallet.domain.models.AccountType
 import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
 import gr.jvoyatz.assignment.wallet.domain.models.Paging
 import gr.jvoyatz.assignment.wallet.domain.models.Transaction
+import timber.log.Timber
 
 
 /**
@@ -43,9 +44,15 @@ internal object AccountMappers {
         balance = balance,
         currencyCode = currencyCode
     ).apply {
-        this.details = AccountDetails(
-            beneficiaries, branch, openedDate, productName
-        )
+        if(beneficiaries.isNotBlank() &&
+            branch.isNotBlank() &&
+            openedDate.isNotBlank() &&
+            productName.isNotBlank()
+        ) {
+            this.details = AccountDetails(
+                beneficiaries, branch, openedDate, productName
+            )
+        }
     }
 
     fun List<AccountEntity>.entitiesToAccounts() = this.mapList { it.toDomain() }
@@ -70,7 +77,12 @@ internal object AccountMappers {
 
     fun AccountTransactionsDto.toPagedAccountTransactions(currencySymbol: String? = null) = PagedTransactions(
         paging = this.paging.toDomain(),
-        transactions = this.transactions.mapList { it.toDomain(currencySymbol ?: "") }
+        transactions = this.transactions.mapList { it.toDomain(currencySymbol ?: "") }.sortedByDescending {
+            Timber.d("date ${it.date}")
+            it.date
+        }.also {
+            Timber.d("sorted list $it")
+        }
     )
 
     fun PagingDto.toDomain() = Paging(

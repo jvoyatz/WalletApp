@@ -13,17 +13,20 @@ import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
  * ListAdapter used to show the user's account as return from the web service
  */
 class AccountListAdapter(
-    val onAccountClicked: (account: AccountUiModel) -> Unit
+    val onAccountClicked: (account: AccountUiModel) -> Unit,
+    val onFavoriteClicked: (event: AccountUiModel) -> Unit,
 ): ListAdapter<AccountUiModel, AccountListAdapter.ViewHolder>(AccountDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AccountsListItemBinding.inflate(inflater, parent, false)
         return with(binding.root){->
-            ViewHolder(this) { position ->
-                with(getItem(position)) {
-                    onAccountClicked(this)
-                }
+            ViewHolder(this, { position ->
+                val account = getItem(position)
+                onAccountClicked(account)
+            }){
+                val account = getItem(it)
+                onFavoriteClicked(account)
             }
         }
     }
@@ -35,15 +38,18 @@ class AccountListAdapter(
 
     inner class ViewHolder(
         private val view: View,
-        onAccountViewClickListener: (position: Int) -> Unit
+        onAccountClickPositionListener: (position: Int) -> Unit,
+        onFavoriteClickPositionListener: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(view) {
 
         init {
             view.setOnClickListener {
-                onAccountViewClickListener(bindingAdapterPosition)
+                onAccountClickPositionListener(bindingAdapterPosition)
+            }
+            (view as AccountViewInterface).setAccountFavoriteClickListener {
+                onFavoriteClickPositionListener(bindingAdapterPosition)
             }
         }
-
         fun bind(account: AccountUiModel) {
             AccountViewMapper(
                 view.context,
@@ -51,5 +57,25 @@ class AccountListAdapter(
                 account
             )
         }
+
+//        private fun onFavorite(account: AccountUiModel){
+//            currentList.firstOrNull {
+//                it.id == account.id
+//            }?.let {
+//                it.isFavorite = !it.isFavorite
+//            }
+//
+//            val sorted = currentList
+//                .sortedBy {
+//                    it.accountNickname
+//                }
+//                .sortedByDescending {
+//                    it.isFavorite
+//                }
+//            submitList(sorted)
+//
+//            notifyItemChanged(currentList.indexOf(account))
+//
+//        }
     }
 }

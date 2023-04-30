@@ -15,8 +15,7 @@ object Contract {
 
     sealed interface Intent: UiIntent{
         data class GetData(val accountId: String): Intent
-        data class GetMoreTransactions(val dateFrom: String ?= null, val dateTo: String ?= null
-        ): Intent
+        data class GetMoreTransactions(val dateFrom: String ?= null, val dateTo: String ?= null): Intent
         object FavoriteAdded: Intent
         object UnexpectedError: Intent
     }

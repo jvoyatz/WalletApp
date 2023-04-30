@@ -1,8 +1,9 @@
+@file:Suppress("unused")
+
 package gr.jvoyatz.assignment.core.ui.utils
 
 import android.animation.Animator
 import android.animation.Animator.AnimatorListener
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.View
@@ -10,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
 import androidx.core.view.isVisible
 import com.google.android.material.color.MaterialColors
 
@@ -24,6 +24,7 @@ private const val TRANSLATION_Y_500 = 500f
 private const val TRANSLATION_Y_100_MINUS = -100f
 private const val TRANSLATION_Y_0 = 0f
 private const val DURATION_500 = 500L
+private const val DURATION_1000 = 1000L
 
 private const val SCALE_1 = 1f
 private const val SCALE_1_25 = 1.50f
@@ -46,7 +47,7 @@ private fun View.animate(
         .alpha(alphaEnd)
         .translationY(translationYEnd)
         .setDuration(duration)
-        .setListener(object : Animator.AnimatorListener {
+        .setListener(object : AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
             }
 
@@ -76,7 +77,7 @@ fun ImageView.onLargerScaleAnimation(@DrawableRes startDrawable: Int, @DrawableR
     animate()
         .scaleX(SCALE_1)
         .scaleY(SCALE_1)
-        .setDuration(500)
+        .setDuration(DURATION_1000)
         .setListener(object : AnimatorListener{
             override fun onAnimationStart(animation: Animator) {}
 

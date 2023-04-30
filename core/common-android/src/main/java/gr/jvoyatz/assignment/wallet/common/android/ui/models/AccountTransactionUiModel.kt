@@ -2,12 +2,14 @@ package gr.jvoyatz.assignment.wallet.common.android.ui.models
 
 import android.os.Parcelable
 import gr.jvoyatz.assignment.wallet.domain.models.Paging
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 sealed class TransactionUI: Parcelable{
     data class Date(val date: String): TransactionUI()
     data class Holder(val transactionUiModel: AccountTransactionUiModel): TransactionUI()
+    object Loading: TransactionUI()
 }
 
 @Parcelize
@@ -17,6 +19,7 @@ data class PagingUiModel(
     val totalItems: Int = Paging.UNKNOWN
 ): Parcelable {
 
+    @IgnoredOnParcel
     var isLoading: Boolean = false
     val canLoadMore: Boolean
         get() = (pagesCount >= 0) && (currentPage + 1) < pagesCount

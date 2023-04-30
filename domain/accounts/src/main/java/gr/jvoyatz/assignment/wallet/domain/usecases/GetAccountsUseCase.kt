@@ -10,5 +10,5 @@ import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
 class GetAccountsUseCase(
     private val accountsRepository: AccountsRepository
 ){
-    suspend operator fun invoke() = accountsRepository.getAccounts()
+    /*suspend*/ operator fun invoke(refresh: Boolean = false) = accountsRepository.getAccounts(refresh)
 }

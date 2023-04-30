@@ -37,17 +37,33 @@
 
         <ImageView
             android:id="@+id/account_favorite"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:src="@drawable/ic_favorite_border"
-            app:layout_constraintStart_toEndOf="@id/account_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/icon_size_48dp"
+            app:layout_constraintStart_toEndOf="@id/guidelineVert"
             app:layout_constraintTop_toTopOf="@id/account_name"
             app:layout_constraintBottom_toBottomOf="@id/account_name"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/margin_2x"
-            android:layout_marginEnd="@dimen/margin_2x"
+            android:scaleType="center"
             app:tint="?attr/colorFavorite"
-            android:contentDescription="@string/contentDescription"/>
+            android:src="@drawable/ic_favorite_border"
+            android:contentDescription="@string/contentDescription"
+            android:paddingStart="@dimen/padding_5x"
+
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHoriz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/account_balance"

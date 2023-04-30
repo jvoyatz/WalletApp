@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package gr.jvoyatz.assignment.core.common.utils
 
 import gr.jvoyatz.assignment.core.common.utils.DateConstants.DATE_FORMAT_2
@@ -7,12 +9,9 @@ import java.text.SimpleDateFormat
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
-
-fun main(){
-    println(DateUtils.toDateFormat3("2016-02-03T10:15:30Z"))
-}
 object DateUtils {
     fun toDateFormat3(dateTime: String): String {
         return try{
@@ -46,11 +45,11 @@ object DateUtils {
 
     private fun legacyFormatToDate(formatString: String, dateTime: String) : String {
         return try {
-            val date = with(SimpleDateFormat(ISO_DATE_TIME_ZONE_FORMAT)) {
+            val date = with(SimpleDateFormat(ISO_DATE_TIME_ZONE_FORMAT, Locale.getDefault())) {
                 timeZone = TimeZone.getTimeZone("UTC")
                 parse(dateTime)
             }
-            with(SimpleDateFormat(formatString)) {
+            with(SimpleDateFormat(formatString, Locale.getDefault())) {
                 format(date)
             }
         } catch (e: Exception) {

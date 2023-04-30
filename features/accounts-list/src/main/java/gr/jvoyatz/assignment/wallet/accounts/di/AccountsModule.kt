@@ -25,6 +25,7 @@ AccountsModule {
     @Provides
     fun provideAddFavoriteAccountUseCase(accountsRepository: AccountsRepository) =
         UseCases.AddFavoriteAccountUseCase {
+            accountsRepository.deleteFavoriteAccounts()
             accountsRepository.addFavoriteAccount(it)
         }
 

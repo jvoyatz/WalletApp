@@ -2,30 +2,23 @@ package gr.jvoyatz.assignment.wallet.features.account.details.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountDetailsUiModel
 import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountTransactionUiModel
 import gr.jvoyatz.assignment.wallet.common.android.ui.models.TransactionUI
-import gr.jvoyatz.assignment.wallet.features.account.details.R
 import gr.jvoyatz.assignment.wallet.features.account.details.databinding.AccountDetailsItemDateBinding
 import gr.jvoyatz.assignment.wallet.features.account.details.databinding.AccountDetailsItemTransactionBinding
-import java.lang.IllegalStateException
+import gr.jvoyatz.assignment.wallet.features.account.details.databinding.ProgressbarBinding
 
 class AccountTransactionsPagingAdapter :
-    ListAdapter<TransactionUI, RecyclerView.ViewHolder>(
-        AccountTransactionDiffCallback()
-    ) {
+    ListAdapter<TransactionUI, RecyclerView.ViewHolder>(AccountTransactionDiffCallback()) {
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
         return when (item) {
             is TransactionUI.Holder -> ITEM
             is TransactionUI.Date -> HEADER
+            is TransactionUI.Loading -> LOADING
         }
     }
 
@@ -43,9 +36,10 @@ class AccountTransactionsPagingAdapter :
                     HeaderViewHolder(this)
                 }
             }
-
             else -> {
-                throw IllegalStateException("unknown view type, eager crash to detect errors")
+                ProgressbarBinding.inflate(inflater, parent, false).run {
+                    ProgressViewHolder(this)
+                }
             }
         }
     }
@@ -71,6 +65,17 @@ class AccountTransactionsPagingAdapter :
         }
     }
 
+    inner class ProgressViewHolder(view: ProgressbarBinding): RecyclerView.ViewHolder(view.root)
+
+    fun showLoading(){
+        val list = currentList.toMutableList()
+        list.add(TransactionUI.Loading)
+        submitList(list)
+    }
+
+    fun isLoading(): Boolean =
+         currentList.last() is TransactionUI.Loading
+
     inner class HeaderViewHolder(private val binding: AccountDetailsItemDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TransactionUI.Date) {
@@ -81,5 +86,6 @@ class AccountTransactionsPagingAdapter :
     companion object {
         internal const val HEADER = 1
         internal const val ITEM = 2
+        internal const val LOADING = 3
     }
 }

@@ -35,8 +35,8 @@ object Contract {
      * the final ScreenState holded inside State data class
      */
     sealed interface Reduce: ReducedState {
-        data class Data(val data: List<Account>? = null): Reduce
-        data class OnFavoriteAccount(val isFavorite: Boolean): Reduce
+        data class Data(val data: List<Account>): Reduce
+        object NoData: Reduce
         object Error: Reduce
         object Loading: Reduce
     }
@@ -55,7 +55,8 @@ object Contract {
      */
     sealed interface Intent: UiIntent{
         object Initialize: Intent
-        object GetData: Intent
+        data class GetData(val refresh: Boolean = false): Intent
         data class OnAccountSelected(val account: Account):Intent
+        data class OnFavoriteAccount(val account: Account): Intent
     }
 }

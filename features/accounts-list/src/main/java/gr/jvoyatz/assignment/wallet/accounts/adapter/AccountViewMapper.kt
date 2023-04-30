@@ -6,7 +6,7 @@ import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 
 /**
  * Maps the data received in [AccountListAdapter.ViewHolder.bind] to the corresponding
- * [AccountView] through the contract [AccountViewInterface]
+ * AccountView through the contract [AccountViewInterface]
  */
 class AccountViewMapper(
     private val context: Context,
@@ -16,6 +16,7 @@ class AccountViewMapper(
     init {
         setAccountName()
         setAccountBalance()
+        view.setAccountFavorite(account.isFavorite)
     }
     private fun setAccountName(){
         account.accountNickname?.let {

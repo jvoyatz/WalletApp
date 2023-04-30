@@ -46,7 +46,8 @@ class AccountDetailsViewModel
 ) : BaseViewModel<Contract.State, Reduce, Contract.Intent, Contract.Event>(
     savedStateHandle,
     Contract.State(ViewState.Initialize)
-) {
+){
+    @Deprecated("used a more appropriate way to determine whether recyclerview is loading more items")
     fun isLoadingTransactions() = uiState.value.viewState.isLoadingTransactions
 
     override fun mapIntents(intent: Contract.Intent): Flow<Reduce> {
@@ -171,6 +172,7 @@ class AccountDetailsViewModel
     }
 
     private fun getTransactionsNextPage() = flow {
+        kotlinx.coroutines.delay(500)
         getTransactions(uiState.value.viewState.accountId!!).await()
             .onSuspendedSuccess { emit(Reduce.TransactionsNextPage(it)) }
             .onSuspendedError { postEvent(Contract.Event.ShowToast(transactionsNextPageErrorMsgId)) }

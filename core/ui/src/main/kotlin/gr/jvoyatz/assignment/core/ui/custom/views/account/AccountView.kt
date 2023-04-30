@@ -2,11 +2,9 @@ package gr.jvoyatz.assignment.core.ui.custom.views.account
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import gr.jvoyatz.assignment.core.common.utils.Utils
 import gr.jvoyatz.assignment.core.ui.R
 import gr.jvoyatz.assignment.core.ui.databinding.AccountViewBinding
@@ -14,9 +12,8 @@ import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
 import gr.jvoyatz.assignment.core.ui.utils.onLargerScaleAnimation
 import gr.jvoyatz.assignment.core.ui.utils.show
-import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
-import timber.log.Timber
 
+@Suppress("unused")
 class AccountView(
     context: Context,
     attrs: AttributeSet?
@@ -33,7 +30,7 @@ class AccountView(
             AccountViewBinding.inflate(it, this, true)
         }
 
-        binding.accountFavorite.isVisible = isShowFavorite
+       // binding.accountFavorite.isVisible = isShowFavorite
         setAnimationType()
     }
 

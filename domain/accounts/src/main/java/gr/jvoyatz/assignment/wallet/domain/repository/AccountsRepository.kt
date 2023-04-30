@@ -3,26 +3,25 @@ package gr.jvoyatz.assignment.wallet.domain.repository
 import gr.jvoyatz.assignment.core.common.resultdata.ResultData
 import gr.jvoyatz.assignment.wallet.domain.models.Account
 import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
+import kotlinx.coroutines.flow.Flow
 
 /**
  * A repository which defines the contract for getting access to the local stored accounts
  */
 interface AccountsRepository {
-
     /**
-     * Returns the accounts saved in the database
+     * returns a list of the accounts fetched from the remote service
+     * sorted by favorite field
      */
-    suspend fun getAccounts(): ResultData<List<Account>>
+    /*suspend*/ fun getAccounts(refresh: Boolean = false): Flow<ResultData<List<Account>>>
+
+    suspend fun getRemoteAccounts(): ResultData<Unit>
 
     /**
      * Makes the request to fetch details for a selected account
      */
     suspend fun getAccountDetails(id: String): ResultData<Account>
 
-    /**
-     * Makes the request to fetch details for a selected account
-     */
-    suspend fun getAccountDetails2(id: String): ResultData<Account>
     /**
      * Executes a call to fetch transactions data for the selected account
      */
@@ -43,4 +42,9 @@ interface AccountsRepository {
      * Save an account as favorite in the database
      */
     suspend fun removeFavoriteAccount(account: Account): ResultData<Unit>
+
+    /**
+     * Clear favorite accounts
+     */
+    suspend fun deleteFavoriteAccounts(): ResultData<Unit>
 }

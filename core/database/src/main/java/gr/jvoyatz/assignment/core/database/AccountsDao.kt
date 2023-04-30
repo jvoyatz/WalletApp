@@ -15,6 +15,7 @@ interface AccountsDao {
 
     @Query("SELECT * FROM AccountEntity WHERE id = :id")
     suspend fun selectById(id: String): List<AccountEntity>
+
     @Query("SELECT EXISTS (SELECT 1 FROM AccountEntity WHERE id = :id)")
     suspend fun exists(id: String): Boolean
 

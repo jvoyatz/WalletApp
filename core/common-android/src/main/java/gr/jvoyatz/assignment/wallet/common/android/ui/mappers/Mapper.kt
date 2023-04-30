@@ -20,8 +20,8 @@ fun Account.toUiModel() = AccountUiModel(
     currencyCode = currencyCode,
     isFavorite = isFavorite,
     details = details?.toUiModel(),
-    transactions = pagedTransactions?.transactions?.toUiModels() ?: null,
-    paging = pagedTransactions?.paging?.toUiModel() ?: null
+    transactions = pagedTransactions?.transactions?.toUiModels(),
+    paging = pagedTransactions?.paging?.toUiModel()
 )
 fun AccountDetails.toUiModel() = AccountDetailsUiModel(
     beneficiaries = this.beneficiaries,
@@ -46,11 +46,11 @@ fun Transaction.toUiModel() = AccountTransactionUiModel(
 )
 
 fun List<Transaction>.toUiModels(): List<TransactionUI> {
-    val list: MutableList<TransactionUI> = mutableListOf()
-    map { it.toUiModel() }.groupBy({it.date}, { it }).forEach {
-        list.add(TransactionUI.Date(it.key))
-        list.addAll(it.value.map { element -> TransactionUI.Holder(element) })
-    }
+//    val list: MutableList<TransactionUI> = mutableListOf()
+//    map { it.toUiModel() }.groupBy({it.date}, { it }).forEach {
+//        list.add(TransactionUI.Date(it.key))
+//        list.addAll(it.value.map { element -> TransactionUI.Holder(element) })
+//    }
 
     return map { tr -> tr.toUiModel() }
         .groupBy({ uiModel -> uiModel.date }, { uiModel ->  uiModel })

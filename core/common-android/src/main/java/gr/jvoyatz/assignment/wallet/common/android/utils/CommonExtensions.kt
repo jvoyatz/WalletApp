@@ -1,4 +1,4 @@
-@file:Suppress("DEPRECATION")
+@file:Suppress("DEPRECATION", "unused")
 
 package gr.jvoyatz.assignment.wallet.common.android.utils
 
@@ -7,8 +7,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Looper
-
-
+import timber.log.Timber
 
 
 fun Context.isConnected() = kotlin.run {
@@ -57,3 +56,7 @@ inline val isMainThread: Boolean get() = Looper.myLooper() == Looper.getMainLoop
  * Get class name for a particular class
  */
 fun <T: Any> T.TAG() = this.javaClass.simpleName
+
+fun LOG_THREAD() {
+    Timber.d("Current Thread is ${Thread.currentThread()}")
+}

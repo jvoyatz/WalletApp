@@ -23,7 +23,8 @@
     <dimen name="list_item_height_2">122dp</dimen>
     <dimen name="icon_padding">12dp</dimen>
     <dimen name="icon_size">32dp</dimen>
-
+    <dimen name="icon_size_40dp">40dp</dimen>
+    <dimen name="icon_size_48dp">48dp</dimen>
 
     <dimen name="margin_0x">0dp</dimen>
     <dimen name="margin_0_125x">1dp</dimen>

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package gr.jvoyatz.assignment.core.ui.utils
 
 import android.content.res.TypedArray

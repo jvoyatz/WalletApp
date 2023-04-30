@@ -37,19 +37,22 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/transaction_description"
-                style="@style/TextAutofitBody2"
-                android:layout_width="wrap_content"
+                style="@style/TextAutofitBody1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_1x"
-                android:layout_marginTop="@dimen/margin_1x"
-                android:layout_marginBottom="@dimen/margin_1x"
+                android:layout_marginEnd="@dimen/margin_1x"
+                android:layout_marginTop="@dimen/margin_1_5x"
+                android:layout_marginBottom="@dimen/margin_1_5x"
                 android:gravity="start"
                 android:padding="@dimen/padding_1x"
                 app:layout_constrainedHeight="true"
-                app:layout_constrainedWidth="true"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/transaction_type"
-                tools:text="transfer between my accounts" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text ="asdfasdfasdfasdfasdfasdffasdfasdfasdf asdfasdfasd asdfasdfsadfsdfsadfsadfsadfsadfsadfsadfsadfsadfsdfsdf"
+                android:maxLines="1" />
 
 
             <com.google.android.material.textview.MaterialTextView

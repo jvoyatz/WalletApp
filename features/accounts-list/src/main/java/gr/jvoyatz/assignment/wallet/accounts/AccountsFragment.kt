@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -57,7 +56,7 @@ class AccountsFragment : Fragment() {
     private fun setupSwipeLayout(){
         with(binding.swipeLayout){
             this.setOnRefreshListener {
-                viewModel.onNewIntent(Contract.Intent.GetData)
+                viewModel.onNewIntent(Contract.Intent.GetData(true))
             }
         }
     }
@@ -65,15 +64,16 @@ class AccountsFragment : Fragment() {
     private fun setupLoaderView() {
         with(binding.loaderView){
             this.setRetryListener {
-                viewModel.onNewIntent(Contract.Intent.GetData)
+                viewModel.onNewIntent(Contract.Intent.GetData(true))
             }
         }
     }
 
     private fun setupRecyclerViews(){
-        val adapter = AccountListAdapter {
-            //navigator.navigate(Destination.AccountDetailsScreen(it.id))
+        val adapter = AccountListAdapter({
             viewModel.onNewIntent(Contract.Intent.OnAccountSelected(it.toDomain()))
+        }) {
+            viewModel.onNewIntent(Contract.Intent.OnFavoriteAccount(it.toDomain()))
         }
 
         binding.dataList.apply {
@@ -86,7 +86,6 @@ class AccountsFragment : Fragment() {
         viewModel.uiState
             .map { it.state }
             .onEach {
-                Timber.d("$it")
                 handleScreenState(it)
             }
             .launchIn(lifecycleScope)
@@ -112,7 +111,7 @@ class AccountsFragment : Fragment() {
     private fun handleScreenState(state: Contract.ViewState){
         when(state){
             Contract.ViewState.Initialize -> {
-                viewModel.onNewIntent(Contract.Intent.GetData)
+                viewModel.onNewIntent(Contract.Intent.GetData(false))
             }
             Contract.ViewState.Loading -> {
                 showLoadingState()
