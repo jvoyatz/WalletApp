@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package gr.jvoyatz.assignment.wallet.data.accounts
 
 import gr.jvoyatz.assignment.core.database.AccountsDao
@@ -7,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 internal class AccountsLocalDataSource(
      val dao: AccountsDao
 ) {
+    suspend fun getAccountById(id: String) = dao.selectById(id)
+    suspend fun isFavorite(id: String) = dao.exists(id)
 
-    //added for debug purposes
-    //to be removed
     fun getAccounts(): Flow<List<AccountEntity>> = dao.getAccounts()
 
     suspend fun addFavoriteAccount(accountEntity: AccountEntity){

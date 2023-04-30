@@ -20,6 +20,7 @@ import gr.jvoyatz.assignment.wallet.domain.models.Transaction
  * Maps an [Account] domain into [AccountEntity] and vice-versa.
  * Also it offers a way to map a list of [AccountEntity] objects into corresponding domain [Account] model
  */
+@Suppress("unused")
 internal object AccountMappers {
     fun Account.toAccountEntity() = AccountEntity(
         id = id,
@@ -34,7 +35,7 @@ internal object AccountMappers {
         productName = this.details?.productName ?: Constants.EMPTY
     )
 
-    private fun AccountEntity.toAccount() = Account(
+    fun AccountEntity.toDomain() = Account(
         id = id,
         accountNumber = accountNumber,
         accountNickname = accountNickname,
@@ -47,9 +48,9 @@ internal object AccountMappers {
         )
     }
 
-    fun List<AccountEntity>.entitiesToAccounts() = this.mapList { it.toAccount() }
+    fun List<AccountEntity>.entitiesToAccounts() = this.mapList { it.toDomain() }
 
-    fun AccountRaw.toAccount() = Account(
+    fun AccountRaw.toDomain() = Account(
         id = id,
         accountNumber = accountNumber,
         accountNickname = accountNickname,
@@ -58,7 +59,7 @@ internal object AccountMappers {
         currencyCode = currencyCode
     )
 
-    fun List<AccountRaw>.dtoToAccounts() = this.mapList { it.toAccount() }
+    fun List<AccountRaw>.dtoToAccounts() = this.mapList { it.toDomain() }
 
     fun AccountDetailsDto.toDomain() = AccountDetails(
         beneficiaries = this.beneficiaries.joinToString(),

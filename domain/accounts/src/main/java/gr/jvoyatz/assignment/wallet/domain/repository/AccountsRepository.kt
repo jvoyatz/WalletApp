@@ -9,8 +9,6 @@ import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
  */
 interface AccountsRepository {
 
-
-
     /**
      * Returns the accounts saved in the database
      */
@@ -21,6 +19,10 @@ interface AccountsRepository {
      */
     suspend fun getAccountDetails(id: String): ResultData<Account>
 
+    /**
+     * Makes the request to fetch details for a selected account
+     */
+    suspend fun getAccountDetails2(id: String): ResultData<Account>
     /**
      * Executes a call to fetch transactions data for the selected account
      */

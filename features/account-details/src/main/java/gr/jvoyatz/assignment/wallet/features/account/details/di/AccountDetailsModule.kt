@@ -13,7 +13,7 @@ object AccountDetailsModule {
     @Provides
     fun provideGetAccountDetailsUseCase(repository: AccountsRepository) =
         UseCases.GetAccountDetailsUseCase {
-            repository.getAccountDetails(it)
+            repository.getAccountDetails2(it)
         }
 
     @Provides

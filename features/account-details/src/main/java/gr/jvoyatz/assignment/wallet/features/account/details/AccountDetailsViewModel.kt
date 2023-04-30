@@ -30,7 +30,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
-import timber.log.Timber
 import javax.inject.Inject
 import gr.jvoyatz.assignment.core.ui.R.string.favorite_error_add as favorite_account_add_error_msg_id
 import gr.jvoyatz.assignment.core.ui.R.string.favorite_error_remove as favorite_account_remove_error_msg_id
@@ -113,6 +112,30 @@ class AccountDetailsViewModel
         val details = viewModelScope.async(appDispatchers.io) {
             getAccountDetailsUseCase(accountId)
         }
+
+        //get details
+        val result = details.await()
+        if (result.isSuccess()) {
+            emit(Reduced.Data(result.asSuccess()!!.data))
+        } else {
+            errorBlock()
+        }
+    }.flowOn(appDispatchers.default)
+
+
+    @Deprecated("do not use/left here to explain why this piece of code is wrong")
+    private fun _getData(accountId: String): Flow<Reduced> = flow {
+        emit(Reduced.Loading)
+        val errorBlock: suspend () -> Unit = { emit(Reduced.Error) }
+        if (accountId.isBlank()) {
+            errorBlock()
+            return@flow
+        }
+
+        //prepare
+        val details = viewModelScope.async(appDispatchers.io) {
+            getAccountDetailsUseCase(accountId)
+        }
         val transactions = getTransactions(accountId)
 
         //get details
@@ -134,10 +157,7 @@ class AccountDetailsViewModel
         }
     }.flowOn(appDispatchers.default)
 
-    private fun getTransactions(
-        accountId: String,
-        dateFrom: String? = null,
-        dateTo: String? = null
+    private fun getTransactions(accountId: String, dateFrom: String? = null, dateTo: String? = null
     ): Deferred<ResultData<PagedTransactions>> {
         return uiState.value.viewState.let {
             val page = it.getPaging()?.let { pagingModel ->
@@ -162,25 +182,14 @@ class AccountDetailsViewModel
                 return@flow
             }
 
-            Timber.d("isfavorite ${account.isFavorite}")
             if (!account.isFavorite) {
                 commonUseCases.addFavoriteAccountUseCase(account)
-                    .onSuspendedSuccess {
-                        Timber.d("set as favorite success!!!!")
-                        emit(Reduced.OnFavoriteAccount(true))
-                    }
-                    .onSuspendedError {
-                        Timber.e(it)
-                        postEvent(Contract.Event.ShowToast(favorite_account_add_error_msg_id))
-                    }
+                    .onSuspendedSuccess { emit(Reduced.OnFavoriteAccount(true)) }
+                    .onSuspendedError { postEvent(Contract.Event.ShowToast(favorite_account_add_error_msg_id)) }
             } else {
                 commonUseCases.removeFavoriteAccountUseCase(account)
-                    .onSuspendedSuccess {
-                        emit(Reduced.OnFavoriteAccount(false))
-                    }
-                    .onSuspendedError {
-                        postEvent(Contract.Event.ShowToast(favorite_account_remove_error_msg_id))
-                    }
+                    .onSuspendedSuccess { emit(Reduced.OnFavoriteAccount(false)) }
+                    .onSuspendedError { postEvent(Contract.Event.ShowToast(favorite_account_remove_error_msg_id)) }
             }
     }.flowOn(appDispatchers.io)
 

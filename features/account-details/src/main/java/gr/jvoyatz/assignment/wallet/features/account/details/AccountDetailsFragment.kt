@@ -57,9 +57,15 @@ class AccountDetailsFragment : Fragment() {
                 viewModel.onNewIntent(Contract.Intent.FavoriteAdded)
             }
 
-            loaderView.setRetryListener {
+            val getDataClickHandler = {
                 viewModel.onNewIntent(Contract.Intent.GetData(extractAccountId()))
             }
+
+            loaderView.setRetryListener(getDataClickHandler)
+            swipeContainer.isEnabled = false // disabled due to issue with click listeners
+            swipeContainer.setOnRefreshListener(getDataClickHandler)
+            transactionsLoader.setRetryListener(getDataClickHandler)
+
 
             nestedScrollview.setOnScrollChangeListener { v: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
                 val safeNestedScrollView = v ?: return@setOnScrollChangeListener
@@ -111,6 +117,7 @@ class AccountDetailsFragment : Fragment() {
 
     private fun showLoadingState(){
         with(binding){
+           // swipeContainer.isRefreshing = true
             nestedScrollview.hide()
             loaderView.showLoading()
         }
@@ -118,6 +125,7 @@ class AccountDetailsFragment : Fragment() {
 
     private fun showErrorState(){
         with(binding) {
+           // swipeContainer.isRefreshing = false
             nestedScrollview.hide()
             loaderView.showError()
         }
@@ -125,6 +133,7 @@ class AccountDetailsFragment : Fragment() {
 
     private fun showDataState(account: AccountUiModel) {
         with(binding) {
+            swipeContainer.isRefreshing = false
             loaderView.hide()
             nestedScrollview.show()
             accountContainer.setAccountName(account.accountNickname)
@@ -138,10 +147,19 @@ class AccountDetailsFragment : Fragment() {
             this.accountBranch.text = accountDetails.branch
             this.accountBeneficiaries.text = accountDetails.beneficiaries
 
-            account.transactions!!
-            with(binding.transactionsList) {
-                val adapter = this.adapter as AccountTransactionsPagingAdapter
-                adapter.submitList(account.transactions!!)
+            if(account.transactions == null){
+                binding.transactionsLoader.showError()
+                binding.transactionsList.hide()
+            }else if(account.transactions.isNullOrEmpty()){
+                binding.transactionsLoader.showNoData()
+                binding.transactionsList.hide()
+            } else {
+                binding.transactionsLoader.hide()
+                with(binding.transactionsList) {
+                    val adapter = this.adapter as AccountTransactionsPagingAdapter
+                    adapter.submitList(account.transactions!!)
+                }
+                binding.transactionsList.show()
             }
         }
     }
