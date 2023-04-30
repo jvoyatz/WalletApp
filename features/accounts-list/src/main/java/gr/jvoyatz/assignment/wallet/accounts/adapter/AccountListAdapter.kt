@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import gr.jvoyatz.assignment.core.ui.custom.views.account.AccountViewInterface
 import gr.jvoyatz.assignment.wallet.accounts.databinding.AccountsListItemBinding
-import gr.jvoyatz.assignment.wallet.accounts.model.AccountUi
+import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 
 /**
  * ListAdapter used to show the user's account as return from the web service
  */
 class AccountListAdapter(
-    val onAccountClicked: (account: AccountUi) -> Unit
-): ListAdapter<AccountUi, AccountListAdapter.ViewHolder>(AccountDiffCallback()) {
+    val onAccountClicked: (account: AccountUiModel) -> Unit
+): ListAdapter<AccountUiModel, AccountListAdapter.ViewHolder>(AccountDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -44,7 +44,7 @@ class AccountListAdapter(
             }
         }
 
-        fun bind(account: AccountUi) {
+        fun bind(account: AccountUiModel) {
             AccountViewMapper(
                 view.context,
                 view as AccountViewInterface,

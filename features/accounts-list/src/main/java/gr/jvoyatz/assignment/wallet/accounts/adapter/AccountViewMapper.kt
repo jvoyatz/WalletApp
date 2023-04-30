@@ -2,7 +2,7 @@ package gr.jvoyatz.assignment.wallet.accounts.adapter
 
 import android.content.Context
 import gr.jvoyatz.assignment.core.ui.custom.views.account.AccountViewInterface
-import gr.jvoyatz.assignment.wallet.accounts.model.AccountUi
+import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 
 /**
  * Maps the data received in [AccountListAdapter.ViewHolder.bind] to the corresponding
@@ -11,7 +11,7 @@ import gr.jvoyatz.assignment.wallet.accounts.model.AccountUi
 class AccountViewMapper(
     private val context: Context,
     private val view: AccountViewInterface,
-    private val account: AccountUi,
+    private val account: AccountUiModel,
 ) {
     init {
         setAccountName()

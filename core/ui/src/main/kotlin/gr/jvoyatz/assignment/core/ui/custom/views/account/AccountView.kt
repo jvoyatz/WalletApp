@@ -11,6 +11,7 @@ import gr.jvoyatz.assignment.core.ui.R
 import gr.jvoyatz.assignment.core.ui.databinding.AccountViewBinding
 import gr.jvoyatz.assignment.core.ui.utils.fromBottomAnimation
 import gr.jvoyatz.assignment.core.ui.utils.fromTopAnimation
+import gr.jvoyatz.assignment.core.ui.utils.show
 
 class AccountView(
     context: Context,
@@ -53,6 +54,7 @@ class AccountView(
     }
 
     override fun setAccountFavorite(favorite: Boolean) = with(binding.accountFavorite) {
+        show()
         when (favorite) {
             true -> setImageResource(R.drawable.ic_favorite)
             else -> setImageResource(R.drawable.ic_favorite_border)

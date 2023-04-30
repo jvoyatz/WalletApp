@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,8 +15,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import gr.jvoyatz.assignment.core.ui.utils.hide
 import gr.jvoyatz.assignment.wallet.accounts.adapter.AccountListAdapter
 import gr.jvoyatz.assignment.wallet.accounts.databinding.FragmentAccountsListBinding
-import gr.jvoyatz.assignment.wallet.accounts.model.AccountUi
 import gr.jvoyatz.assignment.wallet.common.android.navigation.Destination
+import gr.jvoyatz.assignment.wallet.common.android.ui.mappers.toDomain
+import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -69,7 +71,8 @@ class AccountsFragment : Fragment() {
 
     private fun setupRecyclerViews(){
         val adapter = AccountListAdapter {
-            navigator.navigate(Destination.AccountDetailsScreen(it.id))
+            //navigator.navigate(Destination.AccountDetailsScreen(it.id))
+            viewModel.onNewIntent(AccountsContract.Intent.OnAccountSelected(it.toDomain()))
         }
 
         binding.dataList.apply {
@@ -91,7 +94,15 @@ class AccountsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiEvent.collect {
-                    Timber.d("what is this ui Event ? $it")
+                    when(it){
+                        is AccountsContract.Event.ShowToast -> {
+                            val safeContext = context ?: return@collect
+                            Toast.makeText(safeContext, it.resourceId, Toast.LENGTH_SHORT).show()
+                        }
+                        is AccountsContract.Event.AccountDetailsNavigation -> {
+                            navigator.navigate(Destination.AccountDetailsScreen(it.id))
+                        }
+                    }
                 }
             }
         }
@@ -126,7 +137,7 @@ class AccountsFragment : Fragment() {
         }
     }
 
-    private fun showDataState(accounts: List<AccountUi>){
+    private fun showDataState(accounts: List<AccountUiModel>){
         with(binding){
             val adapter = binding.dataList.adapter as AccountListAdapter
             this.loaderView.hide()

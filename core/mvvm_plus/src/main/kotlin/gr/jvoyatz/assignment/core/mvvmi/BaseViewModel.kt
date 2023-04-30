@@ -1,6 +1,5 @@
 package gr.jvoyatz.assignment.core.mvvmi
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,7 +36,7 @@ import timber.log.Timber
  */
 
 private const val SAVED_UI_STATE_KEY = "SAVED_UI_STATE_KEY"
-abstract class BaseViewModel<State: UiState, InternalState: InternalPartialState, Intent: UiIntent, Event: UiEvent>(
+abstract class BaseViewModel<State: UiState, InternalState: ReducedState, Intent: UiIntent, Event: UiEvent>(
     private val savedStateHandle: SavedStateHandle,
     initialState: State //initial value to be rendered
 ) : ViewModel() {
@@ -83,7 +82,6 @@ abstract class BaseViewModel<State: UiState, InternalState: InternalPartialState
      * This will trigger a new emission in the [intentFlow].
      */
     fun onNewIntent(intent: Intent){
-        Timber.d("onNewIntent() called with: intent = $intent")
         viewModelScope.launch {
             intentFlow.emit(intent)
         }

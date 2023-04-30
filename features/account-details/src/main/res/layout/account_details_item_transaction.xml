@@ -1,61 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/margin_2x"
-    android:padding="@dimen/padding_0_5x">
+    android:layout_margin="@dimen/margin_2x">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/transaction_type"
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="intrabank"
-        style="@style/TextAutofitSubtitle2"
-        android:padding="@dimen/padding_1x"
-        android:layout_marginTop="@dimen/margin_1x"
-        android:layout_marginStart="@dimen/margin_1x"
-        android:layout_marginBottom="@dimen/margin_1x"
-        android:gravity="start" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/transaction_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/transaction_type"
-        tools:text="transfer between my accounts"
-        style="@style/TextAutofitBody2"
-        android:padding="@dimen/padding_1x"
-        android:layout_marginTop="@dimen/margin_1x"
-        android:layout_marginStart="@dimen/margin_1x"
-        android:layout_marginBottom="@dimen/margin_1x"
-        android:gravity="start" />
+        style="@style/CardViewWithStroke"
+    >
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/transaction_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/transaction_type"
-        app:layout_constraintBottom_toBottomOf="@id/transaction_type"
-        tools:text="50.00 EUR"
-        style="@style/TextAutofitSubtitle1"
-        android:textSize="@dimen/text_size_sub_1"
-        android:textStyle="bold"
-        android:padding="@dimen/padding_1x"
-        android:layout_marginEnd="@dimen/margin_1x"
-        tools:drawableBottom="@drawable/ic_arrow_left" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_0_5x">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/transaction_type"
+                style="@style/TextAutofitSubtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_1x"
+                android:layout_marginTop="@dimen/margin_1x"
+                android:layout_marginBottom="@dimen/margin_1x"
+                android:gravity="start"
+                android:padding="@dimen/padding_1x"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="intrabank" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/transaction_description"
+                style="@style/TextAutofitBody2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_1x"
+                android:layout_marginTop="@dimen/margin_1x"
+                android:layout_marginBottom="@dimen/margin_1x"
+                android:gravity="start"
+                android:padding="@dimen/padding_1x"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/transaction_type"
+                tools:text="transfer between my accounts" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/transaction_amount"
+                style="@style/TextAutofitSubtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_1x"
+                android:padding="@dimen/padding_1x"
+                android:textSize="@dimen/text_size_sub_1"
+                android:textStyle="bold"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@id/transaction_type"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/transaction_type"
+                android:drawableRight="@drawable/ic_arrow_left"
+                android:drawablePadding="@dimen/padding_0_5x"
+                tools:text="0.02" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

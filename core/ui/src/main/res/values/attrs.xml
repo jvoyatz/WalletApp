@@ -4,6 +4,7 @@
     <!-- same as colorPrimaryVariant in light theme and as colorSuface in dark theme -->
     <attr name="colorPrimarySurfaceVariant" format="color" />
     <attr name="colorFavorite" format="color" />
+    <attr name="colorSuccess" format="color" />
 
     <declare-styleable name="AccountView">
         <attr name="showFavorite" format="boolean"/>

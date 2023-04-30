@@ -1,7 +1,5 @@
 package gr.jvoyatz.assignment.wallet.domain.models
 
-import gr.jvoyatz.assignment.wallet.common.android.domain.models.AccountType
-
 /**
  * Account domain model
  */
@@ -13,4 +11,7 @@ data class Account(
     val balance: String,
     val currencyCode: String,
     val isFavorite: Boolean = false
-){}
+){
+    var details: AccountDetails? = null
+    var pagedTransactions: PagedTransactions? = null
+}

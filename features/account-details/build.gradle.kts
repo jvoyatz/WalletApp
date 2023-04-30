@@ -2,6 +2,7 @@
 plugins {
     id("assignment.wallet.android.library.plus")
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.parcelize)
 }
 
 android {
@@ -15,6 +16,7 @@ dependencies {
 
     //core modules
     implementation(project(":core:ui"))
+    implementation(project(":domain:accounts"))
     implementation(project(":core:common-android"))
     implementation(project(":core:mvvm_plus"))
 
@@ -24,4 +26,6 @@ dependencies {
     implementation(libs.bundles.test.android)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
 }

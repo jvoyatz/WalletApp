@@ -1,13 +1,13 @@
-package gr.jvoyatz.assignment.wallet.common.android.domain.models
+package gr.jvoyatz.assignment.wallet.domain.models
 
 /**
  * Wallet Account Types
  */
 enum class AccountType(val type: String) {
-    CURRENT("current"),
-    SAVINGS("savings"),
-    TIME("time"),
-    CREDIT_CARD("credit card"),
+    CURRENT("Current"),
+    SAVINGS("Savings"),
+    TIME("Time"),
+    CREDIT_CARD("Credit card"),
     NONE(" - ");
 
 

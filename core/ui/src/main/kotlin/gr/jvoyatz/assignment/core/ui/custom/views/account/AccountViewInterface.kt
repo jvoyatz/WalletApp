@@ -1,9 +1,9 @@
 package gr.jvoyatz.assignment.core.ui.custom.views.account
 
-import gr.jvoyatz.assignment.core.common.utils.ConstantsString
+import gr.jvoyatz.assignment.core.common.utils.Constants
 
 interface AccountViewInterface {
-    fun setAccountName(name: String? = ConstantsString.DASH_WITH_SPACE)
+    fun setAccountName(name: String? = Constants.DASH_WITH_SPACE)
 
     fun setAccountBalance(balance: String, currency: String)
 

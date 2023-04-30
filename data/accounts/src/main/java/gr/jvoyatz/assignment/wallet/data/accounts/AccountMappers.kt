@@ -1,12 +1,18 @@
 package gr.jvoyatz.assignment.wallet.data.accounts
 
-import gr.jvoyatz.assignment.core.common.utils.ConstantsString
 import gr.jvoyatz.assignment.core.common.utils.mapList
 import gr.jvoyatz.assignment.core.database.entities.AccountEntity
-import gr.jvoyatz.assignment.wallet.common.android.domain.models.AccountType
+import gr.jvoyatz.assignment.wallet.core.api.models.AccountDetailsDto
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountRaw
-import gr.jvoyatz.assignment.wallet.core.api.models.AccountsDto
+import gr.jvoyatz.assignment.wallet.core.api.models.AccountTransactionsDto
+import gr.jvoyatz.assignment.wallet.core.api.models.PagingDto
+import gr.jvoyatz.assignment.wallet.core.api.models.TransactionRaw
 import gr.jvoyatz.assignment.wallet.domain.models.Account
+import gr.jvoyatz.assignment.wallet.domain.models.AccountDetails
+import gr.jvoyatz.assignment.wallet.domain.models.AccountType
+import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
+import gr.jvoyatz.assignment.wallet.domain.models.Paging
+import gr.jvoyatz.assignment.wallet.domain.models.Transaction
 
 
 /**
@@ -42,5 +48,33 @@ internal object AccountMappers {
         balance = balance,
         currencyCode = currencyCode
     )
+
     fun List<AccountRaw>.dtoToAccounts() = this.mapList { it.toAccount() }
+
+    fun AccountDetailsDto.toDomain() = AccountDetails(
+        beneficiaries = this.beneficiaries,
+        branch = this.branch,
+        openedDate = this.openedDate,
+        productName = this.productName
+    )
+
+    fun AccountTransactionsDto.toPagedAccountTransactions(currencySymbol: String? = null) = PagedTransactions(
+        paging = this.paging.toDomain(),
+        transactions = this.transactions.mapList { it.toDomain(currencySymbol ?: "") }
+    )
+
+    fun PagingDto.toDomain() = Paging(
+        currentPage = this.currentPage,
+        pagesCount = pagesCount,
+        totalItems = totalItems
+    )
+
+    fun TransactionRaw.toDomain(currencySymbol: String) = Transaction(
+        date,
+        description,
+        id,
+        isDebit,
+        "$transactionAmount$currencySymbol",
+        transactionType
+    )
 }

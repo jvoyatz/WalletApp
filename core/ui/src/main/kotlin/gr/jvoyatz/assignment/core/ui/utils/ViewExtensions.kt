@@ -1,8 +1,12 @@
 package gr.jvoyatz.assignment.core.ui.utils
 
 import android.animation.Animator
+import android.graphics.Color
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
+import com.google.android.material.color.MaterialColors
 
 private const val ALPHA_START = 0f
 private const val ALPHA_END = 1f
@@ -70,3 +74,14 @@ fun View.show() = with(this) {
         isVisible = true
     }
 }
+
+fun TextView.rightDrawable(@DrawableRes id: Int = 0) {
+    this.setCompoundDrawablesWithIntrinsicBounds(0, 0, id, 0)
+}
+fun TextView.bottomDrawable(@DrawableRes id: Int = 0) {
+    this.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, id)
+}
+
+fun View.getAttrColor(id: Int) = MaterialColors.getColor(context, id, Color.BLACK)
+
+fun View.getAttrColor(block: () -> Int) = getAttrColor(block())

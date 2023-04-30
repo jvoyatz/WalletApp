@@ -1,13 +1,12 @@
 package gr.jvoyatz.assignment.wallet.accounts
 
-import android.accounts.Account
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import gr.jvoyatz.assignment.core.mvvmi.InternalPartialState
+import gr.jvoyatz.assignment.core.mvvmi.ReducedState
 import gr.jvoyatz.assignment.core.mvvmi.UiEvent
 import gr.jvoyatz.assignment.core.mvvmi.UiIntent
 import gr.jvoyatz.assignment.core.mvvmi.UiState
-import gr.jvoyatz.assignment.wallet.accounts.model.AccountUi
+import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 import kotlinx.parcelize.Parcelize
 
 object AccountsContract {
@@ -26,8 +25,7 @@ object AccountsContract {
         object Loading : ScreenState()
         object Error : ScreenState()
         object NoData : ScreenState()
-        data class Data(val accounts: List<AccountUi>) : ScreenState()
-
+        data class Data(val accounts: List<AccountUiModel>) : ScreenState()
         /**
          * Partial is used internally by the viewmodel in order to encapsulate the
          * result of the intent executed which be later reduced to
@@ -38,7 +36,7 @@ object AccountsContract {
             val isError: Boolean = false,
             val isSuccess : Boolean = false,
             val data: List<gr.jvoyatz.assignment.wallet.domain.models.Account>? = null
-        ) : InternalPartialState
+        ) : ReducedState
     }
 
 
@@ -47,6 +45,7 @@ object AccountsContract {
      */
     sealed interface Event: UiEvent{
         data class ShowToast(@StringRes val resourceId: Int) : Event
+        data class AccountDetailsNavigation(val id: String): Event
     }
 
     /**
@@ -55,6 +54,6 @@ object AccountsContract {
     sealed interface Intent: UiIntent{
         object Initialize: Intent
         object GetData: Intent
-        data class OnAccountSelected(val account: Account):Intent
+        data class OnAccountSelected(val account: gr.jvoyatz.assignment.wallet.domain.models.Account):Intent
     }
 }

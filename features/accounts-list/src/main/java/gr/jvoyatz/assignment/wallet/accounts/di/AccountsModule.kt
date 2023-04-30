@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
 import gr.jvoyatz.assignment.wallet.domain.usecases.GetAccountsUseCase
+import gr.jvoyatz.assignment.wallet.domain.usecases.UseCases
 
 
 @InstallIn(SingletonComponent::class)
@@ -14,4 +15,10 @@ object
 AccountsModule {
     @Provides
     fun provideGetAccountsUseCase(accountsRepository: AccountsRepository) = GetAccountsUseCase(accountsRepository)
+
+    @Provides
+    fun provideSetSelectedAccountUseCase(accountsRepository: AccountsRepository) =
+        UseCases.SetSelectedAccountUseCase { account ->
+            accountsRepository.setSelectedAccount(account)
+        }
 }

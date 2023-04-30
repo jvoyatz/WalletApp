@@ -2,11 +2,18 @@ package gr.jvoyatz.assignment.wallet.data.accounts
 
 import gr.jvoyatz.assignment.core.common.resultdata.ResultData
 import gr.jvoyatz.assignment.core.common.resultdata.mapSuccess
+import gr.jvoyatz.assignment.core.common.resultdata.resultOf
+import gr.jvoyatz.assignment.core.common.utils.Utils
 import gr.jvoyatz.assignment.core.database.AccountsDao
 import gr.jvoyatz.assignment.wallet.core.api.WalletApi
 import gr.jvoyatz.assignment.wallet.core.api.config.response.ApiResponseExt.asResult
+import gr.jvoyatz.assignment.wallet.core.api.models.TransactionsPagedRequest
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.dtoToAccounts
+import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toDomain
+import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toPagedAccountTransactions
+
 import gr.jvoyatz.assignment.wallet.domain.models.Account
+import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
 import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
 
 
@@ -15,8 +22,6 @@ import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
  *
  * It is responsible for returning the saved accounts as they have been found in the db.
  */
-
-
 internal class AccountRepositoryImpl(
     private val apiSource: AccountsApiDataSource,
     private val dbSource: AccountsLocalDataSource
@@ -31,8 +36,32 @@ internal class AccountRepositoryImpl(
             }
     }
 
-    override suspend fun setSelectedAccount() {
-        TODO("Not yet implemented")
+    override suspend fun setSelectedAccount(account: Account): ResultData<Unit> {
+        return resultOf {
+            selectedAccount = account
+        }
+    }
+
+    override suspend fun getAccountDetails(id: String): ResultData<Account> =
+        apiSource.getAccountDetails(id).asResult()
+            .mapSuccess {
+                val accountDetailsDomain = this.toDomain()
+                selectedAccount!!.apply {
+                    this.details = accountDetailsDomain
+                }
+            }
+
+    override suspend fun getAccountTransactions(
+        id: String,
+        page: Int,
+        dateFrom: String?,
+        dateTo: String?
+    ) : ResultData<PagedTransactions>{
+        return apiSource.getAccountTransactions(id, TransactionsPagedRequest(nextPage = page)).asResult()
+            .mapSuccess {
+                val currency = selectedAccount?.currencyCode?.let { Utils.getCurrency(it) } ?: ""
+                this.toPagedAccountTransactions(currency)
+            }
     }
 
     companion object {

@@ -15,4 +15,4 @@ interface UiState : Parcelable
  * Later on, we process this InternalPartialState to generate the final UiState,
  * that will be rendered in our screen
  */
-interface InternalPartialState
+interface ReducedState

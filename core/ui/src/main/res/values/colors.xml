@@ -30,6 +30,8 @@
     <color name="orange_200">#fadf82</color>
     <color name="red_200">#cf7779</color>
     <color name="red_400">#ff4c5d</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_200">#A5D6A7</color>
 
     <color name="complementary">#F5F7F8</color>
     <color name="complementary2">#e1fcfc</color>

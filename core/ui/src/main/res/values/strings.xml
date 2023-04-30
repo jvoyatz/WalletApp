@@ -9,10 +9,12 @@
     <string name="not_provided">Not provided</string>
     <string name="account">Account</string>
     <string name="account_details">Account Details</string>
-    <string name="account_type">Type</string>
-    <string name="account_name">Product name</string>
-    <string name="account_opened_date">Opened Date</string>
-    <string name="account_branch">Branch</string>
-    <string name="account_beneficiaries">Beneficiaries</string>
+    <string name="account_type">Type:</string>
+    <string name="account_name">Product name:</string>
+    <string name="account_opened_date">Opened Date:</string>
+    <string name="account_branch">Branch:</string>
+    <string name="account_beneficiaries">Beneficiaries:</string>
     <string name="contentDescription">contentDescription</string>
+    <string name="not_provided_description">Not provided description</string>
+    <string name="transactions_next_page_error">An error occurred while fetching more transactions</string>
 </resources>

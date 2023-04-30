@@ -12,6 +12,7 @@
         <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
         <item name="colorFavorite">@color/orange_500</item>
         <item name="colorError">@color/red_400</item>
+        <item name="colorSuccess">@color/green_500</item>
 
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/black_900</item>
