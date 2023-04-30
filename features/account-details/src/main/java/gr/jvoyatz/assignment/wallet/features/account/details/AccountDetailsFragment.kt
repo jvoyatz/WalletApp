@@ -12,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import gr.jvoyatz.assignment.core.common.utils.DateUtils
+import gr.jvoyatz.assignment.core.ui.utils.hide
+import gr.jvoyatz.assignment.core.ui.utils.show
 import gr.jvoyatz.assignment.core.ui.utils.showToastShort
 import gr.jvoyatz.assignment.wallet.common.android.ui.models.AccountUiModel
 import gr.jvoyatz.assignment.wallet.features.account.details.adapter.AccountTransactionsPagingAdapter
@@ -31,7 +33,7 @@ class AccountDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAccountDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,12 +57,15 @@ class AccountDetailsFragment : Fragment() {
                 viewModel.onNewIntent(Contract.Intent.FavoriteAdded)
             }
 
-            nestedScrollview.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            loaderView.setRetryListener {
+                viewModel.onNewIntent(Contract.Intent.GetData(extractAccountId()))
+            }
+
+            nestedScrollview.setOnScrollChangeListener { v: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
                 val safeNestedScrollView = v ?: return@setOnScrollChangeListener
 
                 safeNestedScrollView.getChildAt(safeNestedScrollView.childCount - 1).let { last ->
                     val safeView = last ?: return@setOnScrollChangeListener
-//                    val itemCount = binding.transactionsList.layoutManager!!.itemCount
 
                     if (((scrollY >= (safeView.measuredHeight - safeNestedScrollView.measuredHeight)) && scrollY > oldScrollY) &&
                         (!viewModel.isLoadingTransactions() && viewModel.canLoadMoreTransactions(/*itemCount*/))
@@ -92,35 +97,36 @@ class AccountDetailsFragment : Fragment() {
     private fun handleEvent(event: Contract.Event) {
         when (event) {
             is Contract.Event.ShowToast -> context.showToastShort(getString(event.resId))
-            else -> {
-
-            }
-            //is Contract.Event.AddedAsFavorite -> binding.accountContainer.setAccountFavorite(event.isFavorite)
         }
     }
 
     private fun handleScreenState(state: Contract.ViewState) {
         when (state) {
-            Contract.ViewState.Initialize -> extractAccountId().let {
-                viewModel.onNewIntent(
-                    Contract.Intent.GetData(
-                        it
-                    )
-                )
-            }
-
-            Contract.ViewState.Loading -> {
-            }
-
-            Contract.ViewState.Error -> {
-            }
-
-            is Contract.ViewState.Data -> showData(state.account)
+            Contract.ViewState.Initialize -> extractAccountId().let { viewModel.onNewIntent(Contract.Intent.GetData(it)) }
+            Contract.ViewState.Loading -> showLoadingState()
+            Contract.ViewState.Error -> showErrorState()
+            is Contract.ViewState.Data -> showDataState(state.account)
         }
     }
 
-    private fun showData(account: AccountUiModel) {
+    private fun showLoadingState(){
+        with(binding){
+            nestedScrollview.hide()
+            loaderView.showLoading()
+        }
+    }
+
+    private fun showErrorState(){
         with(binding) {
+            nestedScrollview.hide()
+            loaderView.showError()
+        }
+    }
+
+    private fun showDataState(account: AccountUiModel) {
+        with(binding) {
+            loaderView.hide()
+            nestedScrollview.show()
             accountContainer.setAccountName(account.accountNickname)
             accountContainer.setAccountBalance(account.balance, account.currencyCode)
             accountContainer.setAccountFavorite(account.isFavorite)

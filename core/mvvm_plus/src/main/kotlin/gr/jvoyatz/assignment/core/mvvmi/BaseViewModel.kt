@@ -3,6 +3,7 @@ package gr.jvoyatz.assignment.core.mvvmi
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -30,13 +31,13 @@ import timber.log.Timber
  *
  * For the UiEffect, I use Channels because Channel's value is being posted immediately and once.
  * However as described in this article, this is an anti-pattern and it is preferrable to use UiState to handle such cases.
- * @see [this](https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95)
+ * @see https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95
  *
  * For now i will use Channels.
  */
 
 private const val SAVED_UI_STATE_KEY = "SAVED_UI_STATE_KEY"
-abstract class BaseViewModel<State: UiState, InternalState: ReducedState, Intent: UiIntent, Event: UiEvent>(
+abstract class BaseViewModel<State: UiState, Reduce: ReducedState, Intent: UiIntent, Event: UiEvent>(
     private val savedStateHandle: SavedStateHandle,
     initialState: State //initial value to be rendered
 ) : ViewModel() {
@@ -64,6 +65,7 @@ abstract class BaseViewModel<State: UiState, InternalState: ReducedState, Intent
      *
      * Note: Keep in mind that we use saveStateHandle to survive app's process death events.
      */
+    @OptIn(FlowPreview::class)
     private fun subscribeIntents(){
         viewModelScope.launch {
             intentFlow
@@ -103,13 +105,14 @@ abstract class BaseViewModel<State: UiState, InternalState: ReducedState, Intent
      * Handles user's intent's and after processing them, creates a new Partial Ui State, that will
      * be processed in order to update the UiState that View listens to
      */
-    protected abstract fun mapIntents(intent: Intent): Flow<InternalState>
+    protected abstract fun mapIntents(intent: Intent): Flow<Reduce>
+
 
     /**
      * It updates the uiState in order to contain the new data included in the (new) Partial Ui State
      */
     protected abstract fun reduceUiState(
-        currentUiState: State,
-        partialUiState: InternalState
+        state: State,
+        reduce: Reduce
     ): State
 }

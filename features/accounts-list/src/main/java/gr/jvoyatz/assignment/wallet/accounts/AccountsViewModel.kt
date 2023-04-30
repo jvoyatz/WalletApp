@@ -36,21 +36,21 @@ class AccountsViewModel @Inject constructor(
     }
 
     override fun reduceUiState(
-        currentUiState: AccountsContract.State,
-        partialUiState: Partial
+        state: AccountsContract.State,
+        reduce: Partial
     ): AccountsContract.State {
-        var state = if (partialUiState.isLoading) {
+        var newState = if (reduce.isLoading) {
                 AccountsContract.ScreenState.Loading
-            } else if (partialUiState.isError) {
+            } else if (reduce.isError) {
                 AccountsContract.ScreenState.Error
-            } else if (partialUiState.isSuccess && !partialUiState.data.isNullOrEmpty()) {
-                AccountsContract.ScreenState.Data(partialUiState.data!!.map { it.toUiModel() })
-            } else if (partialUiState.isSuccess && partialUiState.data.isNullOrEmpty()) {
+            } else if (reduce.isSuccess && !reduce.data.isNullOrEmpty()) {
+                AccountsContract.ScreenState.Data(reduce.data.map { it.toUiModel() })
+            } else if (reduce.isSuccess && reduce.data.isNullOrEmpty()) {
                 AccountsContract.ScreenState.NoData
             }else {
                 AccountsContract.ScreenState.Initialize
             }
-        return currentUiState.copy(state = state)
+        return state.copy(state = newState)
     }
 
     private fun getAccounts():Flow<Partial> = flow {

@@ -6,20 +6,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import gr.jvoyatz.assignment.core.common.resultdata.ResultData
 import gr.jvoyatz.assignment.core.common.resultdata.asSuccess
 import gr.jvoyatz.assignment.core.common.resultdata.isSuccess
-import gr.jvoyatz.assignment.core.common.resultdata.onError
-import gr.jvoyatz.assignment.core.common.resultdata.onSuccess
 import gr.jvoyatz.assignment.core.common.resultdata.onSuspendedError
 import gr.jvoyatz.assignment.core.common.resultdata.onSuspendedSuccess
 import gr.jvoyatz.assignment.core.mvvmi.BaseViewModel
 import gr.jvoyatz.assignment.core.ui.R.string.unexpected_error
 import gr.jvoyatz.assignment.wallet.common.android.AppDispatchers
-import gr.jvoyatz.assignment.wallet.common.android.TimberDebugTree
 import gr.jvoyatz.assignment.wallet.common.android.ui.mappers.toUiModel
 import gr.jvoyatz.assignment.wallet.common.android.ui.mappers.toUiModels
-import gr.jvoyatz.assignment.wallet.domain.models.Account
 import gr.jvoyatz.assignment.wallet.domain.models.PagedTransactions
 import gr.jvoyatz.assignment.wallet.domain.usecases.CommonUseCases
 import gr.jvoyatz.assignment.wallet.domain.usecases.UseCases
+import gr.jvoyatz.assignment.wallet.features.account.details.Contract.Reduced
+import gr.jvoyatz.assignment.wallet.features.account.details.Contract.ViewState
 import gr.jvoyatz.assignment.wallet.features.account.details.ContractExtensions.account
 import gr.jvoyatz.assignment.wallet.features.account.details.ContractExtensions.accountId
 import gr.jvoyatz.assignment.wallet.features.account.details.ContractExtensions.canLoadMore
@@ -29,10 +27,9 @@ import gr.jvoyatz.assignment.wallet.features.account.details.ContractExtensions.
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 import gr.jvoyatz.assignment.core.ui.R.string.favorite_error_add as favorite_account_add_error_msg_id
@@ -47,65 +44,56 @@ class AccountDetailsViewModel
     private val getAccountDetailsUseCase: UseCases.GetAccountDetailsUseCase,
     private val getAccountTransactionsUserCase: UseCases.GetAccountTransactionsUserCase,
     private val commonUseCases: CommonUseCases
-) : BaseViewModel<Contract.State, Contract.Reduced, Contract.Intent, Contract.Event>(
+) : BaseViewModel<Contract.State, Reduced, Contract.Intent, Contract.Event>(
     savedStateHandle,
-    Contract.State(Contract.ViewState.Initialize)
+    Contract.State(ViewState.Initialize)
 ) {
     fun isLoadingTransactions() = uiState.value.viewState.isLoadingTransactions
 
-    override fun mapIntents(intent: Contract.Intent): Flow<Contract.Reduced> {
+    override fun mapIntents(intent: Contract.Intent): Flow<Reduced> {
         return when (intent) {
             is Contract.Intent.GetData -> getData(intent.accountId)
             is Contract.Intent.GetMoreTransactions -> getTransactionsNextPage()
             is Contract.Intent.FavoriteAdded -> return handleFavoriteAccountIntent()
+            is Contract.Intent.UnexpectedError -> flowOf(Reduced.Error)
         }
     }
 
-    override fun reduceUiState(
-        uiState: Contract.State,
-        reduceState: Contract.Reduced
-    ): Contract.State {
-        val state = when (reduceState) {
-            is Contract.Reduced.Data -> Contract.ViewState.Data(reduceState.account.toUiModel())
-            is Contract.Reduced.TransactionsNextPage -> getViewStateForTransactionNextPage(
-                uiState.viewState,
-                reduceState
-            )
-            is Contract.Reduced.Error -> Contract.ViewState.Error
-            is Contract.Reduced.OnFavoriteAccount -> getViewStateForFavoriteAccount(uiState.viewState, reduceState)
+    override fun reduceUiState(state: Contract.State, reduce: Reduced): Contract.State {
+        val newState = when (reduce) {
+            is Reduced.Data -> ViewState.Data(reduce.account.toUiModel())
+            is Reduced.TransactionsNextPage -> getTransactionPagingState(state.viewState, reduce)
+            is Reduced.Error -> ViewState.Error
+            is Reduced.OnFavoriteAccount -> getFavoriteAccountState(state.viewState, reduce)
+            is Reduced.Loading -> ViewState.Loading
         }
-        return uiState.copy(viewState = state)
+        return state.copy(viewState = newState)
     }
 
-    private fun getViewStateForFavoriteAccount(
-        viewState: Contract.ViewState,
-        reduceState: Contract.Reduced.OnFavoriteAccount
-    ): Contract.ViewState{
+
+    private fun getFavoriteAccountState(viewState: ViewState, reduceState: Reduced.OnFavoriteAccount): ViewState{
         return with(viewState) {
-            if (this is Contract.ViewState.Data) {
+            if (this is ViewState.Data) {
                 val updatedAccount = account.run {
                     copy(isFavorite = reduceState.isFavorite)
                 }
-                Contract.ViewState.Data(updatedAccount)
-            } else {
-                throw IllegalStateException("eager crash to detect errors, this place must never be reached")
+                ViewState.Data(updatedAccount)
+            }else{
+                ViewState.Error
             }
         }
     }
-    private fun getViewStateForTransactionNextPage(
-        viewState: Contract.ViewState,
-        reduceState: Contract.Reduced.TransactionsNextPage
-    ): Contract.ViewState {
+    private fun getTransactionPagingState(viewState: ViewState, reduceState: Reduced.TransactionsNextPage): ViewState {
         return with(viewState) {
-            if (this is Contract.ViewState.Data) {
+            if (this is ViewState.Data) {
                 val pagedTransactions = reduceState.pagedTransactions
                 updatePaging(pagedTransactions.paging)
                 val updatedAccount = account.run {
                     copy(transactions = transactions!! + pagedTransactions.transactions.toUiModels())
                 }
-                Contract.ViewState.Data(updatedAccount)
-            } else {
-                throw IllegalStateException("eager crash to detect errors, this place must never be reached")
+                ViewState.Data(updatedAccount)
+            } else{
+                ViewState.Error
             }
         }
     }
@@ -113,8 +101,9 @@ class AccountDetailsViewModel
     /**
      * Gets the data needed to init this screen
      */
-    private fun getData(accountId: String): Flow<Contract.Reduced> = flow {
-        val errorBlock: suspend () -> Unit = { emit(Contract.Reduced.Error) }
+    private fun getData(accountId: String): Flow<Reduced> = flow {
+        emit(Reduced.Loading)
+        val errorBlock: suspend () -> Unit = { emit(Reduced.Error) }
         if (accountId.isBlank()) {
             errorBlock()
             return@flow
@@ -124,17 +113,17 @@ class AccountDetailsViewModel
         val details = viewModelScope.async(appDispatchers.io) {
             getAccountDetailsUseCase(accountId)
         }
-        val transactions = getTransactions(accountId)!!
+        val transactions = getTransactions(accountId)
 
         //get details
         with(details.await()) {
             if (isSuccess()) { // if result isSuccess
                 this.asSuccess()!!.data.apply {
-                    //get transactions
-                    var trResult = transactions.await()
+                    
+                    val trResult = transactions.await() //get transactions
                     if (trResult.isSuccess()) {
                         this.pagedTransactions = trResult.asSuccess()!!.data
-                        emit(Contract.Reduced.Data(this))
+                        emit(Reduced.Data(this))
                     } else {
                         errorBlock()
                     }
@@ -163,12 +152,11 @@ class AccountDetailsViewModel
 
     private fun getTransactionsNextPage() = flow {
         getTransactions(uiState.value.viewState.accountId!!).await()
-            .onSuspendedSuccess { emit(Contract.Reduced.TransactionsNextPage(it)) }
+            .onSuspendedSuccess { emit(Reduced.TransactionsNextPage(it)) }
             .onSuspendedError { postEvent(Contract.Event.ShowToast(transactionsNextPageErrorMsgId)) }
     }
 
-    private fun handleFavoriteAccountIntent(): Flow<Contract.Reduced> = flow {
-        //viewModelScope.launch(appDispatchers.io){
+    private fun handleFavoriteAccountIntent(): Flow<Reduced> = flow {
             val account = uiState.value.viewState.account ?: kotlin.run {
                 postEvent(Contract.Event.ShowToast(unexpected_error))
                 return@flow
@@ -179,7 +167,7 @@ class AccountDetailsViewModel
                 commonUseCases.addFavoriteAccountUseCase(account)
                     .onSuspendedSuccess {
                         Timber.d("set as favorite success!!!!")
-                        emit(Contract.Reduced.OnFavoriteAccount(true))
+                        emit(Reduced.OnFavoriteAccount(true))
                     }
                     .onSuspendedError {
                         Timber.e(it)
@@ -188,19 +176,18 @@ class AccountDetailsViewModel
             } else {
                 commonUseCases.removeFavoriteAccountUseCase(account)
                     .onSuspendedSuccess {
-                        emit(Contract.Reduced.OnFavoriteAccount(false))
+                        emit(Reduced.OnFavoriteAccount(false))
                     }
                     .onSuspendedError {
                         postEvent(Contract.Event.ShowToast(favorite_account_remove_error_msg_id))
                     }
             }
-       // }
     }.flowOn(appDispatchers.io)
 
     /**
      * check whether we are able to load more transactions
      */
     fun canLoadMoreTransactions(): Boolean = with(uiState.value) {
-        return if (viewState is Contract.ViewState.Data) viewState.canLoadMore else false
+        return if (viewState is ViewState.Data) viewState.canLoadMore else false
     }
 }
