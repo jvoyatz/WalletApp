@@ -42,12 +42,10 @@ dependencies {
     implementation(libs.core.ktx)
 
     //core modules
-    implementation(project(":core:ui"))
     implementation(project(":core:common-android"))
-
+    //data
+    implementation(project(":data:accounts"))
     //features
     implementation(project(":features:accounts-list"))
     implementation(project(":features:account-details"))
-
-    implementation(libs.bundles.test.android)
 }

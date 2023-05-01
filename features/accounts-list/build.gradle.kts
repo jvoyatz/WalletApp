@@ -16,11 +16,12 @@ dependencies {
     implementation(libs.bundles.androidx.ui.common)
 
     //modules
+
     implementation(project(":core:ui"))
-    implementation(project(":data:accounts"))
-    implementation(project(":core:common-android"))
     implementation(project(":core:mvvm_plus"))
-    implementation(project(mapOf("path" to ":domain:accounts")))
+    implementation(project(":core:common"))
+    implementation(project(":core:common-android"))
+    implementation(project(":domain:accounts"))
 
     //test
     androidTestImplementation(libs.bundles.test.android)

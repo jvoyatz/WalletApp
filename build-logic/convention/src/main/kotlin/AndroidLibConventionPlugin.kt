@@ -28,7 +28,7 @@ class AndroidLibConventionPlugin : Plugin<Project> {
 
             val libs = extensions.getVersionCatalogExtension().getLibs()
             target.dependencies {
-                "implementation"(target.project(":core:common"))
+                //"implementation"(target.project(":core:common"))
                 "implementation"(libs.findLibrary("logging.timber").get())
                 "implementation"(libs.findLibrary("coroutines").get())
                 "implementation"(libs.findLibrary("javax.inject").get())

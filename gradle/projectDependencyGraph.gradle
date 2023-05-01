@@ -1,6 +1,6 @@
 task projectDependencyGraph {
   doLast {
-    def dot = new File(rootProject.buildDir, 'reports/dependency-graph/project.dot')
+    def dot = new File(rootProject.rootDir, 'reports/dependency-graph/project.dot')
     dot.parentFile.mkdirs()
     dot.delete()
 
@@ -47,17 +47,17 @@ task projectDependencyGraph {
                 .withType(ProjectDependency)
                 .collect { it.dependencyProject }
                 .each { dependency ->
-          projects.add(project)
-          projects.add(dependency)
-          rootProjects.remove(dependency)
+                  projects.add(project)
+                  projects.add(dependency)
+                  rootProjects.remove(dependency)
 
-          def graphKey = new Tuple2<Project, Project>(project, dependency)
-          def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
+                  def graphKey = new Tuple2<Project, Project>(project, dependency)
+                  def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
 
-          if (config.name.toLowerCase().endsWith('implementation')) {
-            traits.add('style=dotted')
-          }
-        }
+                  if (config.name.toLowerCase().endsWith('implementation')) {
+                    traits.add('style=dotted')
+                  }
+                }
       }
     }
 

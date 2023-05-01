@@ -17,6 +17,7 @@ dependencies {
     //core modules
     implementation(project(":core:ui"))
     implementation(project(":domain:accounts"))
+    implementation(project(":core:common"))
     implementation(project(":core:common-android"))
     implementation(project(":core:mvvm_plus"))
 
@@ -26,6 +27,4 @@ dependencies {
     implementation(libs.bundles.test.android)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-
-    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
 }

@@ -9,9 +9,14 @@ android {
 
 dependencies {
 
-    implementation(project(":core:database"))
-    implementation(project(":core:common-android"))
+    //core
+    //sources
     implementation(project(":core:api"))
+    implementation(project(":core:database"))
+    //common
+    implementation(project(":core:common"))
+    implementation(project(":core:common-android"))
+    //domain
     implementation(project(":domain:accounts"))
 
     implementation(libs.bundles.test.android)
