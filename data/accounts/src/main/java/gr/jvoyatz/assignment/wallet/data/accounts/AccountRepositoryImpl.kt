@@ -55,7 +55,6 @@ internal class AccountRepositoryImpl(
                     getRemoteAccounts()
                 }
             }.map { accountList ->
-
                 val favoriteItem = accountList.firstOrNull()
 
                 accounts
@@ -144,8 +143,6 @@ internal class AccountRepositoryImpl(
                 this.toPagedAccountTransactions(currency)
             }
     }
-
-
 
 
     companion object {

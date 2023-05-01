@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package gr.jvoyatz.assignment.wallet.data.accounts
+package gr.jvoyatz.assignment.wallet.data.accounts.fakes
 
 import com.google.common.truth.Truth
 import gr.jvoyatz.assignment.core.testing.utils.TestUtils
@@ -12,6 +12,7 @@ import gr.jvoyatz.assignment.wallet.core.api.config.response.asSuccess
 import gr.jvoyatz.assignment.wallet.core.api.config.response.isError
 import gr.jvoyatz.assignment.wallet.core.api.config.response.isSuccess
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountRaw
+import gr.jvoyatz.assignment.wallet.data.accounts.ApiSource
 import gr.jvoyatz.assignment.wallet.data.accounts.internal.ApiSourceImpl
 import gr.jvoyatz.sportspot.core.testing.utils.ApiServer
 import kotlinx.coroutines.ExperimentalCoroutinesApi
