@@ -5,6 +5,8 @@ plugins {
 
 android {
     namespace = "gr.jvoyatz.assignment.wallet.data.accounts"
+
+    System.out.println(this.defaultConfig.testInstrumentationRunner)
 }
 
 dependencies {
@@ -19,5 +21,10 @@ dependencies {
     //domain
     implementation(project(":domain:accounts"))
 
-    implementation(libs.bundles.test.android)
+    //testing
+    testImplementation(libs.bundles.test)
+    //android testing
+    androidTestImplementation(libs.bundles.test.android)
+    androidTestImplementation(libs.bundles.test)
+    androidTestImplementation(libs.room.testing)
 }

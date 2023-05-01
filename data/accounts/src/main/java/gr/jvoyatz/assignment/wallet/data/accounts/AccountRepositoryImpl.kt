@@ -22,6 +22,8 @@ import gr.jvoyatz.assignment.wallet.core.api.models.TransactionsPagedRequest
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toAccountEntity
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toDomain
 import gr.jvoyatz.assignment.wallet.data.accounts.AccountMappers.toPagedAccountTransactions
+import gr.jvoyatz.assignment.wallet.data.accounts.internal.ApiSourceImpl
+import gr.jvoyatz.assignment.wallet.data.accounts.internal.DbSourceImpl
 import gr.jvoyatz.assignment.wallet.domain.models.Account
 import gr.jvoyatz.assignment.wallet.domain.models.AccountDetails
 import gr.jvoyatz.assignment.wallet.domain.models.AccountException
@@ -38,8 +40,8 @@ import kotlinx.coroutines.flow.onEach
  * It is responsible for returning the saved accounts as they have been found in the db.
  */
 internal class AccountRepositoryImpl(
-    private val apiSource: AccountsApiDataSource,
-    private val dbSource: AccountsLocalDataSource
+    private val apiSource: ApiSource,
+    private val dbSource: DbSource
 ) : AccountsRepository {
 
     private var selectedAccount: Account? = null
@@ -152,8 +154,8 @@ internal class AccountRepositoryImpl(
          */
         internal fun create(api: WalletApi, dao: AccountsDao): AccountsRepository{
             return AccountRepositoryImpl(
-                AccountsApiDataSource(api),
-                AccountsLocalDataSource(dao)
+                ApiSourceImpl(api),
+                DbSourceImpl(dao)
             )
         }
     }

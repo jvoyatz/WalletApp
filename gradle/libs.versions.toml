@@ -7,7 +7,7 @@ targetSdk                                       = "33"
 versionCode                                     = "1234"
 versionName                                     = "134.0"
 buildToolsVersion                               = "29.0.3"
-androidTestInstrumentation                      = "gr.jvoyatz.assignment.wallet.accounts.hilt.HiltTestRunner"
+androidTestInstrumentation                      = "androidx.test.runner.AndroidJUnitRunner"
 packageName                                     = "gr.jvoyatz.assignment.wallet"
 
 #plugins
