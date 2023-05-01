@@ -77,8 +77,9 @@ internal object AccountMappers {
 
     fun AccountTransactionsDto.toPagedAccountTransactions(currencySymbol: String? = null) = PagedTransactions(
         paging = this.paging.toDomain(),
-        transactions = this.transactions.mapList { it.toDomain(currencySymbol ?: "") }.sortedByDescending {
-            Timber.d("date ${it.date}")
+        transactions = this.transactions
+            .mapList { it.toDomain(currencySymbol ?: "") }
+            .sortedByDescending {
             it.date
         }
     )
