@@ -47,8 +47,6 @@
             app:tint="?attr/colorFavorite"
             android:src="@drawable/ic_favorite_border"
             android:contentDescription="@string/contentDescription"
-            android:paddingStart="@dimen/padding_5x"
-
             />
 
         <androidx.constraintlayout.widget.Guideline
@@ -56,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75"/>
+            app:layout_constraintGuide_percent="0.80"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHoriz"

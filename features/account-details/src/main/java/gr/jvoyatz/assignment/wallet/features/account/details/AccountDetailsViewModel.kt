@@ -111,6 +111,7 @@ class AccountDetailsViewModel
 
         //prepare
         val details = viewModelScope.async(appDispatchers.io) {
+            kotlinx.coroutines.delay(500)
             getAccountDetailsUseCase(accountId)
         }
 
@@ -172,7 +173,7 @@ class AccountDetailsViewModel
     }
 
     private fun getTransactionsNextPage() = flow {
-        kotlinx.coroutines.delay(500)
+        kotlinx.coroutines.delay(350)
         getTransactions(uiState.value.viewState.accountId!!).await()
             .onSuspendedSuccess { emit(Reduce.TransactionsNextPage(it)) }
             .onSuspendedError { postEvent(Contract.Event.ShowToast(transactionsNextPageErrorMsgId)) }
