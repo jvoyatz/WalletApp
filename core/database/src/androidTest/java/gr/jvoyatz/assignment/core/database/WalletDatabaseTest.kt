@@ -32,7 +32,11 @@ class WalletDatabaseTest {
         "current",
         "99.00",
         "EUR",
-        "my salary"
+        "my salary",
+        beneficiaries = "",
+        branch = "",
+        openedDate = "",
+        productName = ""
     )
 
     @Before

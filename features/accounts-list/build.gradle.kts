@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("assignment.wallet.android.library.plus")
@@ -7,6 +9,11 @@ plugins {
 
 android {
     namespace = "gr.jvoyatz.assignment.wallet.accounts"
+
+    defaultConfig {
+        testInstrumentationRunner = "gr.jvoyatz.assignment.wallet.accounts.hilt.HiltTestRunner"
+    }
+
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }

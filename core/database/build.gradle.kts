@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("assignment.wallet.android.library.plus")
@@ -31,6 +33,6 @@ dependencies {
     kapt(libs.room.compiler)
 
     androidTestImplementation(libs.room.testing)
-//    androidTestImplementation(libs.bundles.test.android)
-//    androidTestImplementation(libs.bundles.test)
+    androidTestImplementation(libs.bundles.test.android)
+    androidTestImplementation(libs.bundles.test)
 }
