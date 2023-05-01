@@ -15,7 +15,7 @@ internal fun Project.configureAndroidApp(
             applicationId = extensions.getVersionCatalogExtension().getPackageName()
             versionCode = extensions.getVersionCatalogExtension().getVersionCode()
             versionName = extensions.getVersionCatalogExtension().getVersionName()
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            testInstrumentationRunner = extensions.getVersionCatalogExtension().getTestRunner()
         }
     }
 }

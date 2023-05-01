@@ -7,7 +7,7 @@ targetSdk                                       = "33"
 versionCode                                     = "1234"
 versionName                                     = "134.0"
 buildToolsVersion                               = "29.0.3"
-androidTestInstrumentation                      = "androidx.test.runner.AndroidJUnitRunner"
+androidTestInstrumentation                      = "gr.jvoyatz.assignment.wallet.accounts.hilt.HiltTestRunner"
 packageName                                     = "gr.jvoyatz.assignment.wallet"
 
 #plugins
@@ -77,11 +77,13 @@ navigation-ui                                   = { module = "androidx.navigatio
 lifecycle-viewmodel                             = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-savedState                  = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 fragment                                        = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+fragment-test                                   = { module = "androidx.fragment:fragment-testing", version.ref = "fragment"}
 swipeRefreshLayout                              = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swipeRefresh"}
 
 #di
 dagger-hilt-android                             = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 dagger-hilt-compiler                            = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+dagger-hilt-testing                             = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt"}
 javax-inject                                    = { module = "javax.inject:javax.inject", version = "1" }
 
 #okhttp
@@ -113,6 +115,7 @@ logging-timber                                  = { module = "com.jakewharton.ti
 junit                                           = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit                         = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core                                   = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+espresso-contrib                                = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso-core"}
 truth                                           = { module = "com.google.truth:truth", version.ref = "truth" }
 turbine                                         = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 mockk                                           = { module = "io.mockk:mockk", version.ref = "mockk" }
@@ -150,7 +153,8 @@ test = [
 ]
 test-android = [
     "androidx-test-ext-junit",
-    "espresso-core"
+    "espresso-core",
+    "espresso-contrib"
 ]
 
 androidx-navigation = [

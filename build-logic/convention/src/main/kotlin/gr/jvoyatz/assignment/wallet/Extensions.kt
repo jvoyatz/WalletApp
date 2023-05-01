@@ -23,11 +23,13 @@ private const val VERSION_CODE = "versionCode"
 private const val TARGET_SDK = "targetSdk"
 private const val MIN_SDK = "minSdk"
 private const val COMPILE_SDK = "compileSdk"
+private const val TEST_RUNNER = "androidTestInstrumentation"
 
 fun VersionCatalogsExtension.getLibs() = named("libs")
 fun VersionCatalogsExtension.getPackageName(): String = getLibs().findVersion(PACKAGE_NAME).get().toString()
 fun VersionCatalogsExtension.getTargetSdk() = getLibs().findVersion(TARGET_SDK).get().toString().toInt()
 fun VersionCatalogsExtension.getCompileSdk() = getLibs().findVersion(COMPILE_SDK).get().toString().toInt()
 fun VersionCatalogsExtension.getMinSdk():Int = getLibs().findVersion(MIN_SDK).get().toString().toInt()
+fun VersionCatalogsExtension.getTestRunner():String = getLibs().findVersion(TEST_RUNNER).get().toString()
 fun VersionCatalogsExtension.getVersionName() = getLibs().findVersion(VERSION_NAME).get().toString()
 fun VersionCatalogsExtension.getVersionCode() = getLibs().findVersion(VERSION_CODE).get().toString().toInt()

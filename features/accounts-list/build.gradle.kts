@@ -7,6 +7,9 @@ plugins {
 
 android {
     namespace = "gr.jvoyatz.assignment.wallet.accounts"
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -22,7 +25,10 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:common-android"))
     implementation(project(":domain:accounts"))
+    implementation(project(":core:testing"))
 
     //test
+    androidTestImplementation(libs.bundles.androidx.navigation)
     androidTestImplementation(libs.bundles.test.android)
+  //  debugApi(libs.fragment.test)
 }

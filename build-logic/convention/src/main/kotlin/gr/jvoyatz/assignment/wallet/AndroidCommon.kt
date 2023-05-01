@@ -25,7 +25,7 @@ internal fun Project.configureAndroidCommon(
 
         defaultConfig {
             minSdk = extensions.getVersionCatalogExtension().getMinSdk()
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            testInstrumentationRunner = extensions.getVersionCatalogExtension().getTestRunner()
         }
 
         buildFeatures {
@@ -36,6 +36,7 @@ internal fun Project.configureAndroidCommon(
         packagingOptions {
             resources {
                 excludes += "/META-INF/{AL2.0,LGPL2.1}"
+                resources.excludes.add("META-INF/*")
             }
         }
     }
