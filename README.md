@@ -1,6 +1,7 @@
 # Wallet App
 
-** This app gives the user the capability to take a quick look on his wallet accounts. It can also view futher details of his accounts as well as the past transactions.
+**This app gives the user the capability to take a quick look on his wallet accounts. User is also able to view the further details of his accounts as well as the past transactions. Moreover, it is possible to mark an account as favorite and view partial details of it even when offline**
+
 
 | Accounts                                                                    | Details                                                                   |
 |-----------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -78,8 +79,9 @@
 > > Using Events to show a dialog/toast/snackbar as a result of an action triggered by the user and it does not affect the data displayed.
 > 
 > **UI** Defines custom views, extensions functions and other common method/functions/utilities that can used in a particular feature module of this app
-> 
-> 
+
+
+
 
 **What else?**
 
@@ -87,6 +89,7 @@
 * Clean architecture approach
 * Dependency Inversion principle
 * Separation of concerns
+* Single Source of true (both on data repository -> viewmodel etc. and in modules dependencies, ui extensions can be found only in one module or the skeleton of the view architecture)
 * **not**(Interface Segregation), out of the scope of this app
 * Structured concurrency (coroutines)
 * Streams (Kotlin Flows)
