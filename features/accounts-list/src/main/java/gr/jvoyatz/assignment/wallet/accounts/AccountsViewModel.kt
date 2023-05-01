@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -59,6 +60,7 @@ class AccountsViewModel @Inject constructor(
         getAccountsUseCase(refresh)
             .onStart { emit(Reduce.Loading )}
             .collect { result ->
+                Timber.d("flow emission $result")
                 result.onSuspendedSuccess {
                     val state = if (it.isEmpty()) {
                         Reduce.NoData

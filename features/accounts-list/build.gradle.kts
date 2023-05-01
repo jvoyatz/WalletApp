@@ -19,7 +19,6 @@ dependencies {
     implementation(libs.bundles.androidx.ui.common)
 
     //modules
-
     implementation(project(":core:ui"))
     implementation(project(":core:mvvm_plus"))
     implementation(project(":core:common"))
@@ -28,7 +27,9 @@ dependencies {
     implementation(project(":core:testing"))
 
     //test
-    androidTestImplementation(libs.bundles.androidx.navigation)
+    testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.test.android)
-  //  debugApi(libs.fragment.test)
+    androidTestImplementation(libs.bundles.androidx.navigation)
+//  debugApi(libs.fragment.test)
+//  testImplementation("androidx.arch.core:core-testing:2.1.0")
 }
