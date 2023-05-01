@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package gr.jvoyatz.assignment.wallet.data.accounts.fakes
+package gr.jvoyatz.assignment.wallet.data.accounts
 
 import com.google.common.truth.Truth
 import gr.jvoyatz.assignment.core.testing.utils.TestUtils

@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.data.accounts
+package gr.jvoyatz.assignment.wallet.data.accounts.fakes
 
 import gr.jvoyatz.assignment.core.testing.MockData
 import gr.jvoyatz.assignment.wallet.core.api.ApiSource
