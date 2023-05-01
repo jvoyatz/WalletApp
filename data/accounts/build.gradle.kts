@@ -23,6 +23,8 @@ dependencies {
 
     //testing
     testImplementation(libs.bundles.test)
+    testImplementation(project(":core:testing"))
+
     //android testing
     androidTestImplementation(libs.bundles.test.android)
     androidTestImplementation(libs.bundles.test)
