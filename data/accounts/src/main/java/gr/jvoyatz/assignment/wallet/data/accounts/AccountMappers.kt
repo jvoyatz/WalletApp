@@ -80,8 +80,6 @@ internal object AccountMappers {
         transactions = this.transactions.mapList { it.toDomain(currencySymbol ?: "") }.sortedByDescending {
             Timber.d("date ${it.date}")
             it.date
-        }.also {
-            Timber.d("sorted list $it")
         }
     )
 

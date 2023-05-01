@@ -1,0 +1,2 @@
+.dot file to png -->
+    dot project.dot -Tpng -o project.png

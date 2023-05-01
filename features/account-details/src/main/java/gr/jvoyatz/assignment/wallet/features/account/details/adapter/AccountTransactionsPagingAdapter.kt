@@ -73,8 +73,7 @@ class AccountTransactionsPagingAdapter :
         submitList(list)
     }
 
-    fun isLoading(): Boolean =
-         currentList.last() is TransactionUI.Loading
+    fun isLoading(): Boolean = !currentList.isEmpty() && currentList.last() is TransactionUI.Loading
 
     inner class HeaderViewHolder(private val binding: AccountDetailsItemDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
