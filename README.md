@@ -1,4 +1,6 @@
-# assignment Wallet
+# Wallet App
+
+** This app gives the user the capability to take a quick look on his wallet accounts. It can also view futher details of his accounts as well as the past transactions.
 
 | Accounts                                                                    | Details                                                                   |
 |-----------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -21,7 +23,7 @@
   - JUnit4
   - Truth
   - Turbine
-  - Mockito/MockK
+  - **MockK**/Mockito
   - Espresso
 - Gradle
   - using Kotlin (.kts) instead of Groovy (autocompletion)
@@ -29,8 +31,13 @@
     - with a drawaback (unfortunately), cannot use precompiled script plugins for the several modules.
     - The solution is the **Convention Plugins**
 
+  
+**This app has been designed, built and implemented having in the multi-module (by layer and feature) and clean approach in mind**
 
-**This app has been designed, built and implemented having in the multi-module and clean approach in mind**
+
+## Dependency Graph
+
+![graph](./reports/project.dot.png)
 
 ### Modules
 
@@ -43,7 +50,7 @@
 > > **Portfolio** :
 > > Display user's accounts found in his wallet.
 > 
-> **Account Details** :
+> > **Account Details** :
 > > Displays extra details for the selected account
 
 **Domain Module**
@@ -55,8 +62,47 @@
 
 **Core Module**
 > Contains code and implementations that they are used throughout the app
-> > **Common** Common classes and utilities used throughout out the app -- [it is not android dependent]
+> > **Common** Common classes and utilities used throughout out the app. -- **Java/Kotlin library**
+> 
+> > **Common-Android** Same as above, however this module is dependent to Android, since it provides methods on top of that. -- **Android Library**
+> 
+> > **Testing** Utilities and classes needed for testing -- **Android Library**
+> 
+> > **Api** Defines the contract that gives us the capability to fetch from the remote service. -- **Android Library/Retrofit**
+> 
+> > **Database** Contains the implementation for manipulating data saved locally. -- **Android Library/Room**
+> 
+> > **Mvvm_plus** Defines an implementation of MVVM with MVI architecture approaches.
+> > Using UiState to wrap data that they will be shown in the screens
+> > Using Intents **(not Android Intents)** to define the actions that can take place by the user.
+> > Using Events to show a dialog/toast/snackbar as a result of an action triggered by the user and it does not affect the data displayed.
+> 
+> **UI** Defines custom views, extensions functions and other common method/functions/utilities that can used in a particular feature module of this app
+> 
+> 
 
+**What else?**
+
+* the cleaner (code), the better -- at least as much as i could thought of this during development
+* Clean architecture approach
+* Dependency Inversion principle
+* Separation of concerns
+* **not**(Interface Segregation), out of the scope of this app
+* Structured concurrency (coroutines)
+* Streams (Kotlin Flows)
+* Mixing coroutines & flows with Android Libraries. For instance, a query from Room DAO returns Flows, thus it emits a new stream each time a change happens.
+* Using custom type to wrap the response from the Retrofit requests, see **[ApiResponse]** -- I did not have time to write a custom adapter and integrate this type directly as a response of a request. Anyway, you can always take a closer look and see the implementation and the tests written for this.
+* Another custom type exists for wrapping the result of an action -- (Sure it can be used instead of the above custom type, but I don't prefer it) 
+* Functional Use cases by taking advantage of Kotlin's function API (instead of having boilerplate everywhere by defining class types, why not using Functional (SAM) Interfaces?)
+* Kotlin Api (inline, crossinline, lambdas, sam interfaces, extensions)
+* Combining MVVM with MVI, call it MVVM_plus or MVVMi, **suggest me a name please**
+* Tests
+  * Unit tests using Mocks or Fakes (tests run on isolation, that means we use mocks or fake implementations for the dependencies of certain class/method being under test)
+  * Integration tests, meaning that we test two or more components together and not in isolation of each other
+  * Instrumentation Tests
+    * Room Database/DAO for instance
+    * UI Tests using Hilt and Espresso
+  * **Replicating the behavior of a flow using fake impls and MutableSharedFlow)
 
 
 ### References
