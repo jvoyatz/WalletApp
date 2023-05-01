@@ -88,11 +88,9 @@ fun ImageView.onLargerScaleAnimation(@DrawableRes startDrawable: Int, @DrawableR
             }
 
             override fun onAnimationCancel(animation: Animator) {
-                TODO("Not yet implemented")
             }
 
             override fun onAnimationRepeat(animation: Animator) {
-                TODO("Not yet implemented")
             }
 
         })
