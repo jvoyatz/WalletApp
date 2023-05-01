@@ -1,8 +1,8 @@
 # assignment Wallet
 
-| Accounts | Details     |
-| --- |-------------|
-| img here | img here 2  |
+| Accounts                                    | Details                                   |
+|---------------------------------------------|-------------------------------------------|
+| ![My Image](screenshots/portfolio_dark.png) | ![My Image](screenshots/details_dark.png) |
 
 ## Technologies
 - Multiple modules
