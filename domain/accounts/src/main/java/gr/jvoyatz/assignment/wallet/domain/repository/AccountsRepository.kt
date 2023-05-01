@@ -15,7 +15,7 @@ interface AccountsRepository {
      */
     /*suspend*/ fun getAccounts(refresh: Boolean = false): Flow<ResultData<List<Account>>>
 
-    suspend fun getRemoteAccounts(): ResultData<Unit>
+    suspend fun getRemoteAccounts()
 
     /**
      * Makes the request to fetch details for a selected account

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/accountsFragment"
         android:name="gr.jvoyatz.assignment.wallet.accounts.AccountsFragment"
-        android:label="Accounts"
+        android:label="@string/accounts_portfolio"
         tools:layout="@layout/fragment_accounts_list">
 
         <action

@@ -30,7 +30,6 @@ import gr.jvoyatz.assignment.wallet.domain.repository.AccountsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 
 /**
@@ -47,7 +46,6 @@ internal class AccountRepositoryImpl(
     private val accounts: MutableList<Account> = mutableListOf()
 
     override /*suspend*/ fun getAccounts(refresh: Boolean): Flow<ResultData<List<Account>>> {
-        Timber.d("getAccounts() called with: refresh = $refresh")
         return dbSource.getAccounts()
             .map { it.mapList { it.toDomain() }}
             .onEach {
@@ -66,7 +64,7 @@ internal class AccountRepositoryImpl(
             }.asResult()
     }
 
-     override suspend fun getRemoteAccounts(): ResultData<Unit> = suspendedResultOf {
+     override suspend fun getRemoteAccounts() {
          apiSource.getAccounts()
              .onSuccess({ list -> list.mapList { it.toDomain() } }) {
                  accounts.clear()

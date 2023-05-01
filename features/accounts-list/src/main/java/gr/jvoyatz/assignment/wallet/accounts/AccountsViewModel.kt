@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -59,7 +58,6 @@ class AccountsViewModel @Inject constructor(
     private fun getAccounts(refresh: Boolean = false): Flow<Reduce> = flow {
         getAccountsUseCase(refresh)
             .onStart { emit(Reduce.Loading )}
-            .onEach { kotlinx.coroutines.delay(500) }
             .collect { result ->
                 result.onSuspendedSuccess {
                     val state = if (it.isEmpty()) {

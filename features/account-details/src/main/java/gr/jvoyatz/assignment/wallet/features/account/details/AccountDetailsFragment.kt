@@ -63,7 +63,7 @@ class AccountDetailsFragment : Fragment() {
             }
 
             loaderView.setRetryListener(getDataClickHandler)
-            swipeContainer.isEnabled = false // disabled due to issue with click listeners
+          //  swipeContainer.isEnabled = false // disabled due to issue with click listeners
             swipeContainer.setOnRefreshListener(getDataClickHandler)
             transactionsLoader.setRetryListener(getDataClickHandler)
 
@@ -120,7 +120,7 @@ class AccountDetailsFragment : Fragment() {
 
     private fun showLoadingState(){
         with(binding){
-           // swipeContainer.isRefreshing = true
+            swipeContainer.isRefreshing = true
             nestedScrollview.hide()
             loaderView.showLoading()
         }
@@ -128,7 +128,7 @@ class AccountDetailsFragment : Fragment() {
 
     private fun showErrorState(){
         with(binding) {
-           // swipeContainer.isRefreshing = false
+            swipeContainer.isRefreshing = false
             nestedScrollview.hide()
             loaderView.showError()
         }
@@ -139,6 +139,7 @@ class AccountDetailsFragment : Fragment() {
             swipeContainer.isRefreshing = false
             loaderView.hide()
             nestedScrollview.show()
+
             accountContainer.setAccountName(account.accountNickname)
             accountContainer.setAccountBalance(account.balance, account.currencyCode)
             accountContainer.setAccountFavorite(account.isFavorite)

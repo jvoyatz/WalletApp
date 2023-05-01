@@ -111,7 +111,6 @@ class AccountDetailsViewModel
 
         //prepare
         val details = viewModelScope.async(appDispatchers.io) {
-            kotlinx.coroutines.delay(500)
             getAccountDetailsUseCase(accountId)
         }
 
