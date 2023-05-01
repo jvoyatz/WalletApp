@@ -1,8 +1,8 @@
 # assignment Wallet
 
-| Accounts                                                     | Details                                   |
-|--------------------------------------------------------------|-------------------------------------------|
-| <img src ="./screenshots/portfolio_dark.png" height = "400" /> | ![My Image](screenshots/details_dark.png){height = 400}|
+| Accounts                                                                   | Details                                   |
+|----------------------------------------------------------------------------|-------------------------------------------|
+| <img src ="./screenshots/portfolio_dark.png" height = "50%" width ="50%" /> | <img src ="./screenshots/details_dark.png)" height = "50%" width ="50%" />|
 
 ## Technologies
 - Multiple modules
