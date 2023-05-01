@@ -3,9 +3,9 @@
 **This app gives the user the capability to take a quick look on his wallet accounts. User is also able to view the further details of his accounts as well as the past transactions. Moreover, it is possible to mark an account as favorite and view partial details of it even when offline**
 
 
-| Accounts                                                                    | Details                                                                   |
-|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| <img src ="./screenshots/portfolio_dark.png" height = "75%" width ="75%" /> | <img src ="./screenshots/details_dark.png" height = "80%" width ="80%" /> |
+| Accounts                                                                                         | Details                                                                                           |
+|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| <p align="center"><img src="./screenshots/portfolio_dark.png" height ="75%" width ="75%" /> </p> | <p align="center"> <img src ="./screenshots/details_dark.png" height = "80%" width ="80%" /> </p> |
 
 ## Technologies
 - Multiple modules
