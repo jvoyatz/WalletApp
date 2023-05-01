@@ -7,7 +7,7 @@ import gr.jvoyatz.assignment.wallet.core.api.models.AccountDetailsDto
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountRaw
 import gr.jvoyatz.assignment.wallet.core.api.models.AccountTransactionsDto
 import gr.jvoyatz.assignment.wallet.core.api.models.TransactionsPagedRequest
-import gr.jvoyatz.assignment.wallet.data.accounts.ApiSource
+import gr.jvoyatz.assignment.wallet.core.api.ApiSource
 
 internal class ApiSourceImpl(
     private val api: WalletApi

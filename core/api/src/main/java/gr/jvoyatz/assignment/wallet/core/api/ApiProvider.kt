@@ -29,7 +29,8 @@ object ApiProvider {
             Timber.tag(TAG).d(it)
         }.apply {
             level =
-                if (api_R.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+                //if (api_R.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+                HttpLoggingInterceptor.Level.NONE
         }
     }
 

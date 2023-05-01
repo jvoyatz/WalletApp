@@ -1,4 +1,4 @@
-package gr.jvoyatz.assignment.wallet.data.accounts
+package gr.jvoyatz.assignment.wallet.core.api
 
 import gr.jvoyatz.assignment.wallet.core.api.config.response.ApiResponse
 import gr.jvoyatz.assignment.wallet.core.api.config.response.safeRawApiCall
