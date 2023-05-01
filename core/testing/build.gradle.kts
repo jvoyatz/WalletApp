@@ -14,6 +14,8 @@ dependencies {
     implementation(libs.dagger.hilt.testing)
 
     implementation(libs.bundles.androidx.navigation)
+    kapt(libs.moshi.codegen)
+    implementation(libs.bundles.networking)
     implementation(project(":domain:accounts"))
     implementation(project(":core:common-android"))
     implementation(project(":core:common"))
