@@ -2,7 +2,7 @@
 
 | Accounts                                                  | Details                                   |
 |-----------------------------------------------------------|-------------------------------------------|
-| ![My Image](screenshots/portfolio_dark.png){height = 500} | ![My Image](screenshots/details_dark.png) |
+| ![My Image](screenshots/portfolio_dark.png){height = 400} | ![My Image](screenshots/details_dark.png){height = 400}|
 
 ## Technologies
 - Multiple modules
