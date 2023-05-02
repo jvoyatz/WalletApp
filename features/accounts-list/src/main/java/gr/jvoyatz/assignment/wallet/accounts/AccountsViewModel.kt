@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gr.jvoyatz.assignment.core.common.resultdata.onError
+import gr.jvoyatz.assignment.core.common.resultdata.onSuccess
 import gr.jvoyatz.assignment.core.common.resultdata.onSuspendedError
 import gr.jvoyatz.assignment.core.common.resultdata.onSuspendedSuccess
 import gr.jvoyatz.assignment.core.mvvmi.BaseViewModel
@@ -60,8 +61,7 @@ class AccountsViewModel @Inject constructor(
         getAccountsUseCase(refresh)
             .onStart { emit(Reduce.Loading )}
             .collect { result ->
-                Timber.d("flow emission $result")
-                result.onSuspendedSuccess {
+                result.onSuccess {
                     val state = if (it.isEmpty()) {
                         Reduce.NoData
                     } else {

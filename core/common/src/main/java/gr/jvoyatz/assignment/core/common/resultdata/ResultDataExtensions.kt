@@ -39,7 +39,7 @@ fun <T> ResultData<T>.asError(): ResultData.Error? {
 /**
  * Executes the given block in case of a [ResultData.Success] instance, otherwise it does nothing
  */
-inline fun <T> ResultData<T>.onSuccess(crossinline action: (value: T) -> Unit): ResultData<T> {
+inline fun <T> ResultData<T>.onSuccess(/*crossinline*/ action: (value: T) -> Unit): ResultData<T> {
     if(isSuccess()) action(asSuccess()!!.data)
     return this
 }
